@@ -24,6 +24,10 @@
 		9280AA821B98D437006E13F0 /* TackleBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */; };
 		9280AA851B98FC66006E13F0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA841B98FC66006E13F0 /* Logger.swift */; };
 		9280AA871B99051D006E13F0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA861B99051D006E13F0 /* RegistrationViewController.swift */; };
+		9280AA891B991CB3006E13F0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA881B991CB3006E13F0 /* CameraViewController.swift */; };
+		9280AA8C1B992C3D006E13F0 /* GetCameraImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA8B1B992C3D006E13F0 /* GetCameraImageDelegate.swift */; };
+		9280AA8E1B993571006E13F0 /* FishDetailViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */; };
+		9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA8F1B9935D5006E13F0 /* AcceptFishDetailDelagate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TackleBoxViewController.swift; sourceTree = "<group>"; };
 		9280AA841B98FC66006E13F0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		9280AA861B99051D006E13F0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		9280AA881B991CB3006E13F0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9280AA8B1B992C3D006E13F0 /* GetCameraImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCameraImageDelegate.swift; sourceTree = "<group>"; };
+		9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishDetailViewControler.swift; sourceTree = "<group>"; };
+		9280AA8F1B9935D5006E13F0 /* AcceptFishDetailDelagate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptFishDetailDelagate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		9280AA4B1B98CE55006E13F0 /* Livingston */ = {
 			isa = PBXGroup;
 			children = (
+				9280AA8A1B992BF9006E13F0 /* Delegates */,
 				9280AA831B98FC3D006E13F0 /* Loaders */,
 				9280AA781B98D2D4006E13F0 /* Controllers */,
 				9280AA711B98CFD4006E13F0 /* Resources */,
@@ -157,6 +166,8 @@
 				9280AA7F1B98D419006E13F0 /* RecordACatchViewController.swift */,
 				9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */,
 				9280AA861B99051D006E13F0 /* RegistrationViewController.swift */,
+				9280AA881B991CB3006E13F0 /* CameraViewController.swift */,
+				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +178,15 @@
 				9280AA841B98FC66006E13F0 /* Logger.swift */,
 			);
 			name = Loaders;
+			sourceTree = "<group>";
+		};
+		9280AA8A1B992BF9006E13F0 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				9280AA8B1B992C3D006E13F0 /* GetCameraImageDelegate.swift */,
+				9280AA8F1B9935D5006E13F0 /* AcceptFishDetailDelagate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,10 +294,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9280AA7C1B98D394006E13F0 /* FishViewController.swift in Sources */,
+				9280AA8C1B992C3D006E13F0 /* GetCameraImageDelegate.swift in Sources */,
+				9280AA891B991CB3006E13F0 /* CameraViewController.swift in Sources */,
 				9280AA7E1B98D3BE006E13F0 /* ProgramUIViewController.swift in Sources */,
+				9280AA8E1B993571006E13F0 /* FishDetailViewControler.swift in Sources */,
 				9280AA821B98D437006E13F0 /* TackleBoxViewController.swift in Sources */,
 				9280AA871B99051D006E13F0 /* RegistrationViewController.swift in Sources */,
 				9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */,
+				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
