@@ -12,6 +12,8 @@ class SoundViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let segueId = "goToCurrentSoundVIew"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +64,6 @@ extension SoundViewController : UICollectionViewDataSource {
 
 extension SoundViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        //Delegate
+        self.performSegueWithIdentifier(self.segueId, sender: self)
     }
 }
