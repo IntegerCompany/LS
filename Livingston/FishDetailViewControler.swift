@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FishDetailViewController : UIViewController {
     
@@ -16,9 +17,11 @@ class FishDetailViewController : UIViewController {
     
     var delegate : AcceptFishDetailDelegate?
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad(){
         super.viewDidLoad()
-        
+
     }
     
     @IBAction func cancel(sender: UIButton) {
@@ -26,7 +29,18 @@ class FishDetailViewController : UIViewController {
     }
     
     @IBAction func save(sender: UIButton) {
+        var recFish = RecordedFish()
+        if let uName = userDefaults.valueForKey("login") as? String {
+            recFish.userName = uName
+        }
+        recFish.weight = self.weight.text
+        recFish.lenght = self.lenght.text
+        recFish.note = self.note.text
+        recFish.dateTime = NSDate()
         
+        delegate?.acceptFishDetail(recFish)
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

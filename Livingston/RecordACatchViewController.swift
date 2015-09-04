@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RecordACatchViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var lastLureFish: UIImageView!
     
     var popoverContent : FishDetailViewController?
+    let realm = Realm()
+    var recordedFish : RecordedFish!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,6 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
         popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("FishDetailViewController") as? FishDetailViewController
         popoverContent?.delegate = self
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,6 +44,20 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
         self.showDetailView()
     }
     
+    //Saving into data base
+    @IBAction func submitRecord(sender: UIButton) {
+        if lastLureFish.image != nil {
+            self.recordedFish.image = UIImagePNGRepresentation(lastLureFish.image!)
+        }
+        self.realm.write({
+            self.realm.add(self.recordedFish)
+        })
+        println("Detail has been added to DB !")
+        let fishInDB = self.realm.objects(RecordedFish)
+        println("\n Items in DATABASE : \(count(fishInDB))")
+        
+    }
+    
     func showDetailView() {
         popoverContent!.modalPresentationStyle = UIModalPresentationStyle.Popover
         popoverContent!.preferredContentSize = CGSizeMake(240,280)
@@ -59,10 +75,12 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
     }
     
 }
+//Pop up window callback
 extension RecordACatchViewController : AcceptFishDetailDelegate {
     
-    func acceptFishDetail(sender: AnyObject) {
-        println("Detail has been accepted !")
+    func acceptFishDetail(sender: Object) {
+        println("Get info from pop up window !")
+        self.recordedFish = sender as! RecordedFish
     }
 }
 
