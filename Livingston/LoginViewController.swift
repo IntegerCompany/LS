@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     let logUrl = "http://appapi.livingstonlures.com/LoginService.php"
-    //MARK: HARDCODE !
-    var params = ["Username":"jameson", "Password":"password"] as Dictionary<String, String>
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +28,16 @@ class LoginViewController: UIViewController {
     
     @IBAction func login(sender: UIButton) {
         if checkTextFields() {
-            post(self.params, url: logUrl)
+            let username = self.login.text
+            let pwd = self.password.text
+            var params = ["username":username, "password":pwd] as Dictionary<String, String>
+            post(params, url: logUrl)
         }else{
             println("Validate your login or(and) password")
         }
     }
     func checkTextFields() -> Bool{
-        return count(self.login.text) >= 2 && count(self.login.text) >= 4
+        return count(self.login.text) >= 2 && count(self.password.text) >= 4
     }
     
     func makeALogInTask(){
@@ -88,6 +89,7 @@ class LoginViewController: UIViewController {
                     println("Error could not parse JSON: \(jsonStr)")
                 }
             }
+            //move this part after api rebase ! Api make responce 200 with -1 value.
             dispatch_async(dispatch_get_main_queue(), {
                 self.makeALogInTask()
             });

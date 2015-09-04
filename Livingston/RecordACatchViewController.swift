@@ -15,7 +15,8 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
     
     var popoverContent : FishDetailViewController?
     let realm = Realm()
-    var recordedFish : RecordedFish!
+    var recordedFish : RecordedFish = RecordedFish()
+    var imageToSave : UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +47,16 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
     
     //Saving into data base
     @IBAction func submitRecord(sender: UIButton) {
-        if lastLureFish.image != nil {
-            self.recordedFish.image = UIImagePNGRepresentation(lastLureFish.image!)
+        if self.imageToSave != nil {
+            self.recordedFish.image = UIImagePNGRepresentation(self.imageToSave)
         }
-        self.realm.write({
+        
+        self.realm.write({ //THIS IS DATA BASE WRITE
             self.realm.add(self.recordedFish)
         })
         println("Detail has been added to DB !")
         let fishInDB = self.realm.objects(RecordedFish)
-        println("\n Items in DATABASE : \(count(fishInDB))")
+        println("\n Items in DATABASE : \(count(fishInDB))") //HERE WE SHOW HOW MANY ITEMS IN DATA BASE
         
     }
     
@@ -87,7 +89,7 @@ extension RecordACatchViewController : AcceptFishDetailDelegate {
 extension RecordACatchViewController : GetCameraImageDelegate {
     
     func didRecievePhotoFromCamera(image: UIImage) {
-        self.lastLureFish.image = image
+        self.imageToSave = image
     }
 }
 

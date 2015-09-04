@@ -17,20 +17,46 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     
     let regUrl = "http://appapi.livingstonlures.com/Register.php"
+    let segueID = "makeARegistration"
 //    "Username"
 //    "Password"
 //    "Date"
-    
-    //MARK: HARDCODE !
-    var params = ["Username":"jameson", "Password":"password", "Date":"1441323172"] as Dictionary<String, String>
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
     }
     @IBAction func register(sender: UIButton) {
-        post(self.params, url: self.regUrl)
+        if checkTextFields() {
+            let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+            
+            let username = self.login.text
+            let pwd = self.password.text
+            var params = ["Username":username, "Password":pwd, "Date":timestamp] as Dictionary<String, String>
+            post(params, url: self.regUrl)
+        }else {
+            println("Validate your registration data !")
+        }
     }
+    @IBAction func back(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func checkTextFields() -> Bool{
+        return count(self.login.text) >= 2 && count(self.password.text) >= 4 && (self.password.text == self.confirmPassword.text)
+    }
+    
+    func makeARegisterInTask(){
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        
+        userDefaults.setValue(self.login.text, forKey: "login")
+        userDefaults.setValue(self.password.text, forKey: "password")
+        userDefaults.setValue(timestamp, forKey: "date")
+        userDefaults.synchronize()
+        
+        self.performSegueWithIdentifier(self.segueID, sender: self)
+    }
+
     
     func post(params : Dictionary<String, String>, url : String) {
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -70,6 +96,9 @@ class RegistrationViewController: UIViewController {
                     println("Error could not parse JSON: \(jsonStr)")
                 }
             }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.makeARegisterInTask()
+            });
         })
         
         task.resume()

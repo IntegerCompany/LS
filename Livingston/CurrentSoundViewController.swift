@@ -18,7 +18,7 @@ class CurrentSoundViewController: UIViewController {
         let img = UIImage(named: "background")
         self.view.backgroundColor = UIColor(patternImage: img!)
         
-        let path = NSBundle.mainBundle().pathForResource("water", ofType: "mp3")
+        let path = NSBundle.mainBundle().pathForResource("water", ofType: "mp3") //MP3 file path
         let url = NSURL(fileURLWithPath: path!)
         
         AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
@@ -28,6 +28,9 @@ class CurrentSoundViewController: UIViewController {
         audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
         audioPlayer.prepareToPlay()
     }
+    @IBAction func replay(sender: UIButton) {
+        self.play()
+    }
     @IBAction func back(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -35,6 +38,7 @@ class CurrentSoundViewController: UIViewController {
     func playButtonAction(sender : UIButton){
         self.play()
     }
+    //Play func !
     func play(){
         audioPlayer.stop()
         audioPlayer.play()

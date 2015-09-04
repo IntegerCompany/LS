@@ -21,7 +21,6 @@
 		9280AA7E1B98D3BE006E13F0 /* ProgramUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA7D1B98D3BE006E13F0 /* ProgramUIViewController.swift */; };
 		9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA7F1B98D419006E13F0 /* RecordACatchViewController.swift */; };
 		9280AA821B98D437006E13F0 /* TackleBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */; };
-		9280AA851B98FC66006E13F0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA841B98FC66006E13F0 /* Logger.swift */; };
 		9280AA871B99051D006E13F0 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA861B99051D006E13F0 /* RegistrationViewController.swift */; };
 		9280AA891B991CB3006E13F0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA881B991CB3006E13F0 /* CameraViewController.swift */; };
 		9280AA8C1B992C3D006E13F0 /* GetCameraImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA8B1B992C3D006E13F0 /* GetCameraImageDelegate.swift */; };
@@ -31,6 +30,7 @@
 		9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */; };
 		9280AA971B9958E5006E13F0 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA961B9958E5006E13F0 /* Cells.swift */; };
 		9280AA991B995B32006E13F0 /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA981B995B32006E13F0 /* water.mp3 */; };
+		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,6 @@
 		9280AA7D1B98D3BE006E13F0 /* ProgramUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramUIViewController.swift; sourceTree = "<group>"; };
 		9280AA7F1B98D419006E13F0 /* RecordACatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordACatchViewController.swift; sourceTree = "<group>"; };
 		9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TackleBoxViewController.swift; sourceTree = "<group>"; };
-		9280AA841B98FC66006E13F0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		9280AA861B99051D006E13F0 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		9280AA881B991CB3006E13F0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9280AA8B1B992C3D006E13F0 /* GetCameraImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCameraImageDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSoundViewController.swift; sourceTree = "<group>"; };
 		9280AA961B9958E5006E13F0 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		9280AA981B995B32006E13F0 /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
+		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +131,6 @@
 			children = (
 				9280AA911B994343006E13F0 /* Models */,
 				9280AA8A1B992BF9006E13F0 /* Delegates */,
-				9280AA831B98FC3D006E13F0 /* Loaders */,
 				9280AA781B98D2D4006E13F0 /* Controllers */,
 				9280AA711B98CFD4006E13F0 /* Resources */,
 				9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */,
@@ -192,16 +191,9 @@
 				9280AA881B991CB3006E13F0 /* CameraViewController.swift */,
 				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 				9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */,
+				92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		9280AA831B98FC3D006E13F0 /* Loaders */ = {
-			isa = PBXGroup;
-			children = (
-				9280AA841B98FC66006E13F0 /* Logger.swift */,
-			);
-			name = Loaders;
 			sourceTree = "<group>";
 		};
 		9280AA8A1B992BF9006E13F0 /* Delegates */ = {
@@ -398,8 +390,8 @@
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
-				9280AA851B98FC66006E13F0 /* Logger.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,
+				92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */,
 				9280AA931B994357006E13F0 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,9 +520,11 @@
 			baseConfigurationReference = 6A38C35F430675B2216D4637 /* Pods-Livingston.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Livingston/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -539,9 +533,11 @@
 			baseConfigurationReference = 4FCBA76386C11CF73BA35B4C /* Pods-Livingston.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Livingston/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
