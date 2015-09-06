@@ -14,3 +14,9 @@ class SoundPurchaseCell : UITableViewCell {
     @IBOutlet weak var buttonPlay: UIButton!
     
 }
+
+class BLECell : UITableViewCell {
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var uuid: UILabel!
+}
