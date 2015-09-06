@@ -20,3 +20,12 @@ class BLECell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var uuid: UILabel!
 }
+
+class TackleCell : UICollectionViewCell {
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var type: UILabel!
+    @IBOutlet weak var activeSoundType: UILabel!
+
+}

@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol TransferTackleInfoDelegate {
+    func transferTackle(lure : LureData)
+}
+
 class ProgramUIViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

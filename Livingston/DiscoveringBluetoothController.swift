@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import RealmSwift
 
 class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -27,6 +28,8 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
     var blueToothReady = false
     var sensorTagPeripheral:CBPeripheral!
     var lureName : String!
+    
+    let realm = Realm()
     
     var peripheralList : [CBPeripheral] = [CBPeripheral]()
     
@@ -201,6 +204,11 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
                     // Okay, the parsedJSON is here, let's get the value for 'success' out of it
                     var success = parseJSON["success"] as? Int
                     println("Succes: \(success)")
+                    
+                    //Call back to main thread !
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.backToTackleList(parseJSON)
+                    });
                 }
                 else {
                     // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
@@ -208,17 +216,43 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
                     println("Error could not parse JSON: \(jsonStr)")
                 }
             }
-            //move this part after api rebase ! Api make responce 200 with -1 value.
-            dispatch_async(dispatch_get_main_queue(), {
-                self.backToTackleList()
-            });
         })
         task.resume()
     }
     
     //Go back to tackle list with passing data to.
-    func backToTackleList(){
+    func backToTackleList(json : NSDictionary){
+        
+        self.parseLureDataWithWithJSON(json)
+        
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func parseLureDataWithWithJSON(json : NSDictionary) {
+        
+        let LURE_ITEM_CODE = json["LURE_ITEM_CODE"] as! String
+        let LURE_CODE = json["LURE_CODE"] as! String
+        let LURE_NAME = json["LURE_NAME"] as! String
+        let LURE_WATER_TYPE = json["LURE_WATER_TYPE"] as! String
+        let LURE_STYLE = json["LURE_STYLE"] as! String
+        let LURE_IMAGE_URL = json["LURE_IMAGE_URL"] as! String
+        
+        var lureInfo = LureData()
+        lureInfo.LURE_ITEM_CODE = LURE_ITEM_CODE
+        lureInfo.LURE_CODE = LURE_CODE
+        lureInfo.LURE_NAME = LURE_NAME
+        lureInfo.LURE_WATER_TYPE = LURE_WATER_TYPE
+        lureInfo.LURE_ITEM_CODE = LURE_ITEM_CODE
+        lureInfo.LURE_IMAGE_URL = LURE_IMAGE_URL
+        
+        self.realm.write({ //THIS IS DATA BASE WRITE
+            self.realm.add(lureInfo)
+        })
+        
+        println("LureInfo has been added to DB !")
+        let fishInDB = self.realm.objects(RecordedFish)
+        println("\n Items in DATABASE : \(count(fishInDB))")
+        
     }
 }
 //Data source
@@ -246,9 +280,14 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         self.centralManager.connectPeripheral(peripheral, options: nil)
         println("centralManager.connectPeripheral\n")
         
-        var params = ["LureCode":self.lureName] as Dictionary<String, String>
-        //MARK : Make a post request
-        post(params, url: self.URL)
+        if self.lureName != nil {
+            var params = ["LureCode":self.lureName] as Dictionary<String, String>
+            //MARK : Make a post request
+            post(params, url: self.URL)
+        }else{
+            println("\n\nLure name has not detected !")
+        }
+        
     }
 }
 
