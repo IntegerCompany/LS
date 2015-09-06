@@ -21,10 +21,12 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
 
     let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
     let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+    let URL = "http://appapi.livingstonlures.com/Lure.php"
     
     var centralManager:CBCentralManager!
     var blueToothReady = false
     var sensorTagPeripheral:CBPeripheral!
+    var lureName : String!
     
     var peripheralList : [CBPeripheral] = [CBPeripheral]()
     
@@ -87,9 +89,11 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
         println("UUID : \(peripheral.identifier.UUIDString) ")
         
         if contains(self.peripheralList, peripheral) {
-            println("yes")
+            println("list already contains this peripheral item")
         }else{
             self.peripheralList.append(peripheral)
+            println("list already contains this peripheral item")
+            self.tableView.reloadData()
         }
     }
 
@@ -163,6 +167,59 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
         self.discoveredDevices.text = "Disconnected"
         central.scanForPeripheralsWithServices(nil, options: nil)
     }
+    
+    //Post request witch takes a lure information.
+    //See Models.swift 
+    
+    func post(params : Dictionary<String, String>, url : String) {
+        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        var session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        
+        var err: NSError?
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            println("Response: \(response)")
+            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Body: \(strData)")
+            var err: NSError?
+            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            
+            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
+            if(err != nil) {
+                println(err!.localizedDescription)
+                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                println("Error could not parse JSON: '\(jsonStr)'")
+            }
+            else {
+                // The JSONObjectWithData constructor didn't return an error. But, we should still
+                // check and make sure that json has a value using optional binding.
+                if let parseJSON = json {
+                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
+                    var success = parseJSON["success"] as? Int
+                    println("Succes: \(success)")
+                }
+                else {
+                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
+                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    println("Error could not parse JSON: \(jsonStr)")
+                }
+            }
+            //move this part after api rebase ! Api make responce 200 with -1 value.
+            dispatch_async(dispatch_get_main_queue(), {
+                self.backToTackleList()
+            });
+        })
+        task.resume()
+    }
+    
+    //Go back to tackle list with passing data to.
+    func backToTackleList(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }
 //Data source
 extension DiscoveringBluetoothController : UITableViewDataSource {
@@ -188,6 +245,10 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         self.sensorTagPeripheral = peripheral
         self.centralManager.connectPeripheral(peripheral, options: nil)
         println("centralManager.connectPeripheral\n")
+        
+        var params = ["LureCode":self.lureName] as Dictionary<String, String>
+        //MARK : Make a post request
+        post(params, url: self.URL)
     }
 }
 
