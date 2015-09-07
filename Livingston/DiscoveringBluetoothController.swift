@@ -27,7 +27,9 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
     var centralManager:CBCentralManager!
     var blueToothReady = false
     var sensorTagPeripheral:CBPeripheral!
+    var indicator: UIActivityIndicatorView?
     var lureName : String!
+    var lureInfo = LureData()
     
     let realm = Realm()
     
@@ -37,6 +39,14 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
         super.viewDidLoad()
         self.progress.startAnimating()
         startUpCentralManager()
+        initLoadingDialog()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showProgramController" {
+            let vc = segue.destinationViewController as! ProgramUIViewController
+            vc.lureData = sender as? LureData
+        }
     }
     
     @IBAction func backButton(sender: UIButton) {
@@ -160,9 +170,21 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
             let ambientTemperature = Double(dataArray[1])/128
             
             // Display on the temp label
-            let lureName = NSString(format: "%.2f", ambientTemperature) as String
+            self.lureName = NSString(format: "%.2f", ambientTemperature) as String
             self.discoveredDevices.text = "Lure name : \(lureName)"
             println("Lure name : \(lureName)")
+            
+            if self.lureName != nil {
+                let postString = "LureCode=\(self.lureName)"
+                //MARK : Make a post request
+                self.gettingLureInfoTask(postString)
+
+            }else{
+    
+                self.presentAlert("Lure name has not detected!")
+                
+                println("\n\nLure name has not detected !")
+            }
         }
     }
     // If disconnected, start searching again
@@ -173,29 +195,36 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
     
     //Post request witch takes a lure information.
     //See Models.swift 
-    
-    func post(params : Dictionary<String, String>, url : String) {
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-        
+    func gettingLureInfoTask(postString : String){
+        self.indicator?.startAnimating()
+        let request = NSMutableURLRequest(URL: NSURL(string: URL)!)
         var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
-            var err: NSError?
+        request.HTTPMethod = "POST"
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if error != nil {
+                println("error=\(error)")
+                return
+            }
+            
+            println("response = \(response)")
+            
+            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("LureResponce = \(responseString)")
+            
             var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
             
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
             if(err != nil) {
                 println(err!.localizedDescription)
                 let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                 println("Error could not parse JSON: '\(jsonStr)'")
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.indicator?.stopAnimating()
+                    self.presentAlert("Error could not parse JSON !")
+                });
             }
             else {
                 // The JSONObjectWithData constructor didn't return an error. But, we should still
@@ -207,63 +236,113 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
                     
                     //Call back to main thread !
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.backToTackleList(parseJSON)
+                        self.parseLureDataWithWithJSON(parseJSON)
+                        self.indicator?.stopAnimating()
                     });
                 }
                 else {
                     // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
                     let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
                     println("Error could not parse JSON: \(jsonStr)")
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.indicator?.stopAnimating()
+                    });
                 }
             }
-        })
+        }
         task.resume()
     }
-    
+
     //Go back to tackle list with passing data to.
-    func backToTackleList(json : NSDictionary){
-        
-        self.parseLureDataWithWithJSON(json)
-        
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     func parseLureDataWithWithJSON(json : NSDictionary) {
+        let imgUrl = "www.someurl.com/images/"
         
-        let LURE_ITEM_CODE = json["LURE_ITEM_CODE"] as! String
-        let LURE_CODE = json["LURE_CODE"] as! String
-        let LURE_NAME = json["LURE_NAME"] as! String
-        let LURE_WATER_TYPE = json["LURE_WATER_TYPE"] as! String
-        let LURE_STYLE = json["LURE_STYLE"] as! String
-        let LURE_IMAGE_URL = json["LURE_IMAGE_URL"] as! String
-        
-        var lureInfo = LureData()
+        let lureObj = json["Lure"] as! NSDictionary
+        let LURE_ITEM_CODE = lureObj["0"] as! String
+        let LURE_CODE = lureObj["2"] as! String
+        let LURE_NAME = lureObj["1"] as! String
+        let LURE_WATER_TYPE = lureObj["4"] as! String
+        let LURE_STYLE = lureObj["5"] as! String
+        let LURE_IMAGE_URL = imgUrl + LURE_NAME + ".png"
+    
         lureInfo.LURE_ITEM_CODE = LURE_ITEM_CODE
         lureInfo.LURE_CODE = LURE_CODE
         lureInfo.LURE_NAME = LURE_NAME
         lureInfo.LURE_WATER_TYPE = LURE_WATER_TYPE
-        lureInfo.LURE_ITEM_CODE = LURE_ITEM_CODE
         lureInfo.LURE_IMAGE_URL = LURE_IMAGE_URL
+    
+        let alermassage = "Lure code : \(LURE_ITEM_CODE)\n" + "Lure name : \(LURE_NAME)\n" + "Lure water type : \(LURE_WATER_TYPE)\n"
         
-        self.realm.write({ //THIS IS DATA BASE WRITE
-            self.realm.add(lureInfo)
-        })
+        var createAccountErrorAlert: UIAlertView = UIAlertView()
         
-        println("LureInfo has been added to DB !")
-        let fishInDB = self.realm.objects(RecordedFish)
-        println("\n Items in DATABASE : \(count(fishInDB))")
+        createAccountErrorAlert.delegate = self
         
+        createAccountErrorAlert.title = "Save this tackle ?"
+        createAccountErrorAlert.message = alermassage
+        createAccountErrorAlert.addButtonWithTitle("OK")
+        createAccountErrorAlert.addButtonWithTitle("Cancel")
+        createAccountErrorAlert.dismissWithClickedButtonIndex(1, animated: false)
+        
+        createAccountErrorAlert.show()
+        
+    }
+    //MARK : ALER view delegate
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
+        
+        switch buttonIndex{
+            
+        case 1:
+            NSLog("Cancel");
+            break;
+        case 0:
+            NSLog("OK");
+            self.realm.write({
+                //THIS IS DATA BASE WRITE
+                self.realm.add(self.lureInfo)
+            })
+            println("LureInfo has been added to DB !")
+            let fishInDB = self.realm.objects(RecordedFish)
+            println("\n Items in DATABASE : \(count(fishInDB))")
+            
+            self.navigationController?.popViewControllerAnimated(true)
+            break;
+        default:
+            NSLog("Default");
+            break;
+            //Some code here..
+            
+        }
+    }
+    
+    func initLoadingDialog(){
+        self.indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        self.indicator!.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+        self.indicator!.center = view.center
+        view.addSubview(indicator!)
+        self.indicator!.bringSubviewToFront(view)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+    
+    func presentAlert(message : String){
+        var alert = UIAlertController(title: "Alert", message: message , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 //Data source
 extension DiscoveringBluetoothController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.peripheralList.count
+//        return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("BLECell", forIndexPath: indexPath) as! BLECell
         cell.name.text = peripheralList[indexPath.row].name
+//    
+//        cell.name.text = "TEST"
         
         return cell
     }
@@ -280,13 +359,10 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         self.centralManager.connectPeripheral(peripheral, options: nil)
         println("centralManager.connectPeripheral\n")
         
-        if self.lureName != nil {
-            var params = ["LureCode":self.lureName] as Dictionary<String, String>
-            //MARK : Make a post request
-            post(params, url: self.URL)
-        }else{
-            println("\n\nLure name has not detected !")
-        }
+        //TEST DATA
+//        let postString = "LureCode=DEMO 26"
+//                    //MARK : Make a post request
+//        self.gettingLureInfoTask(postString)
         
     }
 }

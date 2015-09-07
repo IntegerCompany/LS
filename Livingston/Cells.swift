@@ -29,3 +29,9 @@ class TackleCell : UICollectionViewCell {
     @IBOutlet weak var activeSoundType: UILabel!
 
 }
+
+class MenuCell : UITableViewCell {
+    
+    @IBOutlet weak var itemName: UILabel!
+    
+}

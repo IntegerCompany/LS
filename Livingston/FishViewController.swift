@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FishViewController: UIViewController {
+class FishViewController: UIViewController, UIPopoverPresentationControllerDelegate,ContactWithFishViewDelegate {
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var contentMain: UIView!
@@ -18,8 +18,16 @@ class FishViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var logDate: UILabel!
     
+    @IBOutlet weak var menu: UIButton!
+    
+    var popoverContent : MenuViewController!
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
+        popoverContent.delegate = self
         
         //Updating User name and log date
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -34,9 +42,19 @@ class FishViewController: UIViewController {
         self.improveTextInformation()
     }
 
+    @IBAction func menu(sender: UIButton) {
+        self.showMenu()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func logOut(){
+        println("\n\nlogOut")
+        userDefaults.setBool(false, forKey: "rememberMe")
+        self.performSegueWithIdentifier("backSegue", sender: self)
+        
     }
     
     @IBAction func record(sender: UIButton) {
@@ -79,13 +97,22 @@ class FishViewController: UIViewController {
         self.textView.attributedText = title;
         self.textView.textAlignment = NSTextAlignment.Center
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func showMenu() {
+        popoverContent!.modalPresentationStyle = UIModalPresentationStyle.Popover
+        popoverContent!.preferredContentSize = CGSizeMake(240,350)
+        let nav = popoverContent!.popoverPresentationController
+        nav?.delegate = self
+        nav?.sourceView = self.view
+        let xPosition = self.menu.frame.minX + 50
+        let yPosition = self.menu.frame.minY + 55
+        nav?.permittedArrowDirections = UIPopoverArrowDirection.Up
+        nav?.sourceRect = CGRectMake(xPosition, yPosition , 0, 0)
+        self.navigationController?.presentViewController(popoverContent!, animated: true, completion: nil)
+        
     }
-    */
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
 }

@@ -13,8 +13,8 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
     
     let regUrl = "http://appapi.livingstonlures.com/Register.php"
     let segueID = "makeARegistration"
@@ -23,7 +23,7 @@ class RegistrationViewController: UIViewController {
 //    "Date"
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        stylePlaceHolder()
     }
     @IBAction func register(sender: UIButton) {
         if checkTextFields() {
@@ -31,8 +31,9 @@ class RegistrationViewController: UIViewController {
             
             let username = self.login.text
             let pwd = self.password.text
-            var params = ["Username":username, "Password":pwd, "Date":timestamp] as Dictionary<String, String>
-            post(params, url: self.regUrl)
+            var params = "Username=\(username)&Password=\(pwd)&Date=\(timestamp)"
+            println("\n\n\(params)")
+            registrationTask(params)
         }else {
             println("Validate your registration data !")
         }
@@ -54,54 +55,57 @@ class RegistrationViewController: UIViewController {
         userDefaults.setValue(timestamp, forKey: "date")
         userDefaults.synchronize()
         
+        self.progress.stopAnimating()
+        
         self.performSegueWithIdentifier(self.segueID, sender: self)
     }
-
-    
-    func post(params : Dictionary<String, String>, url : String) {
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var session = NSURLSession.sharedSession()
+    func badRegistrationTask(){
+        self.progress.stopAnimating()
+        println("Bad registration information")
+    }
+    func registrationTask(postString : String){
+        self.progress.startAnimating()
+        let request = NSMutableURLRequest(URL: NSURL(string: self.regUrl)!)
         request.HTTPMethod = "POST"
-        
-        var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
-            var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
             
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-            if(err != nil) {
-                println(err!.localizedDescription)
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
+            if error != nil {
+                println("error=\(error)")
+                return
             }
-            else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-                if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
-                    println("Succes: \(success)")
-                    println("\(parseJSON)")
+            
+            println("response = \(response)")
+            
+            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("Registration responce  = \(responseString)")
+            
+            if let id = responseString?.integerValue {
+                if id > 0 {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.makeARegisterInTask()
+                    });
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.badRegistrationTask()
+                    });
                 }
-                else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println("Error could not parse JSON: \(jsonStr)")
-                }
+            }else{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.badRegistrationTask()
+                });
             }
-            dispatch_async(dispatch_get_main_queue(), {
-                self.makeARegisterInTask()
-            });
-        })
-        
+        }
         task.resume()
+    }
+    
+    func stylePlaceHolder(){
+        self.login.attributedPlaceholder = NSAttributedString(string:self.login.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        self.password.attributedPlaceholder = NSAttributedString(string:self.password.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        self.confirmPassword.attributedPlaceholder = NSAttributedString(string:self.confirmPassword.placeholder!, attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        
+        self.progress.hidesWhenStopped = true
     }
 
 }

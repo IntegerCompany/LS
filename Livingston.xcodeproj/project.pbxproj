@@ -30,6 +30,7 @@
 		9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */; };
 		9280AA971B9958E5006E13F0 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA961B9958E5006E13F0 /* Cells.swift */; };
 		9280AA991B995B32006E13F0 /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA981B995B32006E13F0 /* water.mp3 */; };
+		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSoundViewController.swift; sourceTree = "<group>"; };
 		9280AA961B9958E5006E13F0 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		9280AA981B995B32006E13F0 /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
+		929EF8411B9DC72A003EB97E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 		9280AA4B1B98CE55006E13F0 /* Livingston */ = {
 			isa = PBXGroup;
 			children = (
+				929EF8401B9DC705003EB97E /* popoverControllers */,
 				9280AA911B994343006E13F0 /* Models */,
 				9280AA8A1B992BF9006E13F0 /* Delegates */,
 				9280AA781B98D2D4006E13F0 /* Controllers */,
@@ -189,7 +192,6 @@
 				9280AA811B98D437006E13F0 /* TackleBoxViewController.swift */,
 				9280AA861B99051D006E13F0 /* RegistrationViewController.swift */,
 				9280AA881B991CB3006E13F0 /* CameraViewController.swift */,
-				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 				9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */,
 				92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */,
 			);
@@ -212,6 +214,15 @@
 				9280AA961B9958E5006E13F0 /* Cells.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		929EF8401B9DC705003EB97E /* popoverControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
+				929EF8411B9DC72A003EB97E /* MenuViewController.swift */,
+			);
+			name = popoverControllers;
 			sourceTree = "<group>";
 		};
 		A408FF9C504C4EC1F919638D /* Frameworks */ = {
@@ -388,6 +399,7 @@
 				9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */,
 				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
+				929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,

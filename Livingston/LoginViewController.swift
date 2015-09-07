@@ -11,14 +11,30 @@ import UIKit
 class LoginViewController: UIViewController {
     
 
+    @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var rememberMe: UISwitch!
     
     let logUrl = "http://appapi.livingstonlures.com/LoginService.php"
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.progress.hidesWhenStopped = true
         
+        if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
+            if isRemembered {
+                let username = userDefaults.valueForKey("login") as! String
+                let pwd = self.userDefaults.valueForKey("password") as! String
+                self.login.text = username
+                self.password.text = pwd
+                let postString = "Username=\(username)&Password=\(pwd)"
+                //login
+                self.loginTask(postString)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,12 +42,18 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     @IBAction func login(sender: UIButton) {
         if checkTextFields() {
             let username = self.login.text
             let pwd = self.password.text
-            var params = ["username":username, "password":pwd] as Dictionary<String, String>
-            post(params, url: logUrl)
+            let postString = "Username=\(username)&Password=\(pwd)"
+            //login
+            self.loginTask(postString)
         }else{
             println("Validate your login or(and) password")
         }
@@ -41,7 +63,7 @@ class LoginViewController: UIViewController {
     }
     
     func makeALogInTask(){
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         
         userDefaults.setValue(self.login.text, forKey: "login")
@@ -50,51 +72,61 @@ class LoginViewController: UIViewController {
         userDefaults.synchronize()
         
         self.performSegueWithIdentifier("makeALogin", sender: self)
+        
+        self.progress.stopAnimating()
     }
     
-    func post(params : Dictionary<String, String>, url : String) {
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var session = NSURLSession.sharedSession()
+    func badLoginTask(){
+        self.progress.stopAnimating()
+    }
+    
+    func loginTask(postString : String){
+        self.progress.startAnimating()
+        let request = NSMutableURLRequest(URL: NSURL(string: self.logUrl)!)
         request.HTTPMethod = "POST"
-        
-        var err: NSError?
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            println("Response: \(response)")
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Body: \(strData)")
-            var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
             
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-            if(err != nil) {
-                println(err!.localizedDescription)
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
+            if error != nil {
+                println("error=\(error)")
+                return
             }
-            else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-                if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
-                    println("Succes: \(success)")
+            
+            println("response = \(response)")
+            
+            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            println("LoginResponce = \(responseString)")
+            
+            if let id = responseString?.integerValue {
+                if id > 0 {
+                    self.userDefaults.setInteger(id, forKey: "user_id")
+                    self.userDefaults.synchronize()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.makeALogInTask()
+                    });
+                }else{
+                    println("Wrong login or password")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.badLoginTask()
+                    });
                 }
-                else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println("Error could not parse JSON: \(jsonStr)")
-                }
+            }else{
+                println("Bad request ! Wrong login or password")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.badLoginTask()
+                });
             }
-            //move this part after api rebase ! Api make responce 200 with -1 value.
-            dispatch_async(dispatch_get_main_queue(), {
-                self.makeALogInTask()
-            });
-        })
+        }
         task.resume()
+    }
+    
+    @IBAction func rememberMeAction(sender: UISwitch) {
+        if sender.on {
+            userDefaults.setBool(true, forKey: "rememberMe")
+        }else{
+            userDefaults.setBool(false, forKey: "rememberMe")
+        }
     }
 }
 
