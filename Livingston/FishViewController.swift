@@ -81,18 +81,25 @@ class FishViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func improveTextInformation(){
-        let l1 : NSString = "START FISHING!"
-        let l2 : NSString = "Each time you opn this app , you'll need to tap"
-        let l3 : NSString = "START FISHING to begin logging data for the day."
-        let l4 : NSString = "When you're done fishing for the day,tap"
-        let l5 : NSString = "STOP FISHING to stop logging data and power"
-        let l6 : NSString = "off your lures and if applicable,SAM devices."
-        let content : NSString = NSString(format: "%@\r%@\r%@\r\r\r\r%@\r%@\r%@", l1, l2,l3
-            , l4, l5,l6)
         
-        let title = NSMutableAttributedString(string: content as String)
-        let font = UIFont.systemFontOfSize(16)
-        title.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, title.length))
+        let title = NSMutableAttributedString()
+        var attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
+        var l1 = NSMutableAttributedString(string:"START FISHING!\n\n", attributes:attrs)
+        let l2 = NSMutableAttributedString(string: "Each time you opn this app , you'll need to tap ")
+        let l3 = NSMutableAttributedString(string: "START \nFISHING",attributes:attrs)
+        let l3a = NSMutableAttributedString(string: " to begin logging data for the day.\n\n")
+        let l4 = NSMutableAttributedString(string: "When you're done fishing for the day, tap " )
+        let l5 = NSMutableAttributedString(string: "STOP \nFISHING",attributes:attrs)
+        let l5a = NSMutableAttributedString(string:" to stop logging data and power")
+        let l6 = NSMutableAttributedString(string: "off your lures and if applicable, SAM devices.")
+        title.appendAttributedString(l1)
+        title.appendAttributedString(l2)
+        title.appendAttributedString(l3)
+        title.appendAttributedString(l3a)
+        title.appendAttributedString(l4)
+        title.appendAttributedString(l5)
+        title.appendAttributedString(l5a)
+        title.appendAttributedString(l6)
         
         self.textView.attributedText = title;
         self.textView.textAlignment = NSTextAlignment.Center
