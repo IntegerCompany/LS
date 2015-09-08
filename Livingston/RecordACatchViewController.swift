@@ -8,9 +8,12 @@
 
 import UIKit
 import RealmSwift
+import CoreLocation
 
-class RecordACatchViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class RecordACatchViewController: UIViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate {
 
+    @IBOutlet weak var recordDate: UILabel!
+    @IBOutlet weak var myLocation: UILabel!
     @IBOutlet weak var lastLureFish: UIImageView!
     
     var popoverContent : FishDetailViewController?
@@ -18,11 +21,21 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
     var recordedFish : RecordedFish = RecordedFish()
     var imageToSave : UIImage?
     
+    var locationManager: CLLocationManager!
+    var seenError : Bool = false
+    var locationFixAchieved : Bool = false
+    var locationStatus : NSString = "Not Started"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //set date !
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        self.recordDate.text = timestamp
+         
         popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("FishDetailViewController") as? FishDetailViewController
         popoverContent?.delegate = self
+        
+        self.initLocationManager()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,6 +89,72 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
         return .None
     }
     
+    // Location Manager helper stuff
+    func initLocationManager() {
+        seenError = false
+        locationFixAchieved = false
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.requestAlwaysAuthorization()
+    }
+
+    
+}
+
+extension RecordACatchViewController : CLLocationManagerDelegate {
+    // Location Manager Delegate stuff
+    // If failed
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        locationManager.stopUpdatingLocation()
+        if ((error) != nil) {
+            if (seenError == false) {
+                seenError = true
+                print(error)
+            }
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        if (locationFixAchieved == false) {
+            locationFixAchieved = true
+            var locationArray = locations as NSArray
+            var locationObj = locationArray.lastObject as! CLLocation
+            var coord = locationObj.coordinate
+            
+            println(coord.latitude)
+            println(coord.longitude)
+            
+            self.myLocation.text = "Lat: \(coord.latitude), Lon : \(coord.longitude)"
+        }
+    }
+    
+    // authorization status
+    func locationManager(manager: CLLocationManager!,
+        didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+            var shouldIAllow = false
+            
+            switch status {
+            case CLAuthorizationStatus.Restricted:
+                locationStatus = "Restricted Access to location"
+            case CLAuthorizationStatus.Denied:
+                locationStatus = "User denied access to location"
+            case CLAuthorizationStatus.NotDetermined:
+                locationStatus = "Status not determined"
+            default:
+                locationStatus = "Allowed to location Access"
+                shouldIAllow = true
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
+            if (shouldIAllow == true) {
+                NSLog("Location to Allowed")
+                // Start location services
+                locationManager.startUpdatingLocation()
+            } else {
+                NSLog("Denied access: \(locationStatus)")
+            }
+    }
 }
 //Pop up window callback
 extension RecordACatchViewController : AcceptFishDetailDelegate {

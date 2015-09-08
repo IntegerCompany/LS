@@ -92,6 +92,7 @@ class FishViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let l5 = NSMutableAttributedString(string: "STOP \nFISHING",attributes:attrs)
         let l5a = NSMutableAttributedString(string:" to stop logging data and power")
         let l6 = NSMutableAttributedString(string: "off your lures and if applicable, SAM devices.")
+        
         title.appendAttributedString(l1)
         title.appendAttributedString(l2)
         title.appendAttributedString(l3)

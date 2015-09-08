@@ -1378,7 +1378,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1uc-3x-vHo">
                                 <rect key="frame" x="0.0" y="128" width="600" height="373"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92941176469999998" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="K1J-A5-O9t">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="K1J-A5-O9t">
                                     <size key="itemSize" width="70" height="65"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1978,6 +1978,8 @@
                     </view>
                     <connections>
                         <outlet property="lastLureFish" destination="cei-vC-3ax" id="CDq-DI-Tvq"/>
+                        <outlet property="myLocation" destination="ndW-fK-Kf3" id="HiM-Tb-XpD"/>
+                        <outlet property="recordDate" destination="UsS-ON-Ccf" id="gIA-Ex-9lc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4AJ-cZ-RqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
