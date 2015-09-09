@@ -30,6 +30,7 @@
 		9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */; };
 		9280AA971B9958E5006E13F0 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA961B9958E5006E13F0 /* Cells.swift */; };
 		9280AA991B995B32006E13F0 /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA981B995B32006E13F0 /* water.mp3 */; };
+		9299B51B1BA027A7006D13F2 /* SoundsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */; };
 		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -76,6 +77,7 @@
 		9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSoundViewController.swift; sourceTree = "<group>"; };
 		9280AA961B9958E5006E13F0 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		9280AA981B995B32006E13F0 /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
+		9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SoundsImages.xcassets; sourceTree = "<group>"; };
 		929EF8411B9DC72A003EB97E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +179,7 @@
 				9280AA721B98D013006E13F0 /* Fish.xcassets */,
 				9280AA741B98D01E006E13F0 /* Login.xcassets */,
 				9280AA761B98D036006E13F0 /* Tabbar.xcassets */,
+				9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				9280AA751B98D01E006E13F0 /* Login.xcassets in Resources */,
 				9280AA591B98CE55006E13F0 /* LaunchScreen.xib in Resources */,
 				9280AA561B98CE55006E13F0 /* Images.xcassets in Resources */,
+				9299B51B1BA027A7006D13F2 /* SoundsImages.xcassets in Resources */,
 				9280AA991B995B32006E13F0 /* water.mp3 in Resources */,
 				9280AA731B98D013006E13F0 /* Fish.xcassets in Resources */,
 				9280AA701B98CF65006E13F0 /* Main.storyboard in Resources */,

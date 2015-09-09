@@ -30,10 +30,10 @@ class TackleCell : UICollectionViewCell {
 
 }
 
-class MenuCell : UITableViewCell {
+class SoundListCell : UICollectionViewCell {
     
-    @IBOutlet weak var itemName: UILabel!
-    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var image: UIImageView!
 }
 
 @IBDesignable
