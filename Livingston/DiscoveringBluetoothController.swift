@@ -10,7 +10,7 @@ import UIKit
 import CoreBluetooth
 import RealmSwift
 
-class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     @IBOutlet var coreBluetooth: UILabel!
     @IBOutlet var discoveredDevices: UILabel!
@@ -20,8 +20,11 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progress: UIActivityIndicatorView!
 
-    let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
-    let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+//    let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
+//    let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+    let LureCharId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
+    let LureServiceReadId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+
     let URL = "http://appapi.livingstonlures.com/Lure.php"
     
     var centralManager:CBCentralManager!
@@ -170,7 +173,7 @@ class DiscoveringBluetoothController: UIViewController, CBCentralManagerDelegate
             let ambientTemperature = Double(dataArray[1])/128
             
             // Display on the temp label
-            self.lureName = NSString(format: "%.2f", ambientTemperature) as String
+            let lureName = NSString(format: "%.2f", ambientTemperature) as String
             self.discoveredDevices.text = "Lure name : \(lureName)"
             println("Lure name : \(lureName)")
             
@@ -358,11 +361,6 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         self.sensorTagPeripheral = peripheral
         self.centralManager.connectPeripheral(peripheral, options: nil)
         println("centralManager.connectPeripheral\n")
-        
-        //TEST DATA
-//        let postString = "LureCode=DEMO 26"
-//                    //MARK : Make a post request
-//        self.gettingLureInfoTask(postString)
         
     }
 }

@@ -9,12 +9,18 @@
 import UIKit
 import AVFoundation
 
-class CurrentSoundViewController: UIViewController {
+class CurrentSoundViewController: BaseViewController {
     
+    @IBOutlet weak var lureImage: UIButton!
+    @IBOutlet weak var soundName: UILabel!
     var audioPlayer : AVAudioPlayer!
+    
+    var name : String = ""
+    var image : String = "bluegill_black"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let img = UIImage(named: "background")
         self.view.backgroundColor = UIColor(patternImage: img!)
         
@@ -27,6 +33,13 @@ class CurrentSoundViewController: UIViewController {
         var error:NSError?
         audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
         audioPlayer.prepareToPlay()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.lureImage.setImage(UIImage(named: self.image), forState: .Normal)
+        self.soundName.text = name
     }
     @IBAction func replay(sender: UIButton) {
         self.play()

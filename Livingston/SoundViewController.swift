@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SoundViewController: UIViewController {
+class SoundViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,15 +40,14 @@ class SoundViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let index = sender as! Int
+        
+        let vc = segue.destinationViewController as! CurrentSoundViewController
+        vc.name = sounds[index]
+        vc.image = imagesNames[index]
     }
-    */
+
 }
 
 extension SoundViewController : UICollectionViewDataSource {
@@ -70,6 +69,6 @@ extension SoundViewController : UICollectionViewDataSource {
 
 extension SoundViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(self.segueId, sender: self)
+        self.performSegueWithIdentifier(self.segueId, sender: indexPath.item)
     }
 }

@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progress.hidesWhenStopped = true
-        
+
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
             if isRemembered {
                 let username = userDefaults.valueForKey("login") as! String
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.navigationBarHidden = true
     }
     
     @IBAction func login(sender: UIButton) {

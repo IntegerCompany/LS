@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FishViewController: UIViewController, UIPopoverPresentationControllerDelegate,ContactWithFishViewDelegate {
+class FishViewController: BaseViewController {
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var contentMain: UIView!
@@ -20,14 +20,9 @@ class FishViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBOutlet weak var menu: UIButton!
     
-    var popoverContent : MenuViewController!
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("MenuViewController") as? MenuViewController
-        popoverContent.delegate = self
+        self.navigationController?.navigationBarHidden = false
         
         //Updating User name and log date
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -42,30 +37,14 @@ class FishViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.improveTextInformation()
     }
 
-    @IBAction func menu(sender: UIButton) {
-        self.showMenu()
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func logOut(){
-        println("\n\nlogOut")
-        userDefaults.setBool(false, forKey: "rememberMe")
-        self.performSegueWithIdentifier("backSegue", sender: self)
-        
-    }
-    
     @IBAction func record(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RecordACatchViewController") as! RecordACatchViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @IBAction func tackle(sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("TackleBoxViewController") as! TackleBoxViewController
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+        self.navigationController?.pushViewController(vc, animated: true)    }
 
     @IBAction func startFishing(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RecordACatchViewController") as! RecordACatchViewController
@@ -104,23 +83,5 @@ class FishViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         self.textView.attributedText = title;
         self.textView.textAlignment = NSTextAlignment.Center
-    }
-    
-    func showMenu() {
-        popoverContent!.modalPresentationStyle = UIModalPresentationStyle.Popover
-        popoverContent!.preferredContentSize = CGSizeMake(240,350)
-        let nav = popoverContent!.popoverPresentationController
-        nav?.delegate = self
-        nav?.sourceView = self.view
-        let xPosition = self.menu.frame.minX + 50
-        let yPosition = self.menu.frame.minY + 55
-        nav?.permittedArrowDirections = UIPopoverArrowDirection.Up
-        nav?.sourceRect = CGRectMake(xPosition, yPosition , 0, 0)
-        self.navigationController?.presentViewController(popoverContent!, animated: true, completion: nil)
-        
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
     }
 }

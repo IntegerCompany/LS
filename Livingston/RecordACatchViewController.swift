@@ -10,13 +10,13 @@ import UIKit
 import RealmSwift
 import CoreLocation
 
-class RecordACatchViewController: UIViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate {
+class RecordACatchViewController: BaseViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var recordDate: UILabel!
     @IBOutlet weak var myLocation: UILabel!
     @IBOutlet weak var lastLureFish: UIImageView!
     
-    var popoverContent : FishDetailViewController?
+    var popoverContent2 : FishDetailViewController?
     let realm = Realm()
     var recordedFish : RecordedFish = RecordedFish()
     var imageToSave : UIImage?
@@ -32,8 +32,8 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         self.recordDate.text = timestamp
          
-        popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("FishDetailViewController") as? FishDetailViewController
-        popoverContent?.delegate = self
+        popoverContent2 = self.storyboard?.instantiateViewControllerWithIdentifier("FishDetailViewController") as? FishDetailViewController
+        popoverContent2?.delegate = self
         
         self.initLocationManager()
     }
@@ -74,19 +74,15 @@ class RecordACatchViewController: UIViewController, UIPopoverPresentationControl
     }
     
     func showDetailView() {
-        popoverContent!.modalPresentationStyle = UIModalPresentationStyle.Popover
-        popoverContent!.preferredContentSize = CGSizeMake(240,280)
-        let nav = popoverContent!.popoverPresentationController
+        popoverContent2!.modalPresentationStyle = UIModalPresentationStyle.Popover
+        popoverContent2!.preferredContentSize = CGSizeMake(240,280)
+        let nav = popoverContent2!.popoverPresentationController
         nav?.delegate = self
         nav?.sourceView = self.view
         let yPosition = self.view.center.y + 180.0
         nav?.sourceRect = CGRectMake(self.view.center.x, yPosition , 0, 0)
-        self.navigationController?.presentViewController(popoverContent!, animated: true, completion: nil)
+        self.navigationController?.presentViewController(popoverContent2!, animated: true, completion: nil)
         
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .None
     }
     
     // Location Manager helper stuff

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TackleBoxViewController: UIViewController {
+class TackleBoxViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     

@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class ProgramUIViewController: UIViewController,CBCentralManagerDelegate, CBPeripheralDelegate {
+class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBPeripheralDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var programText: UILabel!

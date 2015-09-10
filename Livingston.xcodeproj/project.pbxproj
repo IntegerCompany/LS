@@ -31,6 +31,9 @@
 		9280AA971B9958E5006E13F0 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA961B9958E5006E13F0 /* Cells.swift */; };
 		9280AA991B995B32006E13F0 /* water.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA981B995B32006E13F0 /* water.mp3 */; };
 		9299B51B1BA027A7006D13F2 /* SoundsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */; };
+		9299B51D1BA05BFA006D13F2 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B51C1BA05BFA006D13F2 /* NavigationViewController.swift */; };
+		9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */; };
+		9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B5201BA06D46006D13F2 /* BaseViewController.swift */; };
 		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -78,6 +81,9 @@
 		9280AA961B9958E5006E13F0 /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		9280AA981B995B32006E13F0 /* water.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water.mp3; sourceTree = "<group>"; };
 		9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SoundsImages.xcassets; sourceTree = "<group>"; };
+		9299B51C1BA05BFA006D13F2 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		9299B5201BA06D46006D13F2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		929EF8411B9DC72A003EB97E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +230,9 @@
 			children = (
 				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 				929EF8411B9DC72A003EB97E /* MenuViewController.swift */,
+				9299B51C1BA05BFA006D13F2 /* NavigationViewController.swift */,
+				9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */,
+				9299B5201BA06D46006D13F2 /* BaseViewController.swift */,
 			);
 			name = popoverControllers;
 			sourceTree = "<group>";
@@ -397,6 +406,7 @@
 				9280AA891B991CB3006E13F0 /* CameraViewController.swift in Sources */,
 				9280AA7E1B98D3BE006E13F0 /* ProgramUIViewController.swift in Sources */,
 				9280AA8E1B993571006E13F0 /* FishDetailViewControler.swift in Sources */,
+				9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */,
 				9280AA821B98D437006E13F0 /* TackleBoxViewController.swift in Sources */,
 				9280AA871B99051D006E13F0 /* RegistrationViewController.swift in Sources */,
 				9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */,
@@ -404,6 +414,8 @@
 				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
 				929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */,
+				9299B51D1BA05BFA006D13F2 /* NavigationViewController.swift in Sources */,
+				9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,
