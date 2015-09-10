@@ -36,6 +36,17 @@ class SoundListCell : UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
 }
 
+class DealerList : UITableViewCell {
+    @IBOutlet weak var shopName: UILabel!
+    @IBOutlet weak var adress: UILabel!
+    @IBOutlet weak var city: UILabel!
+    @IBOutlet weak var state: UILabel!
+    @IBOutlet weak var zip: UILabel!
+    @IBOutlet weak var country: UILabel!
+    @IBOutlet weak var Phone: UILabel!
+    
+}
+
 @IBDesignable
 class RoundedCornersCell: UIView {
     

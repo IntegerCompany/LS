@@ -90,7 +90,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     {
         sensorTagPeripheral.delegate = self
         sensorTagPeripheral.discoverServices(nil)
-        println("Connected")
+        println("\nConnected")
         foundBLE.textColor = UIColor.redColor()
         foundBLE.text = "Connected to: \(peripheral.name)"
     }
@@ -98,14 +98,14 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         
         discoveredDevices.text = "Discovered: \(peripheral.name) : RSSI \(RSSI) "
-        println("Discovered: \(peripheral.name) : RSSI \(RSSI) ")
-        println("UUID : \(peripheral.identifier.UUIDString) ")
+        println("\nDiscovered: \(peripheral.name) : RSSI \(RSSI) ")
+        println("\nUUID : \(peripheral.identifier.UUIDString) ")
         
         if contains(self.peripheralList, peripheral) {
-            println("list already contains this peripheral item")
+            println("\nlist already contains this peripheral item")
         }else{
             self.peripheralList.append(peripheral)
-            println("list already contains this peripheral item")
+            println("\nlist already contains this peripheral item")
             self.tableView.reloadData()
         }
     }
@@ -120,7 +120,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     
     func connectingPeripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!)
     {
-        println("Services \(sensorTagPeripheral.services)")
+        println("\nServices \(sensorTagPeripheral.services)")
     }
     
     /******* CBCentralPeripheralDelegate *******/
@@ -131,12 +131,13 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             if service.UUID == LureServiceReadId {
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
+                
             }else{
                 
                 self.presentAlert("Can't discover lure data with Lure service ID !")
             }
             // Uncomment to print list of UUIDs
-            println(thisService.UUID)
+            println("\nServices UUID : \(thisService.UUID)")
         }
     }
     
@@ -149,7 +150,9 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         
         // check the uuid of each characteristic to find config and data characteristics
         for charateristic in service.characteristics {
+        
             let thisCharacteristic = charateristic as! CBCharacteristic
+            println("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
             if thisCharacteristic.UUID == LureCharId {
                 // Enable Sensor Notification
@@ -180,13 +183,13 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             if let lureName = NSString(format: "%.2f", ambientTemperature) as? String {
                 let postString = "LureCode=\(lureName)"
                 self.discoveredDevices.text = "Lure name : \(lureName)"
-                println("Lure name : \(lureName)")
+                println("\n\nLure name : \(lureName)")
                 //MARK : Make a post request
                 self.gettingLureInfoTask(postString)
 
             }else{
     
-                self.presentAlert("Lure name has not detected!")
+                self.presentAlert("\n\nLure name has not detected!")
                 
                 println("\n\nLure name has not detected !")
             }
@@ -317,7 +320,6 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             NSLog("Default");
             break;
             //Some code here..
-            
         }
     }
     
@@ -362,7 +364,7 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         let peripheral = self.peripheralList[indexPath.row]
         self.sensorTagPeripheral = peripheral
         self.centralManager.connectPeripheral(peripheral, options: nil)
-        println("centralManager.connectPeripheral\n")
+        println("\ncentralManager.connectPeripheral\n")
         
     }
 }

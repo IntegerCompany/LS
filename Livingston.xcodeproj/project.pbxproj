@@ -35,6 +35,9 @@
 		9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */; };
 		9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B5201BA06D46006D13F2 /* BaseViewController.swift */; };
 		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
+		92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB321BA2266900805219 /* SyncLureViewController.swift */; };
+		92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB341BA22C1100805219 /* ContactViewController.swift */; };
+		92C5CB371BA2377300805219 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB361BA2377300805219 /* ShopViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -85,6 +88,9 @@
 		9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9299B5201BA06D46006D13F2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		929EF8411B9DC72A003EB97E /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		92C5CB321BA2266900805219 /* SyncLureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncLureViewController.swift; sourceTree = "<group>"; };
+		92C5CB341BA22C1100805219 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		92C5CB361BA2377300805219 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +208,10 @@
 				9280AA861B99051D006E13F0 /* RegistrationViewController.swift */,
 				9280AA881B991CB3006E13F0 /* CameraViewController.swift */,
 				9280AA941B99524D006E13F0 /* CurrentSoundViewController.swift */,
+				92C5CB321BA2266900805219 /* SyncLureViewController.swift */,
+				92C5CB341BA22C1100805219 /* ContactViewController.swift */,
 				92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */,
+				92C5CB361BA2377300805219 /* ShopViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -413,13 +422,16 @@
 				9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */,
 				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
+				92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */,
 				929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */,
 				9299B51D1BA05BFA006D13F2 /* NavigationViewController.swift in Sources */,
 				9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
+				92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,
 				92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */,
+				92C5CB371BA2377300805219 /* ShopViewController.swift in Sources */,
 				9280AA931B994357006E13F0 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
