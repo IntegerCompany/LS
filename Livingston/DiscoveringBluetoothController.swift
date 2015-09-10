@@ -20,10 +20,8 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progress: UIActivityIndicatorView!
 
-//    let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
-//    let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
-    let LureCharId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
-    let LureServiceReadId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+    let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
+    let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
 
     let URL = "http://appapi.livingstonlures.com/Lure.php"
     
@@ -31,7 +29,6 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     var blueToothReady = false
     var sensorTagPeripheral:CBPeripheral!
     var indicator: UIActivityIndicatorView?
-    var lureName : String!
     var lureInfo = LureData()
     
     let realm = Realm()
@@ -132,8 +129,11 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         for service in peripheral.services {
             let thisService = service as! CBService
             if service.UUID == LureServiceReadId {
-                // Discover characteristics of IR Temperature Service
+                // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
+            }else{
+                
+                self.presentAlert("Can't discover lure data with Lure service ID !")
             }
             // Uncomment to print list of UUIDs
             println(thisService.UUID)
@@ -153,7 +153,10 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             // check for data characteristic
             if thisCharacteristic.UUID == LureCharId {
                 // Enable Sensor Notification
-                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+            }else{
+                
+                self.presentAlert("Can't discover lure data with Characteristic ID !")
             }
         }
     }
@@ -173,12 +176,11 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             let ambientTemperature = Double(dataArray[1])/128
             
             // Display on the temp label
-            let lureName = NSString(format: "%.2f", ambientTemperature) as String
-            self.discoveredDevices.text = "Lure name : \(lureName)"
-            println("Lure name : \(lureName)")
             
-            if self.lureName != nil {
-                let postString = "LureCode=\(self.lureName)"
+            if let lureName = NSString(format: "%.2f", ambientTemperature) as? String {
+                let postString = "LureCode=\(lureName)"
+                self.discoveredDevices.text = "Lure name : \(lureName)"
+                println("Lure name : \(lureName)")
                 //MARK : Make a post request
                 self.gettingLureInfoTask(postString)
 
