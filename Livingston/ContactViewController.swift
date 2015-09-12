@@ -11,13 +11,16 @@ import UIKit
 class ContactViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
     
     let url = "http://appapi.livingstonlures.com/Dealers.php"
-    var selectedRowIndex: NSIndexPath = NSIndexPath(forRow: -1, inSection: 0)
+    var selectedRowIndex: NSIndexPath?
     var contactList = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.hidden = true
+        self.progress.hidesWhenStopped = true
         self.getJSON(self.url)
         // Do any additional setup after loading the view.
     }
@@ -28,6 +31,7 @@ class ContactViewController: BaseViewController {
     }
     
     func getJSON(urlPath : String) {
+        self.progress.startAnimating()
         var url : NSString = urlPath
         var urlStr : NSString = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         var searchURL : NSURL = NSURL(string: urlStr as String)!
@@ -48,12 +52,15 @@ class ContactViewController: BaseViewController {
             
             //println("\(jsonResult)")
             if err != nil {
+                self.progress.stopAnimating()
                 // If there is an error parsing JSON, print it to the console
                 println("JSON Error \(err!.localizedDescription)")
             }else{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.contactList = jsonResult["Main"] as! [(NSArray)]
+                    self.tableView.hidden = false
                     self.tableView.reloadData()
+                    self.progress.stopAnimating()
                 });
             }
         })
@@ -89,11 +96,46 @@ extension ContactViewController : UITableViewDataSource {
         return cell
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath == selectedRowIndex {
+            return DealerList.expandedHeight
+        } else {
+            return DealerList.defaultHeight
+        }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! DealerList).watchFrameChanges()
+    }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        (cell as! DealerList).ignoreFrameChanges()
+    }
 }
 //Delegate
 extension ContactViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let previousIndex = self.selectedRowIndex
+        if indexPath == selectedRowIndex {
+            selectedRowIndex = nil
+        }else{
+            selectedRowIndex = indexPath
+        }
         
+        var indexes : Array<NSIndexPath> = []
+        if let previous = previousIndex {
+            indexes += [previous]
+        }
+        
+        if let current = selectedRowIndex {
+            indexes += [current]
+        }
+        
+        
+        
+        if indexes.count > 0 {
+            tableView.reloadRowsAtIndexPaths(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
     }
 }
 

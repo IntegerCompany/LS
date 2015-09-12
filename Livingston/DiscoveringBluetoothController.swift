@@ -20,8 +20,11 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progress: UIActivityIndicatorView!
 
-    let LureServiceReadId = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
-    let LureCharId = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+    let serviceUUID = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
+    let charateristicUUID = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
+    let lureUUID = "52245158-316E-7F37-1E18-A19B7749C793"
+//    let serviceUUID = CBUUID(string: "Device Information")
+//    let charateristicUUID = CBUUID(string: "Manufacturer Name String")
 
     let URL = "http://appapi.livingstonlures.com/Lure.php"
     
@@ -90,7 +93,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     {
         sensorTagPeripheral.delegate = self
         sensorTagPeripheral.discoverServices(nil)
-        println("\nConnected")
+        println("\nConnected to \(peripheral.name)")
         foundBLE.textColor = UIColor.redColor()
         foundBLE.text = "Connected to: \(peripheral.name)"
     }
@@ -105,7 +108,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             println("\nlist already contains this peripheral item")
         }else{
             self.peripheralList.append(peripheral)
-            println("\nlist already contains this peripheral item")
+            println("\nlAdd \(peripheral.identifier.UUIDString) to list ")
             self.tableView.reloadData()
         }
     }
@@ -126,18 +129,19 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     /******* CBCentralPeripheralDelegate *******/
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+        var isThatServiceHere :Bool = false
         for service in peripheral.services {
             let thisService = service as! CBService
-            if service.UUID == LureServiceReadId {
+            if service.UUID == self.serviceUUID {
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
-                
-            }else{
-                
-                self.presentAlert("Can't discover lure data with Lure service ID !")
+                isThatServiceHere = true
             }
             // Uncomment to print list of UUIDs
             println("\nServices UUID : \(thisService.UUID)")
+        }
+        if !isThatServiceHere {
+            self.presentAlert("Can't discover lure data with Lure service ID !")
         }
     }
     
@@ -150,15 +154,16 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         
         // check the uuid of each characteristic to find config and data characteristics
         for charateristic in service.characteristics {
-        
+            var isCharHere = false
             let thisCharacteristic = charateristic as! CBCharacteristic
             println("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
-            if thisCharacteristic.UUID == LureCharId {
+            if thisCharacteristic.UUID == self.charateristicUUID {
                 // Enable Sensor Notification
-                self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: thisCharacteristic, type: CBCharacteristicWriteType.WithResponse)
-            }else{
-                
+                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                isCharHere = true
+            }
+            if !isCharHere {
                 self.presentAlert("Can't discover lure data with Characteristic ID !")
             }
         }
@@ -166,9 +171,9 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     // Get data values when they are updated
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         
-        self.discoveredDevices.text = "Connected"
+        self.discoveredDevices.text = "Connected with peripheral :\(characteristic.UUID)"
         
-        if characteristic.UUID == LureCharId {
+        if characteristic.UUID == charateristicUUID {
             // Convert NSData to array of signed 16 bit values
             let dataBytes = characteristic.value
             let dataLength = dataBytes.length

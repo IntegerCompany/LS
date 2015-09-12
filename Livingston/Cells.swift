@@ -45,6 +45,33 @@ class DealerList : UITableViewCell {
     @IBOutlet weak var country: UILabel!
     @IBOutlet weak var Phone: UILabel!
     
+    class var expandedHeight: CGFloat { get { return 223 } }
+    class var defaultHeight: CGFloat  { get { return 44  } }
+    
+    func checkHeight() {
+        let expHidden = (frame.size.height < DealerList.expandedHeight)
+        adress.hidden = expHidden
+        city.hidden = expHidden
+        state.hidden = expHidden
+        zip.hidden = expHidden
+        country.hidden = expHidden
+        Phone.hidden = expHidden
+    }
+    
+    func watchFrameChanges() {
+        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.New|NSKeyValueObservingOptions.Initial, context: nil)
+    }
+    
+    func ignoreFrameChanges() {
+        removeObserver(self, forKeyPath: "frame")
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        if keyPath == "frame" {
+            checkHeight()
+        }
+    }
+    
 }
 
 @IBDesignable
