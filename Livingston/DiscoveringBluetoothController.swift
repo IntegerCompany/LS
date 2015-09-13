@@ -22,7 +22,6 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 
     let serviceUUID = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
     let charateristicUUID = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
-    let lureUUID = "52245158-316E-7F37-1E18-A19B7749C793"
 //    let serviceUUID = CBUUID(string: "Device Information")
 //    let charateristicUUID = CBUUID(string: "Manufacturer Name String")
 
@@ -108,7 +107,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             println("\nlist already contains this peripheral item")
         }else{
             self.peripheralList.append(peripheral)
-            println("\nlAdd \(peripheral.identifier.UUIDString) to list ")
+            println("\nAdd \(peripheral.identifier.UUIDString) to list ")
             self.tableView.reloadData()
         }
     }
@@ -133,6 +132,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         for service in peripheral.services {
             let thisService = service as! CBService
             if service.UUID == self.serviceUUID {
+                println("\nINFO :  Did discover service : \(self.serviceUUID) ")
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
                 isThatServiceHere = true
@@ -142,6 +142,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         }
         if !isThatServiceHere {
             self.presentAlert("Can't discover lure data with Lure service ID !")
+            println("Can't discover lure data with Lure service ID !")
         }
     }
     
@@ -152,28 +153,33 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         var enableValue = 1
         let enablyBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
         
+        var isCharHere = false
         // check the uuid of each characteristic to find config and data characteristics
         for charateristic in service.characteristics {
-            var isCharHere = false
             let thisCharacteristic = charateristic as! CBCharacteristic
             println("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
             if thisCharacteristic.UUID == self.charateristicUUID {
                 // Enable Sensor Notification
-                self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
+                println("\nINFO : Reading Value from characteristic : \(charateristicUUID) ")
+                self.sensorTagPeripheral.readValueForCharacteristic(thisCharacteristic)
                 isCharHere = true
+                
             }
-            if !isCharHere {
-                self.presentAlert("Can't discover lure data with Characteristic ID !")
-            }
+        }
+        if !isCharHere {
+            self.presentAlert("Can't discover lure data with Characteristic ID !")
+            println("Can't discover lure data with Characteristic ID !")
         }
     }
     // Get data values when they are updated
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         
         self.discoveredDevices.text = "Connected with peripheral :\(characteristic.UUID)"
+        println("\nConnected with peripheral : \(characteristic.UUID) with \(self.charateristicUUID)")
         
         if characteristic.UUID == charateristicUUID {
+            println("\nINFO : Find a characterisctc with id \(charateristicUUID)")
             // Convert NSData to array of signed 16 bit values
             let dataBytes = characteristic.value
             let dataLength = dataBytes.length
