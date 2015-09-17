@@ -35,11 +35,12 @@
 		9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */; };
 		9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B5201BA06D46006D13F2 /* BaseViewController.swift */; };
 		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
+		92C5C7361BAAF6AF0078F252 /* Pods_Livingston.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB321BA2266900805219 /* SyncLureViewController.swift */; };
 		92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB341BA22C1100805219 /* ContactViewController.swift */; };
 		92C5CB371BA2377300805219 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB361BA2377300805219 /* ShopViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
-		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,20 @@
 			remoteInfo = Livingston;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92C5C7371BAAF6B00078F252 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92C5C7361BAAF6AF0078F252 /* Pods_Livingston.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4FCBA76386C11CF73BA35B4C /* Pods-Livingston.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.release.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +282,7 @@
 				9280AA471B98CE55006E13F0 /* Resources */,
 				13274EBC392DF9B84F226278 /* Embed Pods Frameworks */,
 				9BEE140B9CA990174DCD8D03 /* Copy Pods Resources */,
+				92C5C7371BAAF6B00078F252 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,6 +317,8 @@
 		9280AA411B98CE55006E13F0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = integer;
 				TargetAttributes = {
@@ -372,7 +390,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Livingston/Pods-Livingston-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		474A3CE345C2152656545EB5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -564,6 +581,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Livingston/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -579,6 +597,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Livingston/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

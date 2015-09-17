@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import RealmSwift
 
 protocol AcceptFishDetailDelegate {
     
-    func acceptFishDetail(sender : Object)
+    func acceptFishDetail(sender : AnyObject)
     
 }

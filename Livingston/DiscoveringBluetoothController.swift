@@ -26,6 +26,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 //    let charateristicUUID = CBUUID(string: "Manufacturer Name String")
 
     let URL = "http://appapi.livingstonlures.com/Lure.php"
+    var peripheralUUIDString = ""
     
     var centralManager:CBCentralManager!
     var blueToothReady = false
@@ -33,12 +34,18 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     var indicator: UIActivityIndicatorView?
     var lureInfo = LureData()
     
-    let realm = Realm()
+    var realm : Realm!
     
     var peripheralList : [CBPeripheral] = [CBPeripheral]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            self.realm = try Realm()
+        }catch _ {
+            print("Cant initi data base !")
+        }
+        
         self.progress.startAnimating()
         startUpCentralManager()
         initLoadingDialog()
@@ -54,7 +61,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     @IBAction func backButton(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-    func centralManagerDidUpdateState(central: CBCentralManager!){
+    func centralManagerDidUpdateState(central: CBCentralManager){
         switch (central.state) {
         case .PoweredOff:
             coreBluetooth.text = "CoreBluetooth BLE hardware is powered off"
@@ -88,27 +95,29 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     func discoverDevices() {
         centralManager.scanForPeripheralsWithServices(nil, options: nil)
     }
-    func centralManager(central: CBCentralManager!,didConnectPeripheral peripheral: CBPeripheral!)
+    func centralManager(central: CBCentralManager,didConnectPeripheral peripheral: CBPeripheral)
     {
         sensorTagPeripheral.delegate = self
         sensorTagPeripheral.discoverServices(nil)
-        println("\nConnected to \(peripheral.name)")
+        print("\nConnected to \(peripheral.name)")
         foundBLE.textColor = UIColor.redColor()
         foundBLE.text = "Connected to: \(peripheral.name)"
     }
     
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         
         discoveredDevices.text = "Discovered: \(peripheral.name) : RSSI \(RSSI) "
-        println("\nDiscovered: \(peripheral.name) : RSSI \(RSSI) ")
-        println("\nUUID : \(peripheral.identifier.UUIDString) ")
+        print("\nDiscovered: \(peripheral.name) : RSSI \(RSSI) ")
+        print("\nUUID : \(peripheral.identifier.UUIDString) ")
         
-        if contains(self.peripheralList, peripheral) {
-            println("\nlist already contains this peripheral item")
+        if self.peripheralList.contains(peripheral) {
+            print("\nlist already contains this peripheral item")
         }else{
-            self.peripheralList.append(peripheral)
-            println("\nAdd \(peripheral.identifier.UUIDString) to list ")
-            self.tableView.reloadData()
+            if peripheral.name != "nil" {
+                self.peripheralList.append(peripheral)
+                print("\nAdd \(peripheral.identifier.UUIDString) to list ")
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -122,46 +131,46 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     
     func connectingPeripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!)
     {
-        println("\nServices \(sensorTagPeripheral.services)")
+        print("\nServices \(sensorTagPeripheral.services)")
     }
     
     /******* CBCentralPeripheralDelegate *******/
     
-    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         var isThatServiceHere :Bool = false
-        for service in peripheral.services {
-            let thisService = service as! CBService
+        for service in peripheral.services! {
+            let thisService = service 
             if service.UUID == self.serviceUUID {
-                println("\nINFO :  Did discover service : \(self.serviceUUID) ")
+                print("\nINFO :  Did discover service : \(self.serviceUUID) ")
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
                 isThatServiceHere = true
             }
             // Uncomment to print list of UUIDs
-            println("\nServices UUID : \(thisService.UUID)")
+            print("\nServices UUID : \(thisService.UUID)")
         }
         if !isThatServiceHere {
             self.presentAlert("Can't discover lure data with Lure service ID !")
-            println("Can't discover lure data with Lure service ID !")
+            print("Can't discover lure data with Lure service ID !")
         }
     }
     
     // Enable notification and sensor for each characteristic of valid service
-    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
         
         // 0x01 data byte to enable sensor
         var enableValue = 1
-        let enablyBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
+        _ = NSData(bytes: &enableValue, length: sizeof(UInt8))
         
         var isCharHere = false
         // check the uuid of each characteristic to find config and data characteristics
-        for charateristic in service.characteristics {
-            let thisCharacteristic = charateristic as! CBCharacteristic
-            println("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
+        for charateristic in service.characteristics! {
+            let thisCharacteristic = charateristic 
+            print("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
             if thisCharacteristic.UUID == self.charateristicUUID {
                 // Enable Sensor Notification
-                println("\nINFO : Reading Value from characteristic : \(charateristicUUID) ")
+                print("\nINFO : Reading Value from characteristic : \(charateristicUUID) ")
                 self.sensorTagPeripheral.readValueForCharacteristic(thisCharacteristic)
                 isCharHere = true
                 
@@ -169,45 +178,39 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         }
         if !isCharHere {
             self.presentAlert("Can't discover lure data with Characteristic ID !")
-            println("Can't discover lure data with Characteristic ID !")
+            print("Can't discover lure data with Characteristic ID !")
         }
     }
     // Get data values when they are updated
-    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         self.discoveredDevices.text = "Connected with peripheral :\(characteristic.UUID)"
-        println("\nConnected with peripheral : \(characteristic.UUID) with \(self.charateristicUUID)")
+        print("\nConnected with peripheral : \(characteristic.UUID) with \(self.charateristicUUID)")
         
         if characteristic.UUID == charateristicUUID {
-            println("\nINFO : Find a characterisctc with id \(charateristicUUID)")
+            print("\nINFO : Find a characterisctc with id \(charateristicUUID)")
             // Convert NSData to array of signed 16 bit values
-            let dataBytes = characteristic.value
-            let dataLength = dataBytes.length
-            var dataArray = [Int16](count: dataLength, repeatedValue: 0)
-            dataBytes.getBytes(&dataArray, length: dataLength * sizeof(Int16))
+            let data = characteristic.value
+            var values = [UInt8](count:data!.length, repeatedValue:0)
+            data!.getBytes(&values, length:data!.length)
             
-            // Element 1 of the array will be ambient temperature raw value
-            let ambientTemperature = Double(dataArray[1])/128
-            
-            // Display on the temp label
-            
-            if let lureName = NSString(format: "%.2f", ambientTemperature) as? String {
+            if let lureName = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String {
+                print(lureName)
                 let postString = "LureCode=\(lureName)"
                 self.discoveredDevices.text = "Lure name : \(lureName)"
-                println("\n\nLure name : \(lureName)")
+                print("\n\nLure name : \(lureName)")
                 //MARK : Make a post request
                 self.gettingLureInfoTask(postString)
-
-            }else{
-    
+            } else {
+                print("\nnot a valid UTF-8 sequence")
                 self.presentAlert("\n\nLure name has not detected!")
                 
-                println("\n\nLure name has not detected !")
+                print("\n\nLure name has not detected !")
             }
         }
     }
     // If disconnected, start searching again
-    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         self.discoveredDevices.text = "Disconnected"
         central.scanForPeripheralsWithServices(nil, options: nil)
     }
@@ -217,62 +220,49 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     func gettingLureInfoTask(postString : String){
         self.indicator?.startAnimating()
         let request = NSMutableURLRequest(URL: NSURL(string: URL)!)
-        var err: NSError?
+        
+        let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            data, response, error in
-            
-            if error != nil {
-                println("error=\(error)")
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            guard data != nil else {
+                print("no data found: \(error)")
                 return
             }
             
-            println("response = \(response)")
-            
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("LureResponce = \(responseString)")
-            
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
-            
-            if(err != nil) {
-                println(err!.localizedDescription)
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
-                
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    let success = json["success"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.parseLureDataWithWithJSON(json)
+                        self.indicator?.stopAnimating()
+                    });
+                    print("Success: \(success)")
+                } else {
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
+                    print("Error could not parse JSON: \(jsonStr)")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.indicator?.stopAnimating()
+                    });
+
+                }
+            } catch let parseError {
+                print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error could not parse JSON: '\(jsonStr)'")
                 dispatch_async(dispatch_get_main_queue(), {
                     self.indicator?.stopAnimating()
-                    self.presentAlert("Error could not parse JSON !")
                 });
-            }
-            else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-                if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-                    var success = parseJSON["success"] as? Int
-                    println("Succes: \(success)")
-                    
-                    //Call back to main thread !
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.parseLureDataWithWithJSON(parseJSON)
-                        self.indicator?.stopAnimating()
-                    });
-                }
-                else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                    let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println("Error could not parse JSON: \(jsonStr)")
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.indicator?.stopAnimating()
-                    });
-                }
+
             }
         }
+        
         task.resume()
     }
-
+    
     //Go back to tackle list with passing data to.
     
     func parseLureDataWithWithJSON(json : NSDictionary) {
@@ -291,10 +281,11 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
         lureInfo.LURE_NAME = LURE_NAME
         lureInfo.LURE_WATER_TYPE = LURE_WATER_TYPE
         lureInfo.LURE_IMAGE_URL = LURE_IMAGE_URL
+        lureInfo.LURE_UUID = peripheralUUIDString
     
         let alermassage = "Lure code : \(LURE_ITEM_CODE)\n" + "Lure name : \(LURE_NAME)\n" + "Lure water type : \(LURE_WATER_TYPE)\n"
         
-        var createAccountErrorAlert: UIAlertView = UIAlertView()
+        let createAccountErrorAlert: UIAlertView = UIAlertView()
         
         createAccountErrorAlert.delegate = self
         
@@ -317,13 +308,17 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             break;
         case 0:
             NSLog("OK");
-            self.realm.write({
-                //THIS IS DATA BASE WRITE
-                self.realm.add(self.lureInfo)
-            })
-            println("LureInfo has been added to DB !")
+            do {
+                try self.realm.write({
+                    //THIS IS DATA BASE WRITE
+                    self.realm.add(self.lureInfo)
+                })
+            }catch _ {
+                print("Cant write to data base !")
+            }
+            print("LureInfo has been added to DB !")
             let fishInDB = self.realm.objects(RecordedFish)
-            println("\n Items in DATABASE : \(count(fishInDB))")
+            print("\n Items in DATABASE : \(fishInDB.count)")
             
             self.navigationController?.popViewControllerAnimated(true)
             break;
@@ -344,7 +339,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
     }
     
     func presentAlert(message : String){
-        var alert = UIAlertController(title: "Alert", message: message , preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Alert", message: message , preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -357,9 +352,9 @@ extension DiscoveringBluetoothController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("BLECell", forIndexPath: indexPath) as! BLECell
+        let cell = tableView.dequeueReusableCellWithIdentifier("BLECell", forIndexPath: indexPath) as! BLECell
         cell.name.text = peripheralList[indexPath.row].name
-//    
+//
 //        cell.name.text = "TEST"
         
         return cell
@@ -373,9 +368,11 @@ extension DiscoveringBluetoothController : UITableViewDelegate {
         self.centralManager.stopScan()
         // Set as the peripheral to use and establish connection
         let peripheral = self.peripheralList[indexPath.row]
+        self.peripheralUUIDString = peripheral.identifier.UUIDString
         self.sensorTagPeripheral = peripheral
         self.centralManager.connectPeripheral(peripheral, options: nil)
-        println("\ncentralManager.connectPeripheral\n")
+        print("\ncentralManager.connectPeripheral\n")
+//        self.gettingLureInfoTask("LureCode=DEMO 26")
         
     }
 }

@@ -31,11 +31,11 @@ class RegistrationViewController: UIViewController {
             
             let username = self.login.text
             let pwd = self.password.text
-            var params = "Username=\(username)&Password=\(pwd)&Date=\(timestamp)"
-            println("\n\n\(params)")
+            let params = "Username=\(username)&Password=\(pwd)&Date=\(timestamp)"
+            print("\n\n\(params)")
             registrationTask(params)
         }else {
-            println("Validate your registration data !")
+            print("Validate your registration data !")
         }
     }
     @IBAction func back(sender: UIButton) {
@@ -43,7 +43,7 @@ class RegistrationViewController: UIViewController {
     }
     
     func checkTextFields() -> Bool{
-        return count(self.login.text) >= 2 && count(self.password.text) >= 4 && (self.password.text == self.confirmPassword.text)
+        return self.login.text!.characters.count >= 2 && self.password.text!.characters.count >= 4 && (self.password.text == self.confirmPassword.text)
     }
     
     func makeARegisterInTask(){
@@ -61,7 +61,7 @@ class RegistrationViewController: UIViewController {
     }
     func badRegistrationTask(){
         self.progress.stopAnimating()
-        println("Bad registration information")
+        print("Bad registration information")
     }
     func registrationTask(postString : String){
         self.progress.startAnimating()
@@ -72,14 +72,14 @@ class RegistrationViewController: UIViewController {
             data, response, error in
             
             if error != nil {
-                println("error=\(error)")
+                print("error=\(error)")
                 return
             }
             
-            println("response = \(response)")
+            print("response = \(response)")
             
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("Registration responce  = \(responseString)")
+            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print("Registration responce  = \(responseString)")
             
             if let id = responseString?.integerValue {
                 if id > 0 {

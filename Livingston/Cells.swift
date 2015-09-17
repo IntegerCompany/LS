@@ -59,19 +59,62 @@ class DealerList : UITableViewCell {
     }
     
     func watchFrameChanges() {
-        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.New|NSKeyValueObservingOptions.Initial, context: nil)
+        addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Initial], context: nil)
     }
     
     func ignoreFrameChanges() {
-        removeObserver(self, forKeyPath: "frame")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "frame" {
             checkHeight()
         }
     }
     
+}
+
+protocol ProgramCellDelagate {
+    func stopProgres()
+    func setMyBatteryValue(sender : Int)
+    func connectionStatus(sender : Bool)
+}
+class ProgramCell : UITableViewCell , ProgramCellDelagate {
+    @IBOutlet weak var progress: UIActivityIndicatorView!
+    @IBOutlet weak var infoText: UILabel!
+    @IBOutlet weak var batteryValue: UILabel!
+    @IBOutlet weak var lureImage: UIImageView!
+    @IBOutlet weak var lureName: UILabel!
+    @IBOutlet weak var lureStyle: UILabel!
+    @IBOutlet weak var lureType: UILabel!
+    
+    @IBOutlet weak var powerButton: UIButton!
+    
+    @IBAction func startProgress(sender: UIButton) {
+        self.powerButton.hidden = true
+        self.progress.hidden = false
+        self.progress.startAnimating()
+    }
+    
+    func stopProgres() {
+        self.powerButton.hidden = false
+        self.progress.hidden = true
+        self.progress.stopAnimating()
+    }
+    
+    func setMyBatteryValue(sender: Int) {
+        self.batteryValue.text = "\(sender) %"
+    }
+    
+    func connectionStatus(sender: Bool) {
+        if sender {
+            let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+            self.infoText.text = "Connected : \(timestamp)"
+            self.stopProgres()
+        }else{
+            self.infoText.text = "Can't connect with lure services"
+        }
+    }
 }
 
 @IBDesignable

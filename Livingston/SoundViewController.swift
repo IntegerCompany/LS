@@ -58,7 +58,7 @@ extension SoundViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("soundGridViewCell", forIndexPath: indexPath) as! SoundListCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("soundGridViewCell", forIndexPath: indexPath) as! SoundListCell
         cell.image.image = UIImage(named: self.imagesNames[indexPath.item])
         cell.name.text = self.sounds[indexPath.item]
         

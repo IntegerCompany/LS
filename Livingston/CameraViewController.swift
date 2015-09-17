@@ -36,7 +36,7 @@ class CameraViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBAction func done(sender: UIButton) {
         if let img = self.myImageView.image {
             self.delegate.didRecievePhotoFromCamera(img)
-            println("\nfeed back with Image !")
+            print("\nfeed back with Image !")
         }
         self.navigationController?.popViewControllerAnimated(true)
     }

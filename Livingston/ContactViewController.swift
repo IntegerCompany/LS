@@ -29,39 +29,52 @@ class ContactViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func getJSON(urlPath : String) {
         self.progress.startAnimating()
-        var url : NSString = urlPath
-        var urlStr : NSString = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        var searchURL : NSURL = NSURL(string: urlStr as String)!
-        println(searchURL)
+        let url : NSString = urlPath
+        let urlStr : NSString = url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let searchURL : NSURL = NSURL(string: urlStr as String)!
+        print(searchURL)
         let session = NSURLSession.sharedSession()
-        
-        var error:NSError?
         
         let task = session.dataTaskWithURL(searchURL, completionHandler: {data, response, error -> Void in
             
-            if(error != nil) {
-                println(error!.localizedDescription)
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error could not parse JSON: '\(jsonStr)'")
+            guard data != nil else {
+                print("no data found: \(error)")
+                return
             }
-            var err: NSError?
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
             
-            //println("\(jsonResult)")
-            if err != nil {
-                self.progress.stopAnimating()
-                // If there is an error parsing JSON, print it to the console
-                println("JSON Error \(err!.localizedDescription)")
-            }else{
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
+                    let success = json["success"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
+                    let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                    print(jsonResult)
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.contactList = jsonResult["Main"] as! [(NSArray)]
+                        self.tableView.hidden = false
+                        self.tableView.reloadData()
+                        self.progress.stopAnimating()
+                    });
+
+                    print("Success: \(success)")
+                } else {
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
+                    print("Error could not parse JSON: \(jsonStr)")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.progress.startAnimating()
+                    });
+                    
+                }
+            } catch let parseError {
+                print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error could not parse JSON: '\(jsonStr)'")
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.contactList = jsonResult["Main"] as! [(NSArray)]
-                    self.tableView.hidden = false
-                    self.tableView.reloadData()
-                    self.progress.stopAnimating()
+                    self.progress.startAnimating()
                 });
+                
             }
         })
         task.resume()
@@ -76,7 +89,7 @@ extension ContactViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("DealerList", forIndexPath: indexPath) as! DealerList
+        let cell = tableView.dequeueReusableCellWithIdentifier("DealerList", forIndexPath: indexPath) as! DealerList
         let item = contactList[indexPath.row] as! NSDictionary
         
         cell.shopName.text = item["Company"] as? String

@@ -26,13 +26,15 @@ class LoginViewController: UIViewController {
 
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
             if isRemembered {
-                let username = userDefaults.valueForKey("login") as! String
-                let pwd = self.userDefaults.valueForKey("password") as! String
-                self.login.text = username
-                self.password.text = pwd
-                let postString = "Username=\(username)&Password=\(pwd)"
-                //login
-                self.loginTask(postString)
+                
+                if let username = userDefaults.valueForKey("login") as? String {
+                    let pwd = self.userDefaults.valueForKey("password") as! String
+                    self.login.text = username
+                    self.password.text = pwd
+                    let postString = "Username=\(username)&Password=\(pwd)"
+                    //login
+                    self.loginTask(postString)
+                }
             }
         }
     }
@@ -54,12 +56,13 @@ class LoginViewController: UIViewController {
             let postString = "Username=\(username)&Password=\(pwd)"
             //login
             self.loginTask(postString)
+
         }else{
-            println("Validate your login or(and) password")
+            print("Validate your login or(and) password")
         }
     }
     func checkTextFields() -> Bool{
-        return count(self.login.text) >= 2 && count(self.password.text) >= 4
+        return self.login.text!.characters.count >= 2 && self.password.text!.characters.count >= 4
     }
     
     func makeALogInTask(){
@@ -82,42 +85,38 @@ class LoginViewController: UIViewController {
     
     func loginTask(postString : String){
         self.progress.startAnimating()
+        let session = NSURLSession.sharedSession()
         let request = NSMutableURLRequest(URL: NSURL(string: self.logUrl)!)
         request.HTTPMethod = "POST"
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            data, response, error in
-            
-            if error != nil {
-                println("error=\(error)")
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            guard data != nil else {
+                print("no data found: \(error)")
                 return
             }
             
-            println("response = \(response)")
-            
-            let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
-            println("LoginResponce = \(responseString)")
-            
-            if let id = responseString?.integerValue {
+            do {
+                let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                // Okay, the `json` is here, let's get the value for 'success' out of it
+                let id = responseString!.integerValue
                 if id > 0 {
                     self.userDefaults.setInteger(id, forKey: "user_id")
                     self.userDefaults.synchronize()
                     dispatch_async(dispatch_get_main_queue(), {
                         self.makeALogInTask()
                     });
+                    
                 }else{
-                    println("Wrong login or password")
+                    print("\nWrong login or password")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.badLoginTask()
                     });
                 }
-            }else{
-                println("Bad request ! Wrong login or password")
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.badLoginTask()
-                });
+                print("\nSuccess: \(id)")
             }
         }
+        
         task.resume()
     }
     

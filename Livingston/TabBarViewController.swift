@@ -55,7 +55,7 @@ class TabBarViewController: UITabBarController, UIPopoverPresentationControllerD
     }
     
     func logOut(){
-        println("\n\nlogOut")
+        print("\n\nlogOut")
         userDefaults.setBool(false, forKey: "rememberMe")
         self.navigationController?.popToRootViewControllerAnimated(true)
         

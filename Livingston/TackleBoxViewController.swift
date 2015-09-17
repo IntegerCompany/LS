@@ -13,11 +13,20 @@ class TackleBoxViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let realm = Realm()
+    let segueID = "showProgramUI"
+    
+    var realm : Realm!
     var tackleList = [LureData]()
+    
+    let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        do{
+            self.realm = try Realm()
+        }catch{
+            print("Cant intitialize data base !")
+        }
         
         let img = UIImage(named: "background")
         self.collectionView.backgroundColor = UIColor(patternImage: img!)
@@ -27,11 +36,11 @@ class TackleBoxViewController: BaseViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tackleList.removeAll(keepCapacity: false)
-        var query = self.realm.objects(LureData)
+        let query = self.realm.objects(LureData)
         for item in query {
             tackleList.append(item as LureData)
         }
-        println("\n\n Tackles count : \(tackleList.count)")
+        print("\n\n Tackles count : \(tackleList.count)")
         collectionView.reloadData()
     }
 
@@ -49,15 +58,17 @@ class TackleBoxViewController: BaseViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == segueID {
+            let vc = segue.destinationViewController as! ProgramUIViewController
+            let tackle = sender as! LureData
+            vc.lureData = tackle
+        }
     }
-    */
+
     
     func getDataFromUrl(urL:NSURL, completion: ((data: NSData?) -> Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(urL) { (data, response, error) in
@@ -74,19 +85,25 @@ extension TackleBoxViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("fishGridViewCell", forIndexPath: indexPath) as! TackleCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("fishGridViewCell", forIndexPath: indexPath) as! TackleCell
         let tackle = self.tackleList[indexPath.item]
         
         cell.name.text = tackle.LURE_NAME
         cell.activeSoundType.text = tackle.LURE_STYLE
         cell.type.text = tackle.LURE_WATER_TYPE
         
-        getDataFromUrl(NSURL(fileURLWithPath: tackle.LURE_IMAGE_URL)!) { data in
+        let lureID = tackle.LURE_ITEM_CODE
+        print("\n\(lureID)")
+        let lureImgUrl = imgUrl + "\(lureID).png"
+        
+        print("\(lureImgUrl)")
+        let url = NSURL(string: lureImgUrl)
+        
+        self.getDataFromUrl(url!) { data in
             dispatch_async(dispatch_get_main_queue()) {
                 cell.image.image = UIImage(data: data!)
             }
         }
-        
         return cell
     }
     
@@ -94,10 +111,8 @@ extension TackleBoxViewController : UICollectionViewDataSource {
 //Delegate
 extension TackleBoxViewController : UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ProgramUIViewController") as! ProgramUIViewController
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+        let tackle = self.tackleList[indexPath.item]
+        self.performSegueWithIdentifier(segueID, sender: tackle)
     }
 }
 

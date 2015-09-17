@@ -10,14 +10,14 @@ import UIKit
 import RealmSwift
 import CoreLocation
 
-class RecordACatchViewController: BaseViewController, UIPopoverPresentationControllerDelegate, CLLocationManagerDelegate {
+class RecordACatchViewController: BaseViewController {
 
     @IBOutlet weak var recordDate: UILabel!
     @IBOutlet weak var myLocation: UILabel!
     @IBOutlet weak var lastLureFish: UIImageView!
     
     var popoverContent2 : FishDetailViewController?
-    let realm = Realm()
+    var realm : Realm?
     var recordedFish : RecordedFish = RecordedFish()
     var imageToSave : UIImage?
     
@@ -29,6 +29,12 @@ class RecordACatchViewController: BaseViewController, UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         //set date !
+        do{
+            self.realm = try Realm()
+        }catch _ {
+            print("cant Innitialize Data base")
+        }
+        
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         self.recordDate.text = timestamp
          
@@ -61,16 +67,24 @@ class RecordACatchViewController: BaseViewController, UIPopoverPresentationContr
     //Saving into data base
     @IBAction func submitRecord(sender: UIButton) {
         if self.imageToSave != nil {
-            self.recordedFish.image = UIImagePNGRepresentation(self.imageToSave)
+            self.recordedFish.image = UIImagePNGRepresentation(self.imageToSave!)!
+        }
+        do{
+            try self.realm!.write({ //THIS IS DATA BASE WRITE
+                self.realm!.add(self.recordedFish)
+            })
+        }catch _ {
+            print("Cant add detain into db")
         }
         
-        self.realm.write({ //THIS IS DATA BASE WRITE
-            self.realm.add(self.recordedFish)
-        })
-        println("Detail has been added to DB !")
-        let fishInDB = self.realm.objects(RecordedFish)
-        println("\n Items in DATABASE : \(count(fishInDB))") //HERE WE SHOW HOW MANY ITEMS IN DATA BASE
+        print("Detail has been added to DB !")
+        let fishInDB = self.realm!.objects(RecordedFish)
+        print("\n Items in DATABASE : \(fishInDB.count)") //HERE WE SHOW HOW MANY ITEMS IN DATA BASE
         
+    }
+    @available(iOS 8.0, *)
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        // function code
     }
     
     func showDetailView() {
@@ -102,32 +116,30 @@ class RecordACatchViewController: BaseViewController, UIPopoverPresentationContr
 extension RecordACatchViewController : CLLocationManagerDelegate {
     // Location Manager Delegate stuff
     // If failed
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         locationManager.stopUpdatingLocation()
-        if ((error) != nil) {
-            if (seenError == false) {
-                seenError = true
-                print(error)
-            }
+        if (seenError == false) {
+            seenError = true
+            print(error, terminator: "")
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if (locationFixAchieved == false) {
             locationFixAchieved = true
-            var locationArray = locations as NSArray
-            var locationObj = locationArray.lastObject as! CLLocation
-            var coord = locationObj.coordinate
+            let locationArray = locations as NSArray
+            let locationObj = locationArray.lastObject as! CLLocation
+            let coord = locationObj.coordinate
             
-            println(coord.latitude)
-            println(coord.longitude)
+            print(coord.latitude)
+            print(coord.longitude)
             
             self.myLocation.text = "Lat: \(coord.latitude), Lon : \(coord.longitude)"
         }
     }
     
     // authorization status
-    func locationManager(manager: CLLocationManager!,
+    func locationManager(manager: CLLocationManager,
         didChangeAuthorizationStatus status: CLAuthorizationStatus) {
             var shouldIAllow = false
             
@@ -155,8 +167,8 @@ extension RecordACatchViewController : CLLocationManagerDelegate {
 //Pop up window callback
 extension RecordACatchViewController : AcceptFishDetailDelegate {
     
-    func acceptFishDetail(sender: Object) {
-        println("Get info from pop up window !")
+    func acceptFishDetail(sender: AnyObject) {
+        print("Get info from pop up window !")
         self.recordedFish = sender as! RecordedFish
     }
 }

@@ -27,11 +27,22 @@ class CurrentSoundViewController: BaseViewController {
         let path = NSBundle.mainBundle().pathForResource("water", ofType: "mp3") //MP3 file path
         let url = NSURL(fileURLWithPath: path!)
         
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: nil)
-        AVAudioSession.sharedInstance().setActive(true, error: nil)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch _ {
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch _ {
+        }
         
         var error:NSError?
-        audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+        } catch let error1 as NSError {
+            error = error1
+            audioPlayer = nil
+        }
         audioPlayer.prepareToPlay()
     }
     
@@ -65,7 +76,7 @@ extension CurrentSoundViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("SoundPurchaseCell", forIndexPath: indexPath) as! SoundPurchaseCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SoundPurchaseCell", forIndexPath: indexPath) as! SoundPurchaseCell
         cell.name.text = "Item # \(indexPath.row + 1)"
         cell.buttonPlay.addTarget(self, action: Selector("playButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         return cell

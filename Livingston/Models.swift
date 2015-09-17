@@ -28,4 +28,6 @@ class LureData : Object {
     dynamic var LURE_WATER_TYPE = ""
     dynamic var LURE_STYLE = ""
     dynamic var LURE_IMAGE_URL = ""
+    dynamic var LURE_UUID = ""
+    
 }

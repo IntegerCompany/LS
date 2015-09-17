@@ -62,8 +62,8 @@ class FishViewController: BaseViewController {
     func improveTextInformation(){
         
         let title = NSMutableAttributedString()
-        var attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
-        var l1 = NSMutableAttributedString(string:"START FISHING!\n\n", attributes:attrs)
+        let attrs = [NSFontAttributeName : UIFont.boldSystemFontOfSize(15)]
+        let l1 = NSMutableAttributedString(string:"START FISHING!\n\n", attributes:attrs)
         let l2 = NSMutableAttributedString(string: "Each time you opn this app , you'll need to tap ")
         let l3 = NSMutableAttributedString(string: "START \nFISHING",attributes:attrs)
         let l3a = NSMutableAttributedString(string: " to begin logging data for the day.\n\n")
