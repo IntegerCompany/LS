@@ -53,7 +53,8 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
     func logOut(){
         print("\n\nlogOut")
         userDefaults.setBool(false, forKey: "rememberMe")
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as? LoginViewController
+        self.navigationController?.presentViewController(vc!, animated: true, completion: nil)
         
     }
     

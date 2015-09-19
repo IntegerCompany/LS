@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progress.hidesWhenStopped = true
+        
 
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
             if isRemembered {
@@ -35,6 +36,8 @@ class LoginViewController: UIViewController {
                     //login
                     self.loginTask(postString)
                 }
+            }else{
+                self.rememberMe.on = false
             }
         }
     }
@@ -108,6 +111,7 @@ class LoginViewController: UIViewController {
                     });
                     
                 }else{
+                    self.presentAlert("Wrong login or password")
                     print("\nWrong login or password")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.badLoginTask()
@@ -126,6 +130,12 @@ class LoginViewController: UIViewController {
         }else{
             userDefaults.setBool(false, forKey: "rememberMe")
         }
+    }
+    
+    func presentAlert(message : String){
+        let alert = UIAlertController(title: "Login", message: message , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 

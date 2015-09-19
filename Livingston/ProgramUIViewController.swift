@@ -129,7 +129,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         var isThatServiceHere :Bool = false
         for service in peripheral.services! {
-            let thisService = service as! CBService
+            let thisService = service 
             if service.UUID == self.LureServicePlaySoundId {
                 print("\nINFO :  Did discover service : \(self.LureServicePlaySoundId) ")
                 // Discover characteristics of LureServiceReadId
@@ -164,7 +164,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         var isCharHere = false
         // check the uuid of each characteristic to find config and data characteristics
         for charateristic in service.characteristics! {
-            let thisCharacteristic = charateristic as! CBCharacteristic
+            let thisCharacteristic = charateristic 
             print("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
             if thisCharacteristic.UUID == self.LureCharPlayDefault {
@@ -216,7 +216,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     // We make a timer that gives 10 sec to find a divice in scan
     
     func powerConnectionLure(sender : UIButton!){
-        _ = NSTimer.scheduledTimerWithTimeInterval(10, target:self, selector: Selector("stopSearchingDevice"), userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(15, target:self, selector: Selector("stopSearchingDevice"), userInfo: nil, repeats: false)
         if self.sensorTagPeripheral != nil {
             self.centralManager.connectPeripheral(self.sensorTagPeripheral, options: nil)
             print("\ncentralManager.connectPeripheral\n")
