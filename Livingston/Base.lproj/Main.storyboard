@@ -324,7 +324,7 @@
                                         <rect key="frame" x="0.0" y="382" width="600" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GZ-Rb-oHh" userLabel="Record A Catch">
-                                                <rect key="frame" x="0.0" y="0.0" width="475" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="470" height="50"/>
                                                 <color key="backgroundColor" red="0.78823529411764703" green="0.85490196078431369" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="1QK-n7-ahc"/>
@@ -339,11 +339,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSe-La-CuA" userLabel="Start Fishing">
-                                                <rect key="frame" x="480" y="0.0" width="120" height="50"/>
+                                                <rect key="frame" x="475" y="0.0" width="125" height="50"/>
                                                 <color key="backgroundColor" red="0.17254901960784313" green="0.58823529411764708" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Bnn-WJ-Rk9"/>
-                                                    <constraint firstAttribute="width" constant="120" id="gjz-85-S3y"/>
+                                                    <constraint firstAttribute="width" constant="125" id="gjz-85-S3y"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <state key="normal" title="Start Fishing">
