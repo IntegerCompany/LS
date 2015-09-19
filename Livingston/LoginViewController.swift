@@ -27,14 +27,14 @@ class LoginViewController: UIViewController {
 
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
             if isRemembered {
-                
-                if let username = userDefaults.valueForKey("login") as? String {
-                    let pwd = self.userDefaults.valueForKey("password") as! String
-                    self.login.text = username
-                    self.password.text = pwd
-                    let postString = "Username=\(username)&Password=\(pwd)"
-                    //login
-                    self.loginTask(postString)
+                do{
+                let username = userDefaults.valueForKey("login") as! String
+                let pwd = self.userDefaults.valueForKey("password") as! String
+                self.login.text = username
+                self.password.text = pwd
+                let postString = "Username=\(self.login.text)&Password=\(self.password.text)"
+                //login
+                self.loginTask(postString)
                 }
             }else{
                 self.rememberMe.on = false
