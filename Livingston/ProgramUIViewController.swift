@@ -29,6 +29,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     var sensorTagPeripheral:CBPeripheral!
     
     var lureData : LureData?
+    var changeSoundCharacteristic : CBCharacteristic?
     
     var delegate : ProgramCellDelagate?
     
@@ -159,7 +160,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         
         // 0x01 data byte to enable sensor
         var enableValue = 1
-        let enablyBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
+        _ = NSData(bytes: &enableValue, length: sizeof(UInt8))
         
         var isCharHere = false
         // check the uuid of each characteristic to find config and data characteristics
@@ -180,6 +181,13 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
                 self.sensorTagPeripheral.readValueForCharacteristic(thisCharacteristic)
                 isCharHere = true
                 
+            }
+            
+            if thisCharacteristic.UUID == LureCharChangeSound {
+                // Enable Sensor
+                print("\nFind a change sound characteristic")
+                print("\nINFO : Reading Value from characteristic : \(LureCharChangeSound) ")
+                self.changeSoundCharacteristic = thisCharacteristic
             }
         }
         if !isCharHere {
@@ -290,7 +298,14 @@ extension ProgramUIViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row > 0 {
             self.delegate?.stopProgres()
-            print("\nRow selected ! ")
+            var enableValue = "0\(indexPath.row)"
+            print("\nRow selected ! \(enableValue)")
+            let enablyBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
+            if changeSoundCharacteristic != nil {
+                self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: self.changeSoundCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+            }else{
+                self.presentAlert("Can't connect to lure for sound changing !")
+            }
         }
     }
 }
