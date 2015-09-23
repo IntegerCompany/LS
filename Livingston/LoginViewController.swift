@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet weak var progress: UIActivityIndicatorView!
@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.progress.hidesWhenStopped = true
+        
+        self.login.delegate = self
+        self.password.delegate = self
         
 
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
@@ -64,6 +67,22 @@ class LoginViewController: UIViewController {
             print("Validate your login or(and) password")
         }
     }
+    /**
+    * Called when 'return' key pressed. return NO to ignore.
+    */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    /**
+    * Called when the user click on the view (outside the UITextField).
+    */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+
     func checkTextFields() -> Bool{
         return self.login.text!.characters.count >= 2 && self.password.text!.characters.count >= 4
     }
@@ -111,9 +130,9 @@ class LoginViewController: UIViewController {
                     });
                     
                 }else{
-                    self.presentAlert("Wrong login or password")
                     print("\nWrong login or password")
                     dispatch_async(dispatch_get_main_queue(), {
+                        self.presentAlert("Wrong login or password")
                         self.badLoginTask()
                     });
                 }
