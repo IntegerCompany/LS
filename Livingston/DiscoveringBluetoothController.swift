@@ -317,7 +317,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             print("LureInfo has been added to DB !")
             let fishInDB = self.realm.objects(RecordedFish)
             print("\n Items in DATABASE : \(fishInDB.count)")
-            
+            self.centralManager.cancelPeripheralConnection(sensorTagPeripheral)
             self.navigationController?.popViewControllerAnimated(true)
             break;
         default:
