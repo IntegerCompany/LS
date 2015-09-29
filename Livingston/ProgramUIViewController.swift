@@ -106,23 +106,23 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     {
         sensorTagPeripheral.delegate = self
         sensorTagPeripheral.discoverServices(nil)
-        print("\nConnected to \(peripheral.name)")
+        print("\nProgramUI Connected to \(peripheral.name)")
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
 
-        print("\nDiscovered: \(peripheral.name) : RSSI \(RSSI) ")
-        print("\nUUID : \(peripheral.identifier.UUIDString) ")
+        print("\n ProgramUI Discovered: \(peripheral.name) : RSSI \(RSSI) ")
+        print("\n ProgramUI UUID : \(peripheral.identifier.UUIDString) ")
         
         if peripheral.identifier.UUIDString == lureData?.LURE_UUID {
             self.sensorTagPeripheral = peripheral
-            print("Did discover peripeheral \(peripheral.name)")
+            print("ProgramUI Did discover peripeheral \(peripheral.name)")
         }
     }
     
     func connectingPeripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!)
     {
-        print("Services \(sensorTagPeripheral.services)")
+        print("ProgramUI Services \(sensorTagPeripheral.services)")
     }
     
     /******* CBCentralPeripheralDelegate *******/
@@ -132,21 +132,21 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         for service in peripheral.services! {
             let thisService = service 
             if service.UUID == self.LureServicePlaySoundId {
-                print("\nINFO :  Did discover service : \(self.LureServicePlaySoundId) ")
+                print("\nProgramUI INFO :  Did discover service : \(self.LureServicePlaySoundId) ")
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
                 isThatServiceHere = true
                 delegate!.connectionStatus(true)
             }
             if service.UUID == self.LureServiceBatteryID {
-                print("\nINFO :  Did discover service : \(self.LureServiceBatteryID) ")
+                print("\nProgramUI INFO :  Did discover service : \(self.LureServiceBatteryID) ")
                 // Discover characteristics of LureServiceReadId
                 peripheral.discoverCharacteristics(nil, forService: thisService)
                 isThatServiceHere = true
                 delegate!.connectionStatus(true)
             }
             // Uncomment to print list of UUIDs
-            print("\nServices UUID : \(thisService.UUID)")
+            print("\nProgramUI Services UUID : \(thisService.UUID)")
         }
         if !isThatServiceHere {
             self.presentAlert("Can't discover lure data with Lure service ID !")
@@ -166,18 +166,18 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         // check the uuid of each characteristic to find config and data characteristics
         for charateristic in service.characteristics! {
             let thisCharacteristic = charateristic 
-            print("\ncharateristic.UUID : \(thisCharacteristic.UUID)")
+            print("\nProgramUI charateristic.UUID : \(thisCharacteristic.UUID)")
             // check for data characteristic
             if thisCharacteristic.UUID == self.LureCharPlayDefault {
                 // Enable Sensor Notification
-                print("\nINFO : Reading Value from characteristic : \(LureCharPlayDefault) ")
+                print("\nProgramUI INFO : Reading Value from characteristic : \(LureCharPlayDefault) ")
                 self.sensorTagPeripheral.setNotifyValue(true, forCharacteristic: thisCharacteristic)
                 isCharHere = true
                 
             }
             if thisCharacteristic.UUID == self.LureCarReadBatary {
                 // Enable Sensor Notification
-                print("\nINFO : Reading Value from characteristic : \(LureCarReadBatary) ")
+                print("\nProgramUI INFO : Reading Value from characteristic : \(LureCarReadBatary) ")
                 self.sensorTagPeripheral.readValueForCharacteristic(thisCharacteristic)
                 isCharHere = true
                 
@@ -186,7 +186,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
             if thisCharacteristic.UUID == LureCharChangeSound {
                 // Enable Sensor
                 print("\nFind a change sound characteristic")
-                print("\nINFO : Reading Value from characteristic : \(LureCharChangeSound) ")
+                print("\nProgramUI INFO : Reading Value from characteristic : \(LureCharChangeSound) ")
                 self.changeSoundCharacteristic = thisCharacteristic
             }
         }
@@ -213,6 +213,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
             
             // Display on the temp label
             self.delegate!.setMyBatteryValue(level)
+            print("ProgramUI Connected : Battery lvl : \(level)")
         }
     }
     // If disconnected, start searching again
@@ -227,7 +228,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         _ = NSTimer.scheduledTimerWithTimeInterval(15, target:self, selector: Selector("stopSearchingDevice"), userInfo: nil, repeats: false)
         if self.sensorTagPeripheral != nil {
             self.centralManager.connectPeripheral(self.sensorTagPeripheral, options: nil)
-            print("\ncentralManager.connectPeripheral\n")
+            print("\nProgramUI centralManager.connectPeripheral\n")
         }
         
     }
@@ -246,6 +247,14 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         let alert = UIAlertController(title: "Alert", message: message , preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if sensorTagPeripheral != nil {
+            print("\nProgramUI centralManager.connectPeripheral\n")
+            self.centralManager.cancelPeripheralConnection(sensorTagPeripheral)
+        }
     }
 
 }
@@ -298,11 +307,12 @@ extension ProgramUIViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row > 0 {
             self.delegate?.stopProgres()
-            var enableValue = "0\(indexPath.row)"
-            print("\nRow selected ! \(enableValue)")
-            let enablyBytes = NSData(bytes: &enableValue, length: sizeof(UInt8))
+            var enableValue = NSInteger(indexPath.row)
+            let enablyBytes = NSData(bytes: &enableValue, length: 1)
             if changeSoundCharacteristic != nil {
                 self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: self.changeSoundCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
+                print("\nProgramUI writeValue : \(enableValue) : byte : \(enablyBytes) ")
+                print("\nProgramUI row selected : \(indexPath.row)")
             }else{
                 self.presentAlert("Can't connect to lure for sound changing !")
             }
