@@ -106,6 +106,10 @@ class ProgramCell : UITableViewCell , ProgramCellDelagate {
         self.batteryValue.text = "\(sender) %"
     }
     
+    func setMyBatteryValueDouble(sender: Double) {
+        self.batteryValue.text = "\(sender) %"
+    }
+    
     func connectionStatus(sender: Bool) {
         if sender {
             let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
