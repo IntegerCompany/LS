@@ -19,7 +19,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     let LureCharChangeSound = CBUUID(string: "18bd1006-5770-4e53-b034-e998f80a5e43")
     
     let LureServiceBatteryID = CBUUID(string: "0000180f-0000-1000-8000-00805f9b34fb")
-    let LureCarReadBatary = CBUUID(string: "00002a19-0000-1000-8000-00805f9b34fb")
+    let LureCharReadBatary = CBUUID(string: "00002a19-0000-1000-8000-00805f9b34fb")
     
     let programCell = "programCell"
     let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
@@ -175,9 +175,9 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
                 isCharHere = true
                 
             }
-            if thisCharacteristic.UUID == self.LureCarReadBatary {
+            if thisCharacteristic.UUID == self.LureCharReadBatary {
                 // Enable Sensor Notification
-                print("\nProgramUI INFO : Reading Value from characteristic : \(LureCarReadBatary) ")
+                print("\nProgramUI INFO : Reading Value from characteristic : \(LureCharReadBatary) ")
                 self.sensorTagPeripheral.readValueForCharacteristic(thisCharacteristic)
                 isCharHere = true
                 
@@ -200,20 +200,26 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         self.programText.text = "Connected"
+        print("ProgramUI Connected !")
         
-        if characteristic.UUID == LureCarReadBatary {
+        if characteristic.UUID == LureCharReadBatary {
             // Convert NSData to array of signed 16 bit values
             let dataBytes = characteristic.value
+            print("ProgramUI Connected : battery dataBytes \(dataBytes)")
             let dataLength = dataBytes!.length
-            var dataArray = [Int16](count: dataLength, repeatedValue: 0)
-            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(Int16))
+            print("ProgramUI Connected : battery dataBytes lenght \(dataLength)")
+            var dataArray = [UInt8](count: dataLength, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(UInt8))
+            print("ProgramUI Connected : battery dataArray.count : \(dataArray.count)")
+//            let level = Int(dataArray[1])/128
+            let lvl = fromByteArray(dataArray, Int.self)
+            print("ProgramUI Connected : Battery lvl INT : \(lvl)")
+            let lvl2 = fromByteArray(dataArray, Double.self)
+            print("ProgramUI Connected : Battery lvl DOUBLE : \(lvl2)")
             
-            // Element 1 of the array will be ambient temperature raw value
-            let level = Int(dataArray[1])/128
-            
-            // Display on the temp label
-            self.delegate!.setMyBatteryValue(level)
-            print("ProgramUI Connected : Battery lvl : \(level)")
+            // Display on the lvl label
+            self.delegate!.setMyBatteryValue(lvl)
+            print("ProgramUI Connected : Battery lvl : \(lvl)")
         }
     }
     // If disconnected, start searching again
@@ -222,7 +228,13 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         central.scanForPeripheralsWithServices(nil, options: nil)
     }
     //MARK : On power button press we start to connect to device
-    // We make a timer that gives 10 sec to find a divice in scan
+    // We make a timer that gives 15 sec to find a divice in scan
+    
+    func fromByteArray<T>(value: [UInt8], _: T.Type) -> T {
+        return value.withUnsafeBufferPointer {
+            return UnsafePointer<T>($0.baseAddress).memory
+        }
+    }
     
     func powerConnectionLure(sender : UIButton!){
         _ = NSTimer.scheduledTimerWithTimeInterval(15, target:self, selector: Selector("stopSearchingDevice"), userInfo: nil, repeats: false)
