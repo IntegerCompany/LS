@@ -107,7 +107,8 @@ class RecordACatchViewController: BaseViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
     
@@ -133,8 +134,10 @@ extension RecordACatchViewController : CLLocationManagerDelegate {
             
             print(coord.latitude)
             print(coord.longitude)
-            
-            self.myLocation.text = "Lat: \(coord.latitude), Lon : \(coord.longitude)"
+            let lat = String(format: "%.2f",coord.latitude)
+            let lon = String(format: "%.2f",coord.longitude)
+    
+            self.myLocation.text = "Latitude: \(lat)  /  Longitude : \(lon)"
         }
     }
     

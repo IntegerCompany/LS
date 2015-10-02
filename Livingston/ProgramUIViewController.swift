@@ -71,23 +71,23 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     func centralManagerDidUpdateState(central: CBCentralManager){
         switch (central.state) {
         case .PoweredOff:
-            programText.text = "CoreBluetooth BLE hardware is powered off"
+            programText.text = "BLE-OFF"
             UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
         case .PoweredOn:
-            programText.text = "Scanning"
+            programText.text = "Program Lure"
             blueToothReady = true;
             
         case .Resetting:
-            programText.text = "CoreBluetooth BLE hardware is resetting"
+            programText.text = "BLE-resetting"
             
         case .Unauthorized:
-            programText.text = "CoreBluetooth BLE state is unauthorized"
+            programText.text = "BLE-Unauthorized"
             
         case .Unknown:
-            programText.text = "CoreBluetooth BLE state is unknown"
+            programText.text = "BLE-unknown"
             
         case .Unsupported:
-            programText.text = "CoreBluetooth BLE hardware is unsupported on this platform"
+            programText.text = "BLE-unsupported"
             
         }
         if blueToothReady {
@@ -200,6 +200,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         self.programText.text = "Connected"
+        self.delegate!.on(true)
         print("ProgramUI Connected !")
         //Variant 1
 //        if characteristic.UUID == LureCharReadBatary {
@@ -245,6 +246,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         self.programText.text = "Disconnected"
         central.scanForPeripheralsWithServices(nil, options: nil)
+        self.delegate!.on(false)
     }
     //MARK : On power button press we start to connect to device
     // We make a timer that gives 15 sec to find a divice in scan
@@ -294,7 +296,7 @@ extension ProgramUIViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 256.0
+            return 330.0
         }else{
             return 48.0
         }
@@ -320,6 +322,9 @@ extension ProgramUIViewController : UITableViewDataSource {
             cell.lureStyle.text = lureData?.LURE_STYLE
             cell.lureType.text = lureData?.LURE_WATER_TYPE
             cell.progress.hidden = true
+            
+            cell.action.text = lureData!.LURE_NAME
+            cell.type.text = lureData!.LURE_WATER_TYPE
             
             self.getDataFromUrl(url!) { data in
                 dispatch_async(dispatch_get_main_queue()) {

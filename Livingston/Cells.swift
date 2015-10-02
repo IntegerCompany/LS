@@ -78,6 +78,7 @@ protocol ProgramCellDelagate {
     func stopProgres()
     func setMyBatteryValue(sender : Int)
     func connectionStatus(sender : Bool)
+    func on(sender : Bool)
 }
 class ProgramCell : UITableViewCell , ProgramCellDelagate {
     @IBOutlet weak var progress: UIActivityIndicatorView!
@@ -87,6 +88,15 @@ class ProgramCell : UITableViewCell , ProgramCellDelagate {
     @IBOutlet weak var lureName: UILabel!
     @IBOutlet weak var lureStyle: UILabel!
     @IBOutlet weak var lureType: UILabel!
+    
+    @IBOutlet weak var type: UILabel!
+    @IBOutlet weak var depth: UILabel!
+    @IBOutlet weak var action: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var length: UILabel!
+    @IBOutlet weak var percentage: UILabel!
+    @IBOutlet weak var onOff: UILabel!
+    
     
     @IBOutlet weak var powerButton: UIButton!
     
@@ -100,6 +110,9 @@ class ProgramCell : UITableViewCell , ProgramCellDelagate {
         self.powerButton.hidden = false
         self.progress.hidden = true
         self.progress.stopAnimating()
+    }
+    func on(sender : Bool) {
+        self.onOff.hidden = sender
     }
     
     func setMyBatteryValue(sender: Int) {
