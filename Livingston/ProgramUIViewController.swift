@@ -203,44 +203,44 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         self.delegate!.on(true)
         print("ProgramUI Connected !")
         //Variant 1
-//        if characteristic.UUID == LureCharReadBatary {
-//            // Convert NSData to array of signed 16 bit values
-//            let dataBytes = characteristic.value
-//            print("ProgramUI Connected : battery dataBytes \(dataBytes)")
-//            let dataLength = dataBytes!.length
-//            print("ProgramUI Connected : battery dataBytes lenght \(dataLength)")
-//            var dataArray = [UInt8](count: dataLength, repeatedValue: 0)
-//            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(UInt8))
-//            print("ProgramUI Connected : battery dataArray.count : \(dataArray.count)")
-////            let level = Int(dataArray[1])/128
-//            let lvl = fromByteArray(dataArray, Int.self)
-//            print("ProgramUI Connected : Battery lvl INT : \(lvl)")
-//            let lvl2 = fromByteArray(dataArray, Double.self)
-//            print("ProgramUI Connected : Battery lvl DOUBLE : \(lvl2)")
-//            
-//            // Display on the lvl label
-//            self.delegate!.setMyBatteryValue(lvl)
-//            print("ProgramUI Connected : Battery lvl : \(lvl)")
-//        }
-        
-        //Variant 2
         if characteristic.UUID == LureCharReadBatary {
             // Convert NSData to array of signed 16 bit values
             let dataBytes = characteristic.value
             print("ProgramUI Connected : battery dataBytes \(dataBytes)")
             let dataLength = dataBytes!.length
             print("ProgramUI Connected : battery dataBytes lenght \(dataLength)")
-            var dataArray = [Int16](count: dataLength, repeatedValue: 0)
-            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(Int16))
+            var dataArray = [UInt8](count: dataLength, repeatedValue: 0)
+            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(UInt8))
             print("ProgramUI Connected : battery dataArray.count : \(dataArray.count)")
-            let batteryLVL = Double(dataArray[0])/128
-            print("ProgramUI Connected : Battery lvl DOUBLE : \(batteryLVL)")
-            // Display on the temp label
-            let text = NSString(format: "%.2f", batteryLVL)
-            print("ProgramUI Connected : Battery lvl DOUBLE : \(text)")
+//            let level = Int(dataArray[1])/128
+            let lvl = fromByteArray(dataArray, Int.self)
+            print("ProgramUI Connected : Battery lvl INT : \(lvl)")
+            let lvl2 = fromByteArray(dataArray, Double.self)
+            print("ProgramUI Connected : Battery lvl DOUBLE : \(lvl2)")
+            
             // Display on the lvl label
-            self.delegate!.setMyBatteryValue(Int(batteryLVL))
+            self.delegate!.setMyBatteryValue(lvl)
+            print("ProgramUI Connected : Battery lvl : \(lvl)")
         }
+        
+        //Variant 2
+//        if characteristic.UUID == LureCharReadBatary {
+//            // Convert NSData to array of signed 16 bit values
+//            let dataBytes = characteristic.value
+//            print("ProgramUI Connected : battery dataBytes \(dataBytes)")
+//            let dataLength = dataBytes!.length
+//            print("ProgramUI Connected : battery dataBytes lenght \(dataLength)")
+//            var dataArray = [Int16](count: dataLength, repeatedValue: 0)
+//            dataBytes!.getBytes(&dataArray, length: dataLength * sizeof(Int16))
+//            print("ProgramUI Connected : battery dataArray.count : \(dataArray.count)")
+//            let batteryLVL = Double(dataArray[0])/128
+//            print("ProgramUI Connected : Battery lvl DOUBLE : \(batteryLVL)")
+//            // Display on the temp label
+//            let text = NSString(format: "%.2f", batteryLVL)
+//            print("ProgramUI Connected : Battery lvl DOUBLE : \(text)")
+//            // Display on the lvl label
+//            self.delegate!.setMyBatteryValue(Int(batteryLVL))
+//        }
     }
     // If disconnected, start searching again
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
