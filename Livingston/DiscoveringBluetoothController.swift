@@ -349,7 +349,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 extension DiscoveringBluetoothController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.peripheralList.count
-//        return 5
+//         return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -365,7 +365,7 @@ extension DiscoveringBluetoothController : UITableViewDataSource {
 extension DiscoveringBluetoothController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // Stop scanning
+         //Stop scanning
         self.centralManager.stopScan()
         // Set as the peripheral to use and establish connection
         let peripheral = self.peripheralList[indexPath.row]

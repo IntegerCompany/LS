@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import RealmSwift
 
 class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBPeripheralDelegate {
 
@@ -33,9 +34,17 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     
     var delegate : ProgramCellDelagate?
     
+    var realm : Realm!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startUpCentralManager()
+        
+        do {
+            self.realm = try Realm()
+        }catch _ {
+            print("Cant initi data base !")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -67,6 +76,24 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func deleteLureAction(sender: UIButton) {
+        let alert = UIAlertController(title: "Delete", message: "Do you want to delete this lure ?" , preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+            (action: UIAlertAction!) in
+            self.realm.beginWrite()
+            self.realm.delete(self.lureData!)
+            do {
+                try self.realm.commitWrite()
+                self.navigationController?.popViewControllerAnimated(true)
+            }catch _ {
+                print("Can't delete this item")
+                self.presentAlert("Can't delete this item")
+            }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     func centralManagerDidUpdateState(central: CBCentralManager){
         switch (central.state) {

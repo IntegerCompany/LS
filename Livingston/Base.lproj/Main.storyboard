@@ -1248,12 +1248,12 @@
                                             <constraint firstAttribute="width" constant="80" id="U0d-dc-Cv3"/>
                                             <constraint firstAttribute="height" constant="30" id="UL2-m2-Thm"/>
                                         </constraints>
-                                        <state key="normal" title="Tackle Box">
+                                        <state key="normal" title="Delete lure">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="tackle:" destination="RR2-0g-CqR" eventType="touchUpInside" id="siL-FQ-o8U"/>
+                                            <action selector="deleteLureAction:" destination="RR2-0g-CqR" eventType="touchUpInside" id="TMo-uU-d2F"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rq-EC-nUz">
