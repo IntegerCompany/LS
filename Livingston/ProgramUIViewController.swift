@@ -25,6 +25,8 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     let programCell = "programCell"
     let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
     
+    let soundNames = ["#1 EBS CREW","#2 EBS CREW MAX","#3 EBS FRESHWATER SHRIMP","#4 NO NAME","#5 NO NAME","#6 NO NAME","#7 NO NAME","#8 NO NAME","#9 NO NAME","#10 EBS AMERICAN SHAD","#11 EBS TENNESSEE SHAD", "#12 EBS HICKORY SHAD", "#13 EBS BLUE GILL", "#14 EBS PANFISH", "#15 EBS SUNFISH", "#16 EBS MINNOW", "#17 EBS TILIPIA", "#18 EBS BREAM" , "#19 EBS SCULPIN", "#20 EBS GOBY 1", "#21 EBS G PERCH 2", "#22 EBS LONG GOBY 3", "#23 EBS SMELT", "#24 EBS HITCH", "#25 EBS FROG 1", "#26 EBS AQUATIC ISECT 1", "#27 EBS BUG", "#28 EBS SACEDA", "#29 EBS MOUSE", "#30 GILL PLATES MAX"]
+    
     var centralManager:CBCentralManager!
     var blueToothReady = false
     var sensorTagPeripheral:CBPeripheral!
@@ -51,6 +53,16 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         super.viewWillAppear(animated)
         
         //update lure info data !
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.centralManager.stopScan()
+        if sensorTagPeripheral != nil {
+            self.centralManager.cancelPeripheralConnection(sensorTagPeripheral)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -325,14 +337,14 @@ extension ProgramUIViewController : UITableViewDataSource {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return 325.0
+            return 330.0
         }else{
             return 48.0
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.soundNames.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -362,7 +374,8 @@ extension ProgramUIViewController : UITableViewDataSource {
             }
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
+            cell.soundName.text = soundNames[indexPath.row - 1]
             return cell
         }
     }
@@ -371,21 +384,20 @@ extension ProgramUIViewController : UITableViewDataSource {
 extension ProgramUIViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row > 0 {
+            print("\nProgramUI row selected : \(indexPath.row)")
             self.delegate?.stopProgres()
             var enableValue = NSInteger(indexPath.row)
             let enablyBytes = NSData(bytes: &enableValue, length: 1)
             if changeSoundCharacteristic != nil {
                 self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: self.changeSoundCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-                print("\nProgramUI writeValue : \(enableValue) : byte : \(enablyBytes) ")
-                print("\nProgramUI row selected : \(indexPath.row)")
+                print("\nchangeSoundCharacteristic writeValue : \(enableValue) : byte : \(enablyBytes) ")
             }else{
                 self.presentAlert("Can't connect to lure to change sound!")
             }
             
             if playSoundCharacteristic != nil {
                 self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: self.playSoundCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
-                print("\nProgramUI writeValue : \(enableValue) : byte : \(enablyBytes) ")
-                print("\nProgramUI row selected : \(indexPath.row)")
+                print("\nplaySoundCharacteristic writeValue : \(enableValue) : byte : \(enablyBytes) ")
             }else{
                 self.presentAlert("Can't connect to lure to play sound!")
             }

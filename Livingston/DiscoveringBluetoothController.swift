@@ -22,8 +22,6 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 
     let serviceUUID = CBUUID(string: "0000180a-0000-1000-8000-00805f9b34fb")
     let charateristicUUID = CBUUID(string: "00002a24-0000-1000-8000-00805f9b34fb")
-//    let serviceUUID = CBUUID(string: "Device Information")
-//    let charateristicUUID = CBUUID(string: "Manufacturer Name String")
 
     let URL = "http://appapi.livingstonlures.com/Lure.php"
     var peripheralUUIDString = ""
@@ -233,14 +231,14 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
-                    let success = json["success"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
+                    let success = json["success"] as? Int
                     dispatch_async(dispatch_get_main_queue(), {
                         self.parseLureDataWithWithJSON(json)
                         self.indicator?.stopAnimating()
                     });
                     print("Success: \(success)")
                 } else {
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)    // No error thrown, but not NSDictionary
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     print("Error could not parse JSON: \(jsonStr)")
                     dispatch_async(dispatch_get_main_queue(), {
                         self.indicator?.stopAnimating()
@@ -248,7 +246,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 
                 }
             } catch let parseError {
-                print(parseError)                                                          // Log the error thrown by `JSONObjectWithData`
+                print(parseError)
                 let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                 print("Error could not parse JSON: '\(jsonStr)'")
                 dispatch_async(dispatch_get_main_queue(), {

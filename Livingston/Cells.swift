@@ -80,6 +80,10 @@ protocol ProgramCellDelagate {
     func connectionStatus(sender : Bool)
     func on(sender : Bool)
 }
+class ProgramSoundCell : UITableViewCell {
+    @IBOutlet weak var soundImage: UIImageView!
+    @IBOutlet weak var soundName: UILabel!
+}
 class ProgramCell : UITableViewCell , ProgramCellDelagate {
     @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var infoText: UILabel!

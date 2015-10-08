@@ -1135,7 +1135,7 @@
                                             <outlet property="weight" destination="R8Y-NH-iWA" id="yxk-RL-XsM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soundCell" rowHeight="47" id="tCY-jC-Y66">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="soundCell" rowHeight="47" id="tCY-jC-Y66" customClass="ProgramSoundCell" customModule="Livingston" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="352" width="600" height="47"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tCY-jC-Y66" id="fen-Tn-qpS">
@@ -1150,22 +1150,10 @@
                                                         <constraint firstAttribute="width" secondItem="vgX-Dh-vOG" secondAttribute="height" multiplier="37:29" id="7v3-lS-L8X"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mk0-IR-YX8">
-                                                    <rect key="frame" x="512" y="12" width="80" height="21"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="TDd-NA-8EK"/>
-                                                        <constraint firstAttribute="width" constant="80" id="vHZ-Vk-3qd"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EBS Shad 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-NG-A7n">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="EBS Shad 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-NG-A7n">
                                                     <rect key="frame" x="46" y="13" width="99" height="21"/>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="99" id="SCL-Fi-9i8"/>
                                                         <constraint firstAttribute="height" constant="21" id="sN1-Sk-9ju"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -1176,14 +1164,16 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="vgX-Dh-vOG" firstAttribute="leading" secondItem="fen-Tn-qpS" secondAttribute="leadingMargin" constant="5" id="3wf-yV-tWq"/>
-                                                <constraint firstAttribute="centerY" secondItem="Mk0-IR-YX8" secondAttribute="centerY" id="JNT-fK-mhh"/>
                                                 <constraint firstAttribute="centerY" secondItem="E7c-NG-A7n" secondAttribute="centerY" constant="-0.25" id="XPN-CM-sHa"/>
                                                 <constraint firstAttribute="centerY" secondItem="vgX-Dh-vOG" secondAttribute="centerY" id="ZdE-EK-wa1"/>
                                                 <constraint firstItem="E7c-NG-A7n" firstAttribute="leading" secondItem="vgX-Dh-vOG" secondAttribute="trailing" constant="5" id="fJK-oa-SPf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Mk0-IR-YX8" secondAttribute="trailing" id="yCi-Z1-7Xx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="soundImage" destination="vgX-Dh-vOG" id="Zd7-vY-6GF"/>
+                                            <outlet property="soundName" destination="E7c-NG-A7n" id="Kku-cH-uBI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

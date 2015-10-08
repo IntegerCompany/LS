@@ -53,6 +53,7 @@ class SoundViewController: BaseViewController {
 extension SoundViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Sound lib count : \(self.sounds.count)")
         return self.sounds.count
     }
     
