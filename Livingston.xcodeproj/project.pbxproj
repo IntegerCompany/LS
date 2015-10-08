@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9243B40E1BC7B78500A6CC39 /* Sounds.plist */; settings = {ASSET_TAGS = (); }; };
 		9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */; };
 		9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA501B98CE55006E13F0 /* LoginViewController.swift */; };
 		9280AA561B98CE55006E13F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA551B98CE55006E13F0 /* Images.xcassets */; };
@@ -71,6 +72,7 @@
 		4FCBA76386C11CF73BA35B4C /* Pods-Livingston.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.release.xcconfig"; sourceTree = "<group>"; };
 		5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Livingston.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A38C35F430675B2216D4637 /* Pods-Livingston.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.debug.xcconfig"; sourceTree = "<group>"; };
+		9243B40E1BC7B78500A6CC39 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		9280AA491B98CE55006E13F0 /* Livingston.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livingston.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9280AA4D1B98CE55006E13F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				9280AA741B98D01E006E13F0 /* Login.xcassets */,
 				9280AA761B98D036006E13F0 /* Tabbar.xcassets */,
 				9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */,
+				9243B40E1BC7B78500A6CC39 /* Sounds.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */,
 				9280AA751B98D01E006E13F0 /* Login.xcassets in Resources */,
 				9280AA591B98CE55006E13F0 /* LaunchScreen.xib in Resources */,
 				9280AA561B98CE55006E13F0 /* Images.xcassets in Resources */,

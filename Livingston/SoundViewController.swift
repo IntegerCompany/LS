@@ -14,15 +14,17 @@ class SoundViewController: BaseViewController {
     
     let segueId = "goToCurrentSoundVIew"
     
-    let sounds = ["#1 EBS CREW","#2 EBS CREW MAX","#3 EBS FRESHWATER SHRIMP","#10 EBS AMERICAN SHAD","#11 EBS TENNESSEE SHAD", "#12 EBS HICKORY SHAD", "#13 EBS BLUE GILL", "#14 EBS PANFISH", "#15 EBS SUNFISH", "#16 EBS MINNOW", "#17 EBS TILIPIA", "#18 EBS BREAM" , "#19 EBS SCULPIN", "#20 EBS GOBY 1", "#21 EBS G PERCH 2", "#22 EBS LONG GOBY 3", "#23 EBS SMELT", "#24 EBS HITCH", "#25 EBS FROG 1", "#26 EBS AQUATIC ISECT 1", "#27 EBS BUG", "#28 EBS SACEDA", "#29 EBS MOUSE", "#30 GILL PLATES MAX"]
-    
-    let imagesNames = ["bluegill","lizard", "snail","shad","amiphods","goby","spider","minnow","worm","leech","grasshopper","frog","salamander","snake","bird","mice","rat","fruitbat","squirrel","duck","alligator","amiphods", "isopod","clam"]
+    var sounds = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let img = UIImage(named: "background")
         self.collectionView.backgroundColor = UIColor(patternImage: img!)
+        
+        if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
+            sounds = NSArray(contentsOfFile: path)!
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +46,8 @@ class SoundViewController: BaseViewController {
         let index = sender as! Int
         
         let vc = segue.destinationViewController as! CurrentSoundViewController
-        vc.name = sounds[index]
-        vc.image = imagesNames[index]
+        vc.name = ("#\(index) \(sounds[index].uppercaseString)")
+        vc.image = sounds[index] as! String
     }
 
 }
@@ -60,12 +62,12 @@ extension SoundViewController : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("soundGridViewCell", forIndexPath: indexPath) as! SoundListCell
-        cell.image.image = UIImage(named: self.imagesNames[indexPath.item])
-        cell.name.text = self.sounds[indexPath.item]
+        
+        cell.image.image = UIImage(named: self.sounds[indexPath.item] as! String)
+        cell.name.text = ("#\(indexPath.item + 1) \(self.sounds[indexPath.item].uppercaseString)")
         
         return cell
     }
-    
 }
 
 extension SoundViewController : UICollectionViewDelegate {

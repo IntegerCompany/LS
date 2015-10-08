@@ -25,7 +25,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     let programCell = "programCell"
     let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
     
-    let soundNames = ["#1 EBS CREW","#2 EBS CREW MAX","#3 EBS FRESHWATER SHRIMP","#4 NO NAME","#5 NO NAME","#6 NO NAME","#7 NO NAME","#8 NO NAME","#9 NO NAME","#10 EBS AMERICAN SHAD","#11 EBS TENNESSEE SHAD", "#12 EBS HICKORY SHAD", "#13 EBS BLUE GILL", "#14 EBS PANFISH", "#15 EBS SUNFISH", "#16 EBS MINNOW", "#17 EBS TILIPIA", "#18 EBS BREAM" , "#19 EBS SCULPIN", "#20 EBS GOBY 1", "#21 EBS G PERCH 2", "#22 EBS LONG GOBY 3", "#23 EBS SMELT", "#24 EBS HITCH", "#25 EBS FROG 1", "#26 EBS AQUATIC ISECT 1", "#27 EBS BUG", "#28 EBS SACEDA", "#29 EBS MOUSE", "#30 GILL PLATES MAX"]
+    var sounds = []
     
     var centralManager:CBCentralManager!
     var blueToothReady = false
@@ -46,6 +46,10 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
             self.realm = try Realm()
         }catch _ {
             print("Cant initi data base !")
+        }
+        
+        if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
+            sounds = NSArray(contentsOfFile: path)!
         }
     }
     
@@ -344,7 +348,7 @@ extension ProgramUIViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.soundNames.count + 1
+        return self.sounds.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -375,7 +379,7 @@ extension ProgramUIViewController : UITableViewDataSource {
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
-            cell.soundName.text = soundNames[indexPath.row - 1]
+            cell.soundName.text = ("#\(indexPath.row - 1) \(sounds[indexPath.row - 1].uppercaseString)")
             return cell
         }
     }

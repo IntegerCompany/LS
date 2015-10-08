@@ -18,8 +18,14 @@ class CurrentSoundViewController: BaseViewController {
     var name : String = ""
     var image : String = "bluegill_black"
     
+    var sounds = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
+            sounds = NSArray(contentsOfFile: path)!
+        }
         
         let img = UIImage(named: "background")
         self.view.backgroundColor = UIColor(patternImage: img!)
@@ -41,6 +47,7 @@ class CurrentSoundViewController: BaseViewController {
             audioPlayer = try AVAudioPlayer(contentsOfURL: url)
         } catch let error1 as NSError {
             error = error1
+            print(error)
             audioPlayer = nil
         }
         audioPlayer.prepareToPlay()
@@ -72,12 +79,13 @@ class CurrentSoundViewController: BaseViewController {
 //Data source
 extension CurrentSoundViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return self.sounds.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SoundPurchaseCell", forIndexPath: indexPath) as! SoundPurchaseCell
-        cell.name.text = "Item # \(indexPath.row + 1)"
+        cell.name.text = "#\(indexPath.row + 1) \(self.sounds[indexPath.row])"
+        cell.soundImage.image = UIImage(named: "\(self.sounds[indexPath.row])")
         cell.buttonPlay.addTarget(self, action: Selector("playButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }

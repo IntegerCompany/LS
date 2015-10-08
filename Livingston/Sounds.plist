@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>alligator</string>
+	<string>amphipods</string>
+	<string>birds</string>
+	<string>bluegill</string>
+	<string>cicada</string>
+	<string>clam</string>
+	<string>crab</string>
+	<string>crawfish</string>
+	<string>duck</string>
+	<string>fishlarvae</string>
+	<string>frog</string>
+	<string>fruit bat</string>
+	<string>gills</string>
+	<string>gizzard shad</string>
+	<string>goby</string>
+	<string>grasshopper</string>
+	<string>herring</string>
+	<string>hitch</string>
+	<string>insect</string>
+	<string>isopods</string>
+	<string>leech</string>
+	<string>lizard</string>
+	<string>mice</string>
+	<string>mice</string>
+	<string>perch</string>
+	<string>rat</string>
+	<string>salamander</string>
+	<string>shad</string>
+	<string>smelt</string>
+	<string>snail</string>
+	<string>snake</string>
+	<string>spider</string>
+	<string>squirrel</string>
+	<string>tadpole</string>
+	<string>tilapia</string>
+	<string>worm</string>
+</array>
+</plist>
