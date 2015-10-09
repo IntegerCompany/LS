@@ -21,6 +21,10 @@ class ShopViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func goWebSite(sender: UIButton) {
+        let url = NSURL(string: "https://www.livingstonlures.com")!
+        UIApplication.sharedApplication().openURL(url)
+    }
 
     /*
     // MARK: - Navigation
