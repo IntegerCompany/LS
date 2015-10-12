@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SendDataToMapKitDelegate {
+    func sendShopDataToMap(sender : NSArray)
+    func shopDidSelectedOnMap(sender : NSDictionary)
+}
 class ContactViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -16,6 +20,7 @@ class ContactViewController: BaseViewController {
     let url = "http://appapi.livingstonlures.com/Dealers.php"
     var selectedRowIndex: NSIndexPath?
     var contactList = NSArray()
+    var delegate : SendDataToMapKitDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +54,17 @@ class ContactViewController: BaseViewController {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary {
                     let success = json["success"] as? Int                                  // Okay, the `json` is here, let's get the value for 'success' out of it
                     let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    print(jsonResult)
+                    //print(jsonResult)
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.contactList = jsonResult["Main"] as! [(NSArray)]
                         self.tableView.hidden = false
                         self.tableView.reloadData()
                         self.progress.stopAnimating()
+                        
+                        if self.delegate != nil {
+                            self.delegate?.sendShopDataToMap(self.contactList)
+                        }
                     });
 
                     print("Success: \(success)")
@@ -91,6 +100,8 @@ extension ContactViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DealerList", forIndexPath: indexPath) as! DealerList
         let item = contactList[indexPath.row] as! NSDictionary
+        
+        print(item)
         
         cell.shopName.text = item["Company"] as? String
         let adr = item["Address1"] as? String
@@ -129,6 +140,10 @@ extension ContactViewController : UITableViewDataSource {
 extension ContactViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let previousIndex = self.selectedRowIndex
+        //update map from MapKitController
+        if delegate != nil{
+            self.delegate?.shopDidSelectedOnMap(self.contactList[indexPath.row] as! NSDictionary)
+        }
         if indexPath == selectedRowIndex {
             selectedRowIndex = nil
         }else{
@@ -143,8 +158,6 @@ extension ContactViewController : UITableViewDelegate {
         if let current = selectedRowIndex {
             indexes += [current]
         }
-        
-        
         
         if indexes.count > 0 {
             tableView.reloadRowsAtIndexPaths(indexes, withRowAnimation: UITableViewRowAnimation.Automatic)
