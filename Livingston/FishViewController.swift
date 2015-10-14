@@ -85,7 +85,7 @@ class FishViewController: BaseViewController {
     func updateWeatherConditions(lon : Double, lat : Double){
         //http://api.wunderground.com/api/834b4357b2ba37d2//conditions/q/37.776289,-122.395234.json
         
-        let urlStr = "http://api.wunderground.com/api/834b4357b2ba37d2//conditions/q/\(lon),\(lat).json"
+        let urlStr = "http://api.wunderground.com/api/834b4357b2ba37d2//conditions/q/\(lat),\(lon).json"
         let searchURL = NSURL(string: urlStr)!
         print(searchURL)
         let session = NSURLSession.sharedSession()
