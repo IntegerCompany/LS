@@ -26,6 +26,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
     
     var sounds = []
+    var soundsMP3 = []
     
     var centralManager:CBCentralManager!
     var blueToothReady = false
@@ -50,6 +51,9 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         
         if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
             sounds = NSArray(contentsOfFile: path)!
+        }
+        if let path = NSBundle.mainBundle().pathForResource("SoundsMP3", ofType: "plist") {
+            soundsMP3 = NSArray(contentsOfFile: path)!
         }
     }
     
@@ -348,7 +352,7 @@ extension ProgramUIViewController : UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sounds.count + 1
+        return self.soundsMP3.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -379,7 +383,7 @@ extension ProgramUIViewController : UITableViewDataSource {
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
-            cell.soundName.text = ("#\(indexPath.row - 1) \(sounds[indexPath.row - 1].uppercaseString)")
+            cell.soundName.text = (soundsMP3[indexPath.row - 1] as! String)
             return cell
         }
     }

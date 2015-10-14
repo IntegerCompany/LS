@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>#1 EBS CRAW</string>
+	<string>#2 EBS CRAW MAX</string>
+	<string>#3 EBS FRESHWATER SHRIMP</string>
+	<string>#4 EBS CRAB</string>
+	<string>#5 EBS Original</string>
+	<string>#6 EBS SHAD</string>
+	<string>#7 EBS GIZZARD</string>
+	<string>#8 EBS HERRING BAIT FISH</string>
+	<string>#9 EBS THREADFIN SHAD</string>
+	<string>#10 EBS AMERICAN SHAD</string>
+	<string>#11 EBS TENNESSEE SHAD</string>
+	<string>#12 EBS HICKORY SHAD</string>
+	<string>#13 EBS BLUE GILL</string>
+	<string>#14 EBS PANFISH</string>
+	<string>#15 EBS SUNFISH</string>
+	<string>#16 EBS MINNOW</string>
+	<string>#17 EBS TILAPIA</string>
+	<string>#18 EBS BREAM</string>
+	<string>#19 EBS SCULPIN</string>
+	<string>#20 EBS GOBY 1</string>
+	<string>#21 EBS G PERCH 2</string>
+	<string>#22 EBS LONG GOBY 3</string>
+	<string>#23 EBS SMELT</string>
+	<string>#24 EBS HITCH</string>
+	<string>#25 EBS FROG 1</string>
+	<string>#26 EBS AQUATIC INSECT 1</string>
+	<string>#27 EBS BUG</string>
+	<string>#28 EBS CICADA</string>
+	<string>#29 EBS MOUSE</string>
+	<string>#30 EBS GILL PLATES MAX</string>
+</array>
+</plist>

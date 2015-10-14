@@ -82,6 +82,55 @@ class FishViewController: BaseViewController {
         locationManager.startUpdatingLocation()
     }
     
+    func updateWeatherConditions(lon : Double, lat : Double){
+        //http://api.wunderground.com/api/834b4357b2ba37d2//conditions/q/37.776289,-122.395234.json
+        
+        let urlStr = "http://api.wunderground.com/api/834b4357b2ba37d2//conditions/q/\(lon),\(lat).json"
+        let searchURL = NSURL(string: urlStr)!
+        print(searchURL)
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithURL(searchURL, completionHandler: {data, response, error -> Void in
+            
+            guard data != nil else {
+                print("no data found: \(error)")
+                return
+            }
+            
+            do {
+                if let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let conditions = jsonResult["current_observation"] as! NSDictionary
+                        print("current_observation \(error)")
+                        let temperature = conditions["temperature_string"] as? String
+                        print("no data found: \(error)")
+                        self.temperature.text = temperature
+                    });
+                    
+                    print("Success: \(self.temperature)")
+                } else {
+                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    print("Error could not parse JSON: \(jsonStr)")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.temperature.text = "?"
+                    });
+                    
+                }
+            } catch let parseError {
+                print(parseError)
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error could get JSON: '\(jsonStr)'")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.temperature.text = "?"
+                });
+                
+            }
+        })
+        task.resume()
+        
+    }
+    
     func setUsersClosestCity(location : CLLocation){
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location)
@@ -102,6 +151,8 @@ class FishViewController: BaseViewController {
                     if let city = placeMark.addressDictionary?["City"] as? NSString {
                         self.myLocation.text = "\(state), \(city)"
                         self.locationManager.stopUpdatingLocation()
+                        
+                        self.updateWeatherConditions(location.coordinate.longitude,lat: location.coordinate.latitude)
                     }
                 }
         }

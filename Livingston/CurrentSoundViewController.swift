@@ -15,10 +15,11 @@ class CurrentSoundViewController: BaseViewController {
     @IBOutlet weak var soundName: UILabel!
     var audioPlayer : AVAudioPlayer!
     
-    var name : String = ""
+    var name : String = "water"
     var image : String = "bluegill_black"
     
     var sounds = []
+    var soundsMP3 = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +27,14 @@ class CurrentSoundViewController: BaseViewController {
         if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
             sounds = NSArray(contentsOfFile: path)!
         }
+        if let path = NSBundle.mainBundle().pathForResource("SoundsMP3", ofType: "plist") {
+            soundsMP3 = NSArray(contentsOfFile: path)!
+        }
         
         let img = UIImage(named: "background")
         self.view.backgroundColor = UIColor(patternImage: img!)
         
-        let path = NSBundle.mainBundle().pathForResource("water", ofType: "mp3") //MP3 file path
+        let path = NSBundle.mainBundle().pathForResource(self.name, ofType: "mp3") //MP3 file path
         let url = NSURL(fileURLWithPath: path!)
         
         do {
@@ -42,11 +46,9 @@ class CurrentSoundViewController: BaseViewController {
         } catch _ {
         }
         
-        var error:NSError?
         do {
             audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-        } catch let error1 as NSError {
-            error = error1
+        } catch let error as NSError {
             print(error)
             audioPlayer = nil
         }
@@ -59,6 +61,12 @@ class CurrentSoundViewController: BaseViewController {
         self.lureImage.setImage(UIImage(named: self.image), forState: .Normal)
         self.soundName.text = name
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.audioPlayer.stop()
+    }
+    
     @IBAction func replay(sender: UIButton) {
         self.play()
     }
@@ -79,20 +87,31 @@ class CurrentSoundViewController: BaseViewController {
 //Data source
 extension CurrentSoundViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sounds.count
+        return self.soundsMP3.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SoundPurchaseCell", forIndexPath: indexPath) as! SoundPurchaseCell
-        cell.name.text = "#\(indexPath.row + 1) \(self.sounds[indexPath.row])"
+        cell.name.text = self.soundsMP3[indexPath.row] as? String
         cell.soundImage.image = UIImage(named: "\(self.sounds[indexPath.row])")
-        cell.buttonPlay.addTarget(self, action: Selector("playButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        //cell.buttonPlay.addTarget(self, action: Selector("playButtonAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
 }
 //Delegate
 extension CurrentSoundViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("Sounds count soundsMP3 : \(soundsMP3.count)")
+        print("Sounds soundsMP3 : \(soundsMP3)")
+        let path = NSBundle.mainBundle().pathForResource(soundsMP3[indexPath.row] as? String, ofType: "mp3") //MP3 file path
+        let url = NSURL(fileURLWithPath: path!)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+        } catch let error as NSError {
+            print(error)
+            audioPlayer = nil
+        }
+        audioPlayer.prepareToPlay()
         self.play()
     }
 }

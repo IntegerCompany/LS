@@ -240,7 +240,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-w9-Pnb" userLabel="Right">
                                                         <rect key="frame" x="500" y="-22" width="100" height="206"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="74 F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W84-IX-Yib">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="74 F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W84-IX-Yib">
                                                                 <rect key="frame" x="0.0" y="71" width="100" height="21"/>
                                                                 <animations/>
                                                                 <constraints>
@@ -273,7 +273,6 @@
                                                         </subviews>
                                                         <animations/>
                                                         <constraints>
-                                                            <constraint firstItem="W84-IX-Yib" firstAttribute="leading" secondItem="XRr-w9-Pnb" secondAttribute="leading" id="45s-2l-e2x"/>
                                                             <constraint firstAttribute="width" constant="100" id="7sl-Pe-4uC"/>
                                                             <constraint firstItem="BA9-69-ARI" firstAttribute="top" secondItem="SW6-eG-xwI" secondAttribute="bottom" constant="-2" id="AWv-kI-GFy"/>
                                                             <constraint firstItem="BA9-69-ARI" firstAttribute="leading" secondItem="XRr-w9-Pnb" secondAttribute="leading" id="Afh-vY-nNe"/>

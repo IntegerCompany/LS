@@ -7,6 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9210D6F31BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D51BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F41BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D61BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F51BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D71BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F61BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D81BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F71BCE40CE00CEAAD0 /* #5 EBS Original.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D91BCE40CE00CEAAD0 /* #5 EBS Original.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F81BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DA1BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F91BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DB1BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FA1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DC1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FB1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DD1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FC1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DE1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FD1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DF1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FE1BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E01BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FF1BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E11BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7001BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E21BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7011BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E31BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7021BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E41BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7031BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E51BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7041BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E61BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7051BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E71BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7061BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E81BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7071BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E91BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7081BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EA1BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7091BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EB1BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70A1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EC1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70B1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6ED1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70C1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EE1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70D1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EF1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70E1BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F01BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70F1BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F11BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7101BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F21BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7121BCE413500CEAAD0 /* SoundsMP3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */; settings = {ASSET_TAGS = (); }; };
 		9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9243B40E1BC7B78500A6CC39 /* Sounds.plist */; settings = {ASSET_TAGS = (); }; };
 		9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */; };
 		9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA501B98CE55006E13F0 /* LoginViewController.swift */; };
@@ -73,6 +104,37 @@
 		4FCBA76386C11CF73BA35B4C /* Pods-Livingston.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.release.xcconfig"; sourceTree = "<group>"; };
 		5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Livingston.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A38C35F430675B2216D4637 /* Pods-Livingston.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.debug.xcconfig"; sourceTree = "<group>"; };
+		9210D6D51BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#1 EBS CRAW.mp3"; path = "../../../../Downloads/sound_soundLibrary/#1 EBS CRAW.mp3"; sourceTree = "<group>"; };
+		9210D6D61BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#2 EBS CRAW MAX.mp3"; path = "../../../../Downloads/sound_soundLibrary/#2 EBS CRAW MAX.mp3"; sourceTree = "<group>"; };
+		9210D6D71BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#3 EBS FRESHWATER SHRIMP.mp3"; path = "../../../../Downloads/sound_soundLibrary/#3 EBS FRESHWATER SHRIMP.mp3"; sourceTree = "<group>"; };
+		9210D6D81BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#4 EBS CRAB.mp3"; path = "../../../../Downloads/sound_soundLibrary/#4 EBS CRAB.mp3"; sourceTree = "<group>"; };
+		9210D6D91BCE40CE00CEAAD0 /* #5 EBS Original.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#5 EBS Original.mp3"; path = "../../../../Downloads/sound_soundLibrary/#5 EBS Original.mp3"; sourceTree = "<group>"; };
+		9210D6DA1BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#6 EBS SHAD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#6 EBS SHAD.mp3"; sourceTree = "<group>"; };
+		9210D6DB1BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#7 EBS GIZZARD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#7 EBS GIZZARD.mp3"; sourceTree = "<group>"; };
+		9210D6DC1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#8 EBS HERRING BAIT FISH.mp3"; path = "../../../../Downloads/sound_soundLibrary/#8 EBS HERRING BAIT FISH.mp3"; sourceTree = "<group>"; };
+		9210D6DD1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#9 EBS THREADFIN SHAD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#9 EBS THREADFIN SHAD.mp3"; sourceTree = "<group>"; };
+		9210D6DE1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#10 EBS AMERICAN SHAD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#10 EBS AMERICAN SHAD.mp3"; sourceTree = "<group>"; };
+		9210D6DF1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#11 EBS TENNESSEE SHAD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#11 EBS TENNESSEE SHAD.mp3"; sourceTree = "<group>"; };
+		9210D6E01BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#12 EBS HICKORY SHAD.mp3"; path = "../../../../Downloads/sound_soundLibrary/#12 EBS HICKORY SHAD.mp3"; sourceTree = "<group>"; };
+		9210D6E11BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#13 EBS BLUE GILL.mp3"; path = "../../../../Downloads/sound_soundLibrary/#13 EBS BLUE GILL.mp3"; sourceTree = "<group>"; };
+		9210D6E21BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#14 EBS PANFISH.mp3"; path = "../../../../Downloads/sound_soundLibrary/#14 EBS PANFISH.mp3"; sourceTree = "<group>"; };
+		9210D6E31BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#15 EBS SUNFISH.mp3"; path = "../../../../Downloads/sound_soundLibrary/#15 EBS SUNFISH.mp3"; sourceTree = "<group>"; };
+		9210D6E41BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#16 EBS MINNOW.mp3"; path = "../../../../Downloads/sound_soundLibrary/#16 EBS MINNOW.mp3"; sourceTree = "<group>"; };
+		9210D6E51BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#17 EBS TILAPIA.mp3"; path = "../../../../Downloads/sound_soundLibrary/#17 EBS TILAPIA.mp3"; sourceTree = "<group>"; };
+		9210D6E61BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#18 EBS BREAM.mp3"; path = "../../../../Downloads/sound_soundLibrary/#18 EBS BREAM.mp3"; sourceTree = "<group>"; };
+		9210D6E71BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#19 EBS SCULPIN.mp3"; path = "../../../../Downloads/sound_soundLibrary/#19 EBS SCULPIN.mp3"; sourceTree = "<group>"; };
+		9210D6E81BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#20 EBS GOBY 1.mp3"; path = "../../../../Downloads/sound_soundLibrary/#20 EBS GOBY 1.mp3"; sourceTree = "<group>"; };
+		9210D6E91BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#21 EBS G PERCH 2.mp3"; path = "../../../../Downloads/sound_soundLibrary/#21 EBS G PERCH 2.mp3"; sourceTree = "<group>"; };
+		9210D6EA1BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#22 EBS LONG GOBY 3.mp3"; path = "../../../../Downloads/sound_soundLibrary/#22 EBS LONG GOBY 3.mp3"; sourceTree = "<group>"; };
+		9210D6EB1BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#23 EBS SMELT.mp3"; path = "../../../../Downloads/sound_soundLibrary/#23 EBS SMELT.mp3"; sourceTree = "<group>"; };
+		9210D6EC1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#24 EBS HITCH.mp3"; path = "../../../../Downloads/sound_soundLibrary/#24 EBS HITCH.mp3"; sourceTree = "<group>"; };
+		9210D6ED1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#25 EBS FROG 1.mp3"; path = "../../../../Downloads/sound_soundLibrary/#25 EBS FROG 1.mp3"; sourceTree = "<group>"; };
+		9210D6EE1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#26 EBS AQUATIC INSECT 1.mp3"; path = "../../../../Downloads/sound_soundLibrary/#26 EBS AQUATIC INSECT 1.mp3"; sourceTree = "<group>"; };
+		9210D6EF1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#27 EBS BUG.mp3"; path = "../../../../Downloads/sound_soundLibrary/#27 EBS BUG.mp3"; sourceTree = "<group>"; };
+		9210D6F01BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#28 EBS CICADA.mp3"; path = "../../../../Downloads/sound_soundLibrary/#28 EBS CICADA.mp3"; sourceTree = "<group>"; };
+		9210D6F11BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#29 EBS MOUSE.mp3"; path = "../../../../Downloads/sound_soundLibrary/#29 EBS MOUSE.mp3"; sourceTree = "<group>"; };
+		9210D6F21BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "#30 EBS GILL PLATES MAX.mp3"; path = "../../../../Downloads/sound_soundLibrary/#30 EBS GILL PLATES MAX.mp3"; sourceTree = "<group>"; };
+		9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundsMP3.plist; sourceTree = "<group>"; };
 		9243B40E1BC7B78500A6CC39 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		9280AA491B98CE55006E13F0 /* Livingston.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livingston.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9280AA4D1B98CE55006E13F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +203,43 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9210D6D41BCE40AA00CEAAD0 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9210D6D51BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 */,
+				9210D6D61BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 */,
+				9210D6D71BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 */,
+				9210D6D81BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 */,
+				9210D6D91BCE40CE00CEAAD0 /* #5 EBS Original.mp3 */,
+				9210D6DA1BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 */,
+				9210D6DB1BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 */,
+				9210D6DC1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 */,
+				9210D6DD1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 */,
+				9210D6DE1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 */,
+				9210D6DF1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 */,
+				9210D6E01BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 */,
+				9210D6E11BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 */,
+				9210D6E21BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 */,
+				9210D6E31BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 */,
+				9210D6E41BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 */,
+				9210D6E51BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 */,
+				9210D6E61BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 */,
+				9210D6E71BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 */,
+				9210D6E81BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 */,
+				9210D6E91BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 */,
+				9210D6EA1BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 */,
+				9210D6EB1BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 */,
+				9210D6EC1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 */,
+				9210D6ED1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 */,
+				9210D6EE1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 */,
+				9210D6EF1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 */,
+				9210D6F01BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 */,
+				9210D6F11BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 */,
+				9210D6F21BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		9280AA401B98CE55006E13F0 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +304,7 @@
 		9280AA711B98CFD4006E13F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9210D6D41BCE40AA00CEAAD0 /* Sounds */,
 				9280AA981B995B32006E13F0 /* water.mp3 */,
 				9280AA551B98CE55006E13F0 /* Images.xcassets */,
 				9280AA721B98D013006E13F0 /* Fish.xcassets */,
@@ -212,6 +312,7 @@
 				9280AA761B98D036006E13F0 /* Tabbar.xcassets */,
 				9299B51A1BA027A7006D13F2 /* SoundsImages.xcassets */,
 				9243B40E1BC7B78500A6CC39 /* Sounds.plist */,
+				9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -363,14 +464,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */,
+				9210D6FC1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 in Resources */,
+				9210D6FE1BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 in Resources */,
+				9210D6F41BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 in Resources */,
+				9210D70A1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 in Resources */,
+				9210D70D1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 in Resources */,
+				9210D70C1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 in Resources */,
+				9210D70B1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 in Resources */,
+				9210D70F1BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 in Resources */,
+				9210D7001BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 in Resources */,
+				9210D6FA1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 in Resources */,
+				9210D7061BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 in Resources */,
 				9280AA751B98D01E006E13F0 /* Login.xcassets in Resources */,
+				9210D7121BCE413500CEAAD0 /* SoundsMP3.plist in Resources */,
+				9210D6F61BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 in Resources */,
+				9210D6F31BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 in Resources */,
+				9210D6F51BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 in Resources */,
+				9210D7031BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 in Resources */,
+				9210D6F81BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 in Resources */,
+				9210D7081BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 in Resources */,
 				9280AA591B98CE55006E13F0 /* LaunchScreen.xib in Resources */,
+				9210D7101BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 in Resources */,
 				9280AA561B98CE55006E13F0 /* Images.xcassets in Resources */,
+				9210D7051BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 in Resources */,
+				9210D6FB1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 in Resources */,
+				9210D6F71BCE40CE00CEAAD0 /* #5 EBS Original.mp3 in Resources */,
+				9210D7021BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 in Resources */,
+				9210D6FD1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 in Resources */,
+				9210D7071BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 in Resources */,
+				9210D7091BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 in Resources */,
 				9299B51B1BA027A7006D13F2 /* SoundsImages.xcassets in Resources */,
+				9210D7041BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 in Resources */,
+				9210D6FF1BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 in Resources */,
 				9280AA991B995B32006E13F0 /* water.mp3 in Resources */,
+				9210D70E1BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 in Resources */,
 				9280AA731B98D013006E13F0 /* Fish.xcassets in Resources */,
+				9210D7011BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 in Resources */,
 				9280AA701B98CF65006E13F0 /* Main.storyboard in Resources */,
 				9280AA771B98D036006E13F0 /* Tabbar.xcassets in Resources */,
+				9210D6F91BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
