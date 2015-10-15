@@ -9,7 +9,6 @@
 import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
-    
 
     @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var login: UITextField!
@@ -26,7 +25,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.login.delegate = self
         self.password.delegate = self
-        
 
         if let isRemembered = userDefaults.valueForKey("rememberMe") as? Bool {
             if isRemembered {
@@ -45,12 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
+      override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
     }

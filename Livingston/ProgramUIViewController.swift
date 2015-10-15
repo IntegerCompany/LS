@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import RealmSwift
+import AssetsLibrary
 
 class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBPeripheralDelegate {
     
@@ -68,13 +69,8 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
         }
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func deleteLureAction(sender: UIButton) {
+  
+  @IBAction func deleteLureAction(sender: UIButton) {
         let alert = UIAlertController(title: "Delete", message: "Do you want to delete this lure ?" , preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
             (action: UIAlertAction!) in
@@ -370,12 +366,19 @@ extension ProgramUIViewController : UITableViewDataSource {
             
             cell.action.text = lureData!.LURE_NAME
             cell.type.text = lureData!.LURE_WATER_TYPE
-            
+        
+          if(lureData?.LURE_IMAGE_URL.characters.count != 0){
+            getImageFromPath((lureData?.LURE_IMAGE_URL)!, onComplete: { (image) -> Void in
+              cell.lureImage.image = image
+            })
+          }else{
             self.getDataFromUrl(url!) { data in
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.lureImage.image = UIImage(data: data!)
-                }
+              dispatch_async(dispatch_get_main_queue()) {
+                cell.lureImage.image = UIImage(data: data!)
+              }
             }
+          }
+          
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
@@ -383,6 +386,16 @@ extension ProgramUIViewController : UITableViewDataSource {
             return cell
         }
     }
+  
+  func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
+    let assetsLibrary = ALAssetsLibrary()
+    let url = NSURL(string: path)!
+    assetsLibrary.assetForURL(url, resultBlock: { (asset) -> Void in
+      onComplete(image: UIImage(CGImage: asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()))
+      }, failureBlock: { (error) -> Void in
+        onComplete(image: nil)
+    })
+  }
 }
 //Delegate
 extension ProgramUIViewController : UITableViewDelegate {

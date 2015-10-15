@@ -37,7 +37,7 @@ class FishViewController: BaseViewController {
         self.navigationController?.navigationBarHidden = false
         
         //start updating locatios
-        self.startTrackingLoacation()
+        self.startTrackingLocation()
         
         //Updating User name and log date
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -52,12 +52,7 @@ class FishViewController: BaseViewController {
         self.improveTextInformation()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func record(sender: UIButton) {
+     @IBAction func record(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("RecordACatchViewController") as! RecordACatchViewController
         self.navigationController?.pushViewController(vc, animated: true)    }
 
@@ -74,7 +69,7 @@ class FishViewController: BaseViewController {
         self.contentUGotIt.userInteractionEnabled = true
     }
     
-    func startTrackingLoacation(){
+    func startTrackingLocation(){
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

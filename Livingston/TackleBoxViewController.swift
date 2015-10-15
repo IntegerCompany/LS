@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import AssetsLibrary
 
 class TackleBoxViewController: BaseViewController {
     
@@ -96,17 +97,33 @@ extension TackleBoxViewController : UICollectionViewDataSource {
         print("\n\(lureID)")
         let lureImgUrl = imgUrl + "\(lureID).png"
         
-        print("\(lureImgUrl)")
+        print("\(tackle.LURE_IMAGE_URL)")
         let url = NSURL(string: lureImgUrl)
-        
+      
+      if(tackle.LURE_IMAGE_URL.characters.count != 0){
+        getImageFromPath(tackle.LURE_IMAGE_URL, onComplete: { (image) -> Void in
+          cell.image.image = image
+        })
+      }else{
         self.getDataFromUrl(url!) { data in
-            dispatch_async(dispatch_get_main_queue()) {
-                cell.image.image = UIImage(data: data!)
-            }
+          dispatch_async(dispatch_get_main_queue()) {
+            cell.image.image = UIImage(data: data!)
+          }
         }
+      }
         return cell
     }
-    
+  
+   func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
+    let assetsLibrary = ALAssetsLibrary()
+    let url = NSURL(string: path)!
+    assetsLibrary.assetForURL(url, resultBlock: { (asset) -> Void in
+      onComplete(image: UIImage(CGImage: asset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()))
+      }, failureBlock: { (error) -> Void in
+        onComplete(image: nil)
+    })
+  }
+  
 }
 //Delegate
 extension TackleBoxViewController : UICollectionViewDelegate {

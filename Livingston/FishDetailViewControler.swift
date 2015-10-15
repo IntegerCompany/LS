@@ -17,12 +17,7 @@ class FishDetailViewController : UIViewController {
     var delegate : AcceptFishDetailDelegate?
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    
-    override func viewDidLoad(){
-        super.viewDidLoad()
-
-    }
-    
+       
     @IBAction func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

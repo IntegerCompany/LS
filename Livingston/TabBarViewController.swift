@@ -49,12 +49,7 @@ class TabBarViewController: UITabBarController, UIPopoverPresentationControllerD
         self.navigationItem.rightBarButtonItem = rightBtn;
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func logOut(){
+   func logOut(){
         print("\n\nlogOut")
         userDefaults.setBool(false, forKey: "rememberMe")
 //        self.navigationController?.popToRootViewControllerAnimated(true)

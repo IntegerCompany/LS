@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		662B6EE91BCF9CE90046BA42 /* AddLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9243B40E1BC7B78500A6CC39 /* Sounds.plist */; settings = {ASSET_TAGS = (); }; };
 		9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */; };
 		9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA501B98CE55006E13F0 /* LoginViewController.swift */; };
@@ -72,6 +73,7 @@
 /* Begin PBXFileReference section */
 		4FCBA76386C11CF73BA35B4C /* Pods-Livingston.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.release.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.release.xcconfig"; sourceTree = "<group>"; };
 		5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Livingston.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLureViewController.swift; sourceTree = "<group>"; };
 		6A38C35F430675B2216D4637 /* Pods-Livingston.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Livingston.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Livingston/Pods-Livingston.debug.xcconfig"; sourceTree = "<group>"; };
 		9243B40E1BC7B78500A6CC39 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		9280AA491B98CE55006E13F0 /* Livingston.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livingston.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +235,7 @@
 				92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */,
 				92C5CB361BA2377300805219 /* ShopViewController.swift */,
 				92E7E87F1BCBCAB900232106 /* MapKitViewController.swift */,
+				662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -325,7 +328,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = integer;
 				TargetAttributes = {
 					9280AA481B98CE55006E13F0 = {
@@ -448,6 +451,7 @@
 				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
 				92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */,
+				662B6EE91BCF9CE90046BA42 /* AddLureViewController.swift in Sources */,
 				929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */,
 				9299B51D1BA05BFA006D13F2 /* NavigationViewController.swift in Sources */,
 				9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */,
@@ -521,6 +525,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -591,6 +596,7 @@
 				INFOPLIST_FILE = Livingston/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "IntegerCompany.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -607,6 +613,7 @@
 				INFOPLIST_FILE = Livingston/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "IntegerCompany.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,6 +634,7 @@
 				);
 				INFOPLIST_FILE = LivingstonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "IntegerCompany.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livingston.app/Livingston";
 			};
@@ -642,6 +650,7 @@
 				);
 				INFOPLIST_FILE = LivingstonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "IntegerCompany.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Livingston.app/Livingston";
 			};

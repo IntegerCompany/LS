@@ -15,11 +15,6 @@ class MenuViewController: UIViewController {
     
     var delegate : ContactWithFishViewDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     @IBAction func logout(sender: UIButton) {
         self.dismissViewControllerAnimated(false, completion: nil)
         delegate!.logOut()

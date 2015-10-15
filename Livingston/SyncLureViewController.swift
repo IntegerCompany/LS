@@ -9,6 +9,11 @@
 import UIKit
 
 class SyncLureViewController: BaseViewController {
+  
+  @IBAction func addLure(sender: UIButton) {
+    self.performSegueWithIdentifier("addLure", sender: self)
+
+  }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +25,5 @@ class SyncLureViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+  
 }

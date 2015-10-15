@@ -44,11 +44,6 @@ class BaseViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.navigationItem.rightBarButtonItem = rightBtn;
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func logOut(){
         print("\n\nlogOut")
