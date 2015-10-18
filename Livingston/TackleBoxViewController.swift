@@ -125,7 +125,7 @@ extension TackleBoxViewController : UICollectionViewDataSource {
     let url = NSURL(string: lureImgUrl)
     
     if(tackle.LURE_CODE.characters.count == 0){
-      getImageFromPath(tackle.LURE_IMAGE_URL, onComplete: { (image) -> Void in
+      TackleBoxViewController.getImageFromPath(tackle.LURE_IMAGE_URL, onComplete: { (image) -> Void in
         cell.image.image = image
       })
     }else{
@@ -138,7 +138,7 @@ extension TackleBoxViewController : UICollectionViewDataSource {
     return cell
   }
   
-  func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
+  class func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
     if(path.characters.count != 0){
       let assetsLibrary = ALAssetsLibrary()
       let url = NSURL(string: path)!

@@ -18,6 +18,10 @@ class RecordedFish: Object {
     dynamic var weight = ""
     dynamic var lenght = ""
     dynamic var note = ""
+    dynamic var lon = 0.0
+    dynamic var lat = 0.0
+    dynamic var lureName = ""
+    dynamic var lureSound = ""
 }
 
 class LureData : Object {
