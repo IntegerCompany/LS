@@ -21,6 +21,12 @@ class BLECell : UITableViewCell {
     @IBOutlet weak var uuid: UILabel!
 }
 
+class CatchLogCell : UITableViewCell{
+    
+    @IBOutlet weak var logName: UILabel!
+    @IBOutlet weak var imageOfLog: UIImageView!
+}
+
 class TackleCell : UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var refreshButton: UIButton!

@@ -34,6 +34,197 @@
             </objects>
             <point key="canvasLocation" x="-808" y="1090"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="1ZJ-HD-wPy">
+            <objects>
+                <tableViewController id="25e-zK-0aB" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9op-LE-KsR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Voj-ZY-g6T">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Voj-ZY-g6T" id="eZK-9f-tGm">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="25e-zK-0aB" id="y9E-DB-fv5"/>
+                            <outlet property="delegate" destination="25e-zK-0aB" id="DKm-o5-FxA"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="akv-lH-pRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-814" y="-1017"/>
+        </scene>
+        <!--Catch Log View Controller-->
+        <scene sceneID="OHA-Oj-MzQ">
+            <objects>
+                <viewController storyboardIdentifier="CatchLogViewController" id="PlX-y9-qzN" customClass="CatchLogViewController" customModule="Livingston" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="elC-Ir-owe"/>
+                        <viewControllerLayoutGuide type="bottom" id="bPd-10-n0C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="owU-a9-5Ba">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v97-Ey-FcG" userLabel="Record A Catch">
+                                <rect key="frame" x="0.0" y="493" width="470" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.78823529410000004" green="0.85490196080000003" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fpc-z6-7bL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Record A Catch">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="record:" destination="GfY-gv-7wu" eventType="touchUpInside" id="fKU-7a-ZyI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c32-e9-Xod" userLabel="Start Fishing">
+                                <rect key="frame" x="475" y="493" width="125" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.58823529409999997" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="UVf-IY-cYo"/>
+                                    <constraint firstAttribute="height" constant="50" id="V7u-Zd-zzo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Start Fishing">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startFishing:" destination="GfY-gv-7wu" eventType="touchUpInside" id="fnq-8x-2we"/>
+                                    <action selector="stopFishing:" destination="PlX-y9-qzN" eventType="touchUpInside" id="3FK-Fu-5af"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WSH-Hg-6L5">
+                                <rect key="frame" x="0.0" y="137" width="600" height="347.5"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatchLogCell" id="x9N-Ur-c4v" customClass="CatchLogCell" customModule="Livingston" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x9N-Ur-c4v" id="btY-aa-9aG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="salamander" translatesAutoresizingMaskIntoConstraints="NO" id="FPM-HF-T7C">
+                                                    <rect key="frame" x="16" y="4" width="35" height="35"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="CXa-Ey-PUn"/>
+                                                        <constraint firstAttribute="height" constant="35" id="Dti-m8-Up6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUH-J2-fCy">
+                                                    <rect key="frame" x="75" y="11" width="42" height="20.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMp-Xn-ZIO">
+                                                    <rect key="frame" x="563" y="11" width="12" height="20.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="FPM-HF-T7C" firstAttribute="centerY" secondItem="btY-aa-9aG" secondAttribute="centerY" id="CDg-LY-yUq"/>
+                                                <constraint firstItem="TUH-J2-fCy" firstAttribute="centerY" secondItem="FPM-HF-T7C" secondAttribute="centerY" id="GH5-kG-y0g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wMp-Xn-ZIO" secondAttribute="trailing" constant="17" id="H8f-Vy-Bhx"/>
+                                                <constraint firstItem="TUH-J2-fCy" firstAttribute="leading" secondItem="FPM-HF-T7C" secondAttribute="trailing" constant="24" id="c9g-hg-aPS"/>
+                                                <constraint firstItem="FPM-HF-T7C" firstAttribute="leading" secondItem="btY-aa-9aG" secondAttribute="leadingMargin" constant="8" id="jQC-wP-Pv9"/>
+                                                <constraint firstItem="wMp-Xn-ZIO" firstAttribute="centerY" secondItem="btY-aa-9aG" secondAttribute="centerY" id="nTM-XQ-Ch4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="imageOfLog" destination="FPM-HF-T7C" id="unN-4x-yeY"/>
+                                            <outlet property="logName" destination="TUH-J2-fCy" id="RDX-oh-jWb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PlX-y9-qzN" id="uaA-do-ozK"/>
+                                    <outlet property="delegate" destination="PlX-y9-qzN" id="jny-gR-ugO"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catch log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXT-i7-AsF">
+                                <rect key="frame" x="0.0" y="64" width="600" height="29"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="WqS-lo-8LN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vk-Ex-p8A">
+                                <rect key="frame" x="32" y="101" width="49.5" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-3z-ZSm">
+                                <rect key="frame" x="98" y="101" width="45" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="c32-e9-Xod" secondAttribute="trailing" id="21Y-2W-7fb"/>
+                            <constraint firstItem="3vk-Ex-p8A" firstAttribute="leading" secondItem="owU-a9-5Ba" secondAttribute="leadingMargin" constant="12" id="4GH-yX-ipG"/>
+                            <constraint firstItem="v97-Ey-FcG" firstAttribute="baseline" secondItem="c32-e9-Xod" secondAttribute="baseline" id="600-ZA-I3T"/>
+                            <constraint firstItem="3vk-Ex-p8A" firstAttribute="top" secondItem="jXT-i7-AsF" secondAttribute="bottom" constant="8" id="BZc-T4-9w8"/>
+                            <constraint firstItem="bPd-10-n0C" firstAttribute="top" secondItem="v97-Ey-FcG" secondAttribute="bottom" constant="8" symbolic="YES" id="DSU-iW-YEM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jXT-i7-AsF" secondAttribute="trailing" constant="-20" id="LvL-RM-CLl"/>
+                            <constraint firstItem="jXT-i7-AsF" firstAttribute="leading" secondItem="owU-a9-5Ba" secondAttribute="leadingMargin" constant="-20" id="OXT-Zt-Jlc"/>
+                            <constraint firstItem="m1B-3z-ZSm" firstAttribute="leading" secondItem="3vk-Ex-p8A" secondAttribute="trailing" constant="17" id="PbV-2G-P7b"/>
+                            <constraint firstItem="jXT-i7-AsF" firstAttribute="top" secondItem="elC-Ir-owe" secondAttribute="bottom" id="Q7F-ac-ftc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WSH-Hg-6L5" secondAttribute="trailing" constant="-20" id="UiV-J2-DmR"/>
+                            <constraint firstItem="c32-e9-Xod" firstAttribute="leading" secondItem="v97-Ey-FcG" secondAttribute="trailing" constant="5" id="W2O-Qe-Etq"/>
+                            <constraint firstItem="v97-Ey-FcG" firstAttribute="leading" secondItem="owU-a9-5Ba" secondAttribute="leading" id="WJ0-yC-sy0"/>
+                            <constraint firstItem="v97-Ey-FcG" firstAttribute="top" secondItem="WSH-Hg-6L5" secondAttribute="bottom" constant="8" id="lP2-0t-JfF"/>
+                            <constraint firstItem="WSH-Hg-6L5" firstAttribute="top" secondItem="m1B-3z-ZSm" secondAttribute="bottom" constant="16" id="nV1-yi-eV1"/>
+                            <constraint firstItem="m1B-3z-ZSm" firstAttribute="centerY" secondItem="3vk-Ex-p8A" secondAttribute="centerY" id="tLy-5I-rmz"/>
+                            <constraint firstItem="WSH-Hg-6L5" firstAttribute="leading" secondItem="owU-a9-5Ba" secondAttribute="leadingMargin" constant="-20" id="tsR-dC-tQ1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateText" destination="m1B-3z-ZSm" id="W9W-Ng-QcZ"/>
+                        <outlet property="tableView" destination="WSH-Hg-6L5" id="nyu-7T-diC"/>
+                        <segue destination="25e-zK-0aB" kind="show" identifier="goDelailCatclog" id="9yK-S6-kId"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gX8-az-8ZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-100" y="-1017"/>
+        </scene>
         <!--Navigation-->
         <scene sceneID="gpS-sQ-NSd">
             <objects>
@@ -369,7 +560,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="startFishing:" destination="GfY-gv-7wu" eventType="touchUpInside" id="Bs2-0g-6kz"/>
+                                                    <segue destination="PlX-y9-qzN" kind="show" id="9Yf-y1-zT1"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1646,7 +1837,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faj-eE-Vpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="-1036"/>
+            <point key="canvasLocation" x="712" y="-1028"/>
         </scene>
         <!--RecordA Catch View Controller-->
         <scene sceneID="wn4-ef-cA0">
@@ -3727,6 +3918,7 @@
         <image name="power" width="20" height="20"/>
         <image name="pspacking" width="82" height="274"/>
         <image name="registerbtn" width="368" height="94"/>
+        <image name="salamander" width="360" height="360"/>
         <image name="sync" width="42" height="52"/>
         <image name="sync_program_lure" width="36" height="34"/>
         <image name="tabbar_catchlog" width="40" height="30"/>

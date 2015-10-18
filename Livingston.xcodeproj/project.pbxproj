@@ -43,6 +43,7 @@
 		92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB341BA22C1100805219 /* ContactViewController.swift */; };
 		92C5CB371BA2377300805219 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB361BA2377300805219 /* ShopViewController.swift */; };
 		92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */; };
+		92D5107A1BD41801009522B5 /* CatchLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D510791BD41801009522B5 /* CatchLogViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92E7E8801BCBCAB900232106 /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E7E87F1BCBCAB900232106 /* MapKitViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D8485E6B8DB475AA0BC114EA /* Pods_Livingston.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		92C5CB341BA22C1100805219 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		92C5CB361BA2377300805219 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		92D1CA791B99DAF900534E07 /* DiscoveringBluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveringBluetoothController.swift; sourceTree = "<group>"; };
+		92D510791BD41801009522B5 /* CatchLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatchLogViewController.swift; sourceTree = "<group>"; };
 		92E7E87F1BCBCAB900232106 /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -240,6 +242,7 @@
 				92C5CB361BA2377300805219 /* ShopViewController.swift */,
 				92E7E87F1BCBCAB900232106 /* MapKitViewController.swift */,
 				662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */,
+				92D510791BD41801009522B5 /* CatchLogViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
 				92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */,
 				92E7E8801BCBCAB900232106 /* MapKitViewController.swift in Sources */,
+				92D5107A1BD41801009522B5 /* CatchLogViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,
 				92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */,
