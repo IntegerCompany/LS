@@ -2612,6 +2612,68 @@
             </objects>
             <point key="canvasLocation" x="2615" y="-951"/>
         </scene>
+        <!--Sort Contacts Pop View Controller-->
+        <scene sceneID="Dem-tG-sMx">
+            <objects>
+                <viewController storyboardIdentifier="SortContactsPopViewController" id="RnY-9y-cvr" customClass="SortContactsPopViewController" customModule="Livingston" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pKY-vX-1tV"/>
+                        <viewControllerLayoutGuide type="bottom" id="TPv-Wl-Jwf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2eT-dN-bT8">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XL-AI-6G4">
+                                <rect key="frame" x="20" y="62" width="160" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gr-0N-Ill">
+                                <rect key="frame" x="46" y="20" width="109" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Cancel all filters">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelFilters:" destination="RnY-9y-cvr" eventType="touchUpInside" id="7e4-VW-Qcu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENo-1Z-feh">
+                                <rect key="frame" x="76" y="150" width="48" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButtonAction:" destination="RnY-9y-cvr" eventType="touchUpInside" id="BCN-gH-pLb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="3XL-AI-6G4" secondAttribute="trailing" id="Ea6-fp-N2q"/>
+                            <constraint firstItem="ENo-1Z-feh" firstAttribute="centerX" secondItem="2eT-dN-bT8" secondAttribute="centerX" id="RRE-Hu-fdh"/>
+                            <constraint firstItem="TPv-Wl-Jwf" firstAttribute="top" secondItem="ENo-1Z-feh" secondAttribute="bottom" constant="20" id="VnJ-kV-ljf"/>
+                            <constraint firstItem="0gr-0N-Ill" firstAttribute="top" secondItem="pKY-vX-1tV" secondAttribute="bottom" id="WbV-OA-lhx"/>
+                            <constraint firstItem="3XL-AI-6G4" firstAttribute="top" secondItem="0gr-0N-Ill" secondAttribute="bottom" constant="12" id="WcL-q1-Sh1"/>
+                            <constraint firstItem="0gr-0N-Ill" firstAttribute="centerX" secondItem="2eT-dN-bT8" secondAttribute="centerX" id="X9m-I3-MQz"/>
+                            <constraint firstItem="3XL-AI-6G4" firstAttribute="centerX" secondItem="2eT-dN-bT8" secondAttribute="centerX" id="eKP-WA-ZY8"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="3XL-AI-6G4" secondAttribute="leading" id="l8s-5G-D4W"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="searchText" destination="3XL-AI-6G4" id="lr2-fC-KLz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GBo-tx-1uf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2328" y="-921"/>
+        </scene>
         <!--Tackle Box View Controller-->
         <scene sceneID="dwt-aT-usx">
             <objects>
