@@ -42,22 +42,19 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     if(lureData?.LURE_IMAGE_URL.characters.count == 0){
       startUpCentralManager()
-      do {
-        self.realm = try Realm()
-      }catch _ {
-        print("Cant initi data base !")
-      }
-      
-      if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
-        sounds = NSArray(contentsOfFile: path)!
-      }
-    }else{
-      
     }
     
-    
+    do {
+      self.realm = try Realm()
+    }catch _ {
+      print("Cant initi data base !")
+    }
+    if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
+      sounds = NSArray(contentsOfFile: path)!
+    }
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -351,7 +348,11 @@ extension ProgramUIViewController : UITableViewDataSource {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.sounds.count + 1
+    if(lureData?.LURE_CODE.characters.count != 0){
+      return self.sounds.count + 1
+    }else{
+      return 1
+    }    
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -377,7 +378,7 @@ extension ProgramUIViewController : UITableViewDataSource {
       cell.action.text = lureData!.LURE_NAME
       cell.type.text = lureData!.LURE_WATER_TYPE
       
-      if(lureData?.LURE_IMAGE_URL.characters.count != 0){
+      if(lureData?.LURE_CODE.characters.count == 0){
         getImageFromPath((lureData?.LURE_IMAGE_URL)!, onComplete: { (image) -> Void in
           cell.lureImage.image = image
         })
@@ -393,6 +394,7 @@ extension ProgramUIViewController : UITableViewDataSource {
     }else{
       let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
       cell.soundName.text = ("#\(indexPath.row - 1) \(sounds[indexPath.row - 1].uppercaseString)")
+      //if unselected - hidden
       return cell
     }
   }

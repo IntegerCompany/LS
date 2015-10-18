@@ -316,8 +316,12 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
             print("LureInfo has been added to DB !")
             print("\n Items in DATABASE : \(fishInDB.count)")
             
-            self.centralManager.stopScan()
-            self.centralManager.cancelPeripheralConnection(sensorTagPeripheral)
+            if(self.centralManager != nil){
+              self.centralManager.stopScan()
+              if(sensorTagPeripheral != nil){
+                self.centralManager.cancelPeripheralConnection(sensorTagPeripheral)
+              }              
+            }
             self.navigationController?.popViewControllerAnimated(true)
             
             break;
@@ -346,33 +350,33 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
 //Data source
 extension DiscoveringBluetoothController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.peripheralList.count
-//         return 5
+//        return self.peripheralList.count
+         return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BLECell", forIndexPath: indexPath) as! BLECell
-        cell.name.text = peripheralList[indexPath.row].name
+//        cell.name.text = peripheralList[indexPath.row].name
 //
-//        cell.name.text = "TEST"
-        
+        cell.name.text = "TEST"
+      
         return cell
     }
 }
 //Delegate
 extension DiscoveringBluetoothController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-         //Stop scanning
-        self.centralManager.stopScan()
-        // Set as the peripheral to use and establish connection
-        let peripheral = self.peripheralList[indexPath.row]
-        self.peripheralUUIDString = peripheral.identifier.UUIDString
-        self.sensorTagPeripheral = peripheral
-        self.centralManager.connectPeripheral(peripheral, options: nil)
-        print("\ncentralManager.connectPeripheral\n")
-//        self.gettingLureInfoTask("LureCode=DEMO 26")
-        
+//        
+//         //Stop scanning
+//        self.centralManager.stopScan()
+//        // Set as the peripheral to use and establish connection
+//        let peripheral = self.peripheralList[indexPath.row]
+//        self.peripheralUUIDString = peripheral.identifier.UUIDString
+//        self.sensorTagPeripheral = peripheral
+//        self.centralManager.connectPeripheral(peripheral, options: nil)
+//        print("\ncentralManager.connectPeripheral\n")
+        self.gettingLureInfoTask("LureCode=DEMO 26")
+      
     }
 }
 

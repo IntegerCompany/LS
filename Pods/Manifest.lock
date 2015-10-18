@@ -1,4 +1,5 @@
 PODS:
+  - GoogleMaps (1.10.4)
   - Realm (0.95.0):
     - Realm/Headers (= 0.95.0)
   - Realm/Headers (0.95.0)
@@ -6,6 +7,7 @@ PODS:
     - Realm (= 0.95.0)
 
 DEPENDENCIES:
+  - GoogleMaps
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
 
@@ -26,6 +28,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/realm/realm-cocoa.git
 
 SPEC CHECKSUMS:
+  GoogleMaps: 134bcf57e8d489efbc0c29d532ed421554fabdb2
   Realm: 1c28007bd496af94dba8c76d50719164e706a521
   RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724
 

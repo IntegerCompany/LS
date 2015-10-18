@@ -12,12 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+  let googleMapsApiKey = "AIzaSyBa9sx_Lep2fVYCObWXRPU7RmsOyY6IJrE"
+
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         UIApplication.sharedApplication().statusBarStyle = .LightContent
-        
+      GMSServices.provideAPIKey(googleMapsApiKey)
+
         return true
     }
 

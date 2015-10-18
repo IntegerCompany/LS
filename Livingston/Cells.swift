@@ -84,6 +84,7 @@ protocol ProgramCellDelagate {
 class ProgramSoundCell : UITableViewCell {
     @IBOutlet weak var soundImage: UIImageView!
     @IBOutlet weak var soundName: UILabel!
+  @IBOutlet weak var soundSelected: UIButton!
 }
 
 class ProgramCell : UITableViewCell , ProgramCellDelagate {
