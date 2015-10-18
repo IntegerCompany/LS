@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CatchLogViewController : BaseViewController {
     
@@ -15,9 +16,22 @@ class CatchLogViewController : BaseViewController {
     
     let cellId = "CatchLogCell"
     let segueID = "goDelailCatclog"
+    var realm : Realm!
+    var catchCount  = 0
+    
+    let rowName = ["Catches","Total weight", "Average Weight", "Catch locations", "Miles fished", "Lure fished "]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do{
+            self.realm = try Realm()
+            let query = self.realm!.objects(LureData)
+            catchCount = query.count
+        }catch _ {
+            print("cant Innitialize Data base")
+        }
+
         
         dateText.text = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         
@@ -31,7 +45,7 @@ extension CatchLogViewController : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0 :
-            //ewewa
+            self.performSegueWithIdentifier(segueID, sender: self)
             break
         default :
             break
@@ -40,10 +54,12 @@ extension CatchLogViewController : UITableViewDelegate {
 }
 extension CatchLogViewController : UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.rowName.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as! CatchLogCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellId) as! CatchLogCell
+        let index = indexPath.row
+        cell.logName.text = self.rowName[index]
         return cell
     }
 }

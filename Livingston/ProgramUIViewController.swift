@@ -316,7 +316,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
     self.delegate?.connectionStatus(false)
   }
   
-  func getDataFromUrl(urL:NSURL, completion: ((data: NSData?) -> Void)) {
+  class func getDataFromUrl(urL:NSURL, completion: ((data: NSData?) -> Void)) {
     NSURLSession.sharedSession().dataTaskWithURL(urL) { (data, response, error) in
       completion(data: data)
       }.resume()
@@ -379,11 +379,13 @@ extension ProgramUIViewController : UITableViewDataSource {
       cell.type.text = lureData!.LURE_WATER_TYPE
       
       if(lureData?.LURE_CODE.characters.count == 0){
-        getImageFromPath((lureData?.LURE_IMAGE_URL)!, onComplete: { (image) -> Void in
-          cell.lureImage.image = image
-        })
+        if url!.isFileReferenceURL() {
+            ProgramUIViewController.getImageFromPath((lureData?.LURE_IMAGE_URL)!, onComplete: { (image) -> Void in
+                cell.lureImage.image = image
+            })
+        }
       }else{
-        self.getDataFromUrl(url!) { data in
+        ProgramUIViewController.getDataFromUrl(url!) { data in
           dispatch_async(dispatch_get_main_queue()) {
             cell.lureImage.image = UIImage(data: data!)
           }
@@ -399,7 +401,7 @@ extension ProgramUIViewController : UITableViewDataSource {
     }
   }
   
-  func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
+  class func getImageFromPath(path: String, onComplete:((image: UIImage?) -> Void)) {
     let assetsLibrary = ALAssetsLibrary()
     let url = NSURL(string: path)!
     assetsLibrary.assetForURL(url, resultBlock: { (asset) -> Void in

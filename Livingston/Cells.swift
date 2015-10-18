@@ -27,6 +27,17 @@ class CatchLogCell : UITableViewCell{
     @IBOutlet weak var imageOfLog: UIImageView!
 }
 
+class DetailCatchLogCell : UITableViewCell{
+    @IBOutlet weak var fishImage: UIImageView!
+    @IBOutlet weak var anglerName: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var lenght: UILabel!
+    @IBOutlet weak var note: UILabel!
+    @IBOutlet weak var number: UILabel!
+    
+}
+
 class TackleCell : UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var refreshButton: UIButton!
