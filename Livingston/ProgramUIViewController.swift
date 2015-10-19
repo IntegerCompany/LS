@@ -396,7 +396,15 @@ extension ProgramUIViewController : UITableViewDataSource {
     }else{
       let cell = tableView.dequeueReusableCellWithIdentifier("soundCell", forIndexPath: indexPath) as! ProgramSoundCell
       cell.soundName.text = ("#\(indexPath.row - 1) \(sounds[indexPath.row - 1].uppercaseString)")
-      //if unselected - hidden
+      print("indexPath.row = \(indexPath.row) - sound \(lureData?.LURE_SOUND)")
+      if let selectedSound = Int((lureData?.LURE_SOUND)!){
+        if selectedSound != indexPath.row{
+          cell.soundSelected.hidden = true
+        }else{
+          cell.soundSelected.hidden = false
+        }
+      }
+      
       return cell
     }
   }
@@ -419,6 +427,15 @@ extension ProgramUIViewController : UITableViewDelegate {
       self.delegate?.stopProgres()
       var enableValue = NSInteger(indexPath.row)
       let enablyBytes = NSData(bytes: &enableValue, length: 1)
+      self.realm?.beginWrite()
+      self.lureData?.LURE_SOUND = "\(indexPath.row)"
+      do {
+        try self.realm!.commitWrite()
+        print("Success")
+        tableView.reloadData()
+      }catch{
+        print("Error realm")
+      }
       if changeSoundCharacteristic != nil {
         self.sensorTagPeripheral.writeValue(enablyBytes, forCharacteristic: self.changeSoundCharacteristic!, type: CBCharacteristicWriteType.WithResponse)
         print("\nchangeSoundCharacteristic writeValue : \(enableValue) : byte : \(enablyBytes) ")
