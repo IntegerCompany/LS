@@ -1450,7 +1450,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBZ-8U-Kcq">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBZ-8U-Kcq">
                                                     <rect key="frame" x="554" y="8" width="30" height="30"/>
                                                     <animations/>
                                                     <constraints>
@@ -2780,6 +2780,11 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <searchBar hidden="YES" contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7g-N4-jGI">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <animations/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.89411764705882346" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
@@ -2787,9 +2792,12 @@
                                     <constraint firstAttribute="centerX" secondItem="2KA-Nv-ldw" secondAttribute="centerX" id="7x4-jq-vd5"/>
                                     <constraint firstAttribute="centerY" secondItem="YZY-2S-cAl" secondAttribute="centerY" id="82c-Hf-VWy"/>
                                     <constraint firstAttribute="trailing" secondItem="YrC-W2-NUR" secondAttribute="trailing" id="DBm-GN-o2Z"/>
+                                    <constraint firstItem="n7g-N4-jGI" firstAttribute="leading" secondItem="Jei-Yy-4vk" secondAttribute="leading" id="EBM-ul-1g6"/>
                                     <constraint firstAttribute="height" constant="44" id="PC9-M5-53m"/>
+                                    <constraint firstItem="n7g-N4-jGI" firstAttribute="centerY" secondItem="2KA-Nv-ldw" secondAttribute="centerY" id="RKz-20-rbl"/>
                                     <constraint firstItem="YZY-2S-cAl" firstAttribute="leading" secondItem="Jei-Yy-4vk" secondAttribute="leading" id="fZe-c5-6la"/>
                                     <constraint firstAttribute="centerY" secondItem="YrC-W2-NUR" secondAttribute="centerY" id="fcb-bX-uqW"/>
+                                    <constraint firstAttribute="trailing" secondItem="n7g-N4-jGI" secondAttribute="trailing" id="r7c-lv-qze"/>
                                     <constraint firstAttribute="centerY" secondItem="2KA-Nv-ldw" secondAttribute="centerY" id="x77-eH-3EL"/>
                                 </constraints>
                             </view>
@@ -2944,6 +2952,7 @@
                     <navigationItem key="navigationItem" id="kk3-M9-m1r"/>
                     <connections>
                         <outlet property="collectionView" destination="OQo-ao-AQu" id="Quo-Lq-p3B"/>
+                        <outlet property="searchBar" destination="n7g-N4-jGI" id="L7A-l9-RiE"/>
                         <segue destination="RR2-0g-CqR" kind="show" identifier="showProgramUI" id="8Dq-Zh-JUe"/>
                     </connections>
                 </viewController>

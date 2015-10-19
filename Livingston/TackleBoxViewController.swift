@@ -10,6 +10,7 @@ import RealmSwift
 import AssetsLibrary
 
 class TackleBoxViewController: BaseViewController, SortMenuItemSelectedDelegate {
+  @IBOutlet weak var searchBar: UISearchBar!
   
   @IBOutlet weak var collectionView: UICollectionView!
   var popoverSortContent : SortMenuViewController!
@@ -18,22 +19,29 @@ class TackleBoxViewController: BaseViewController, SortMenuItemSelectedDelegate 
   
   var realm : Realm!
   var tackleList = [LureData]()
+  var filteredTackleList = [LureData]()
   
   let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
   
   func sortMenuItemSelected(selectedItem: SortMenuItem) {
     switch selectedItem{
     case .SortByName :
+      dismissViewControllerAnimated(true,completion: nil)
       tackleList.sortInPlace { (element1, element2) -> Bool in
         return element1.LURE_NAME < element2.LURE_NAME
       }
-    case .SortByType :
+      case .SortByType :
+      dismissViewControllerAnimated(true,completion: nil)
       tackleList.sortInPlace { (element1, element2) -> Bool in
         return element1.LURE_CODE > element2.LURE_CODE
       }
-    case .Search : break
+    case .Search :
+      dismissViewControllerAnimated(true,completion: nil)
+      searchBar.hidden = false
+      filteredTackleList = tackleList
     }
     collectionView.reloadData()
+    
   }
   
   override func viewDidLoad() {
@@ -41,6 +49,7 @@ class TackleBoxViewController: BaseViewController, SortMenuItemSelectedDelegate 
     
     popoverSortContent = self.storyboard?.instantiateViewControllerWithIdentifier("SortMenuViewController") as! SortMenuViewController
     popoverSortContent.delegate = self
+    searchBar.delegate = self
     do{
       self.realm = try Realm()
     }catch{
@@ -125,9 +134,14 @@ extension TackleBoxViewController : UICollectionViewDataSource {
     let url = NSURL(string: lureImgUrl)
     
     if(tackle.LURE_CODE.characters.count == 0){
-      TackleBoxViewController.getImageFromPath(tackle.LURE_IMAGE_URL, onComplete: { (image) -> Void in
-        cell.image.image = image
-      })
+      if tackle.LURE_IMAGE_URL.characters.count != 0{
+        TackleBoxViewController.getImageFromPath(tackle.LURE_IMAGE_URL, onComplete: { (image) -> Void in
+          cell.image.image = image
+})
+          }else{
+          cell.image.image = nil
+        }
+        
     }else{
       self.getDataFromUrl(url!) { data in
         dispatch_async(dispatch_get_main_queue()) {
@@ -158,6 +172,26 @@ extension TackleBoxViewController : UICollectionViewDelegate {
     let tackle = self.tackleList[indexPath.item]
     self.performSegueWithIdentifier(segueID, sender: tackle)
   }
+}
+
+extension TackleBoxViewController : UISearchBarDelegate{
+  func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    searchBar.hidden = true
+    tackleList = filteredTackleList
+    collectionView.reloadData()
+  }
+  
+  func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    if searchText.characters.count != 0{
+      tackleList = filteredTackleList.filter( { (lure: LureData) -> Bool in
+        return lure.LURE_NAME.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+      })
+    }else{
+      tackleList = filteredTackleList
+    }
+    collectionView.reloadData()
+  }
+  
 }
 
 
