@@ -16,6 +16,8 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
   @IBOutlet weak var programText: UILabel!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var powerButton: UIButton!
+  @IBOutlet weak var lureStat: UILabel!
+  @IBOutlet weak var catchPercentage: NSLayoutConstraint!
   
   let LureServicePlaySoundId = CBUUID(string: "18bd1003-5770-4e53-b034-e998f80a5e43")
   let LureCharChangeSound = CBUUID(string: "18bd1005-5770-4e53-b034-e998f80a5e43")
@@ -28,6 +30,7 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
   let imgUrl = "http://appapi.livingstonlures.com/lure_photos/"
   
   var sounds = []
+  var recordedFishes = [RecordedFish]()
   
   var centralManager:CBCentralManager!
   var blueToothReady = false
@@ -59,8 +62,11 @@ class ProgramUIViewController: BaseViewController ,CBCentralManagerDelegate, CBP
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-    //update lure info data !
+    recordedFishes.removeAll(keepCapacity: false)
+    let query = self.realm!.objects(RecordedFish)
+    for item in query {
+      recordedFishes.append(item as RecordedFish)
+    }
   }
   
   override func viewDidDisappear(animated: Bool) {
@@ -366,10 +372,17 @@ extension ProgramUIViewController : UITableViewDataSource {
         cell.powerButton.hidden = true
       }
       
+      let catchedByLure = recordedFishes.filter { (recordedFish : RecordedFish) -> Bool in
+        return recordedFish.lureName == lureData?.LURE_NAME
+      }
       let lureID = lureData!.LURE_ITEM_CODE
       let lureImgUrl = imgUrl + "\(lureID).png"
       let url = NSURL(string: lureImgUrl)
       
+      cell.lureStat.text = "Lure stat : \(catchedByLure.count)"
+      print(recordedFishes.count)
+      print(catchedByLure.count)
+      cell.catchPercentage.text = "Percentage of total catches : \(Double(round(100*Double(catchedByLure.count)/Double(self.recordedFishes.count)))/100)"
       cell.lureName.text = lureData?.LURE_NAME
       cell.lureStyle.text = lureData?.LURE_STYLE
       cell.lureType.text = lureData?.LURE_WATER_TYPE

@@ -112,6 +112,8 @@ class ProgramCell : UITableViewCell , ProgramCellDelagate {
     @IBOutlet weak var lureName: UILabel!
     @IBOutlet weak var lureStyle: UILabel!
     @IBOutlet weak var lureType: UILabel!
+  @IBOutlet weak var lureStat: UILabel!
+  
     
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var depth: UILabel!
@@ -120,6 +122,7 @@ class ProgramCell : UITableViewCell , ProgramCellDelagate {
     @IBOutlet weak var length: UILabel!
     @IBOutlet weak var percentage: UILabel!
     @IBOutlet weak var onOff: UILabel!    
+  @IBOutlet weak var catchPercentage: UILabel!
     
     @IBOutlet weak var powerButton: UIButton!
     

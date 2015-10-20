@@ -65,42 +65,42 @@
                                             <rect key="frame" x="250" y="8" width="83" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weight - ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsf-1c-6dq">
                                             <rect key="frame" x="250" y="36" width="76" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lenght - ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1Z-Da-Kyo">
                                             <rect key="frame" x="354" y="36" width="73" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-eV-QT8">
                                             <rect key="frame" x="250" y="65" width="348" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zK-xe-HVr">
                                             <rect key="frame" x="8" y="7" width="8" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UI-X9-nlU">
                                             <rect key="frame" x="562" y="153" width="36" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -217,14 +217,14 @@
                                                     <rect key="frame" x="75" y="11" width="42" height="20.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMp-Xn-ZIO">
                                                     <rect key="frame" x="563" y="11" width="12" height="20.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -258,21 +258,21 @@
                                     <constraint firstAttribute="height" constant="29" id="WqS-lo-8LN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vk-Ex-p8A">
                                 <rect key="frame" x="32" y="101" width="49.5" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-3z-ZSm">
                                 <rect key="frame" x="98" y="101" width="45" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -767,6 +767,7 @@
                         <outlet property="lastLureName" destination="jYw-eQ-WfX" id="fcP-ea-Ed6"/>
                         <outlet property="logDate" destination="PwF-Cq-xor" id="ZLE-Wu-Xu4"/>
                         <outlet property="myLocation" destination="2df-uT-vOE" id="G9d-YY-gkw"/>
+                        <outlet property="nearestPlace" destination="BA9-69-ARI" id="aLX-Rq-qMH"/>
                         <outlet property="temperature" destination="W84-IX-Yib" id="e0t-6Z-8Lw"/>
                         <outlet property="textView" destination="hbG-0J-3bx" id="9QE-UB-7Xl"/>
                         <outlet property="userName" destination="RKY-Bw-yuh" id="Caa-7n-yQ7"/>
@@ -1410,11 +1411,13 @@
                                         <connections>
                                             <outlet property="action" destination="oCJ-zl-fSV" id="C0C-0h-nPD"/>
                                             <outlet property="batteryValue" destination="fYn-w8-18C" id="phd-OP-fAu"/>
+                                            <outlet property="catchPercentage" destination="P19-e1-ZZt" id="rfi-J5-hyX"/>
                                             <outlet property="depth" destination="eUn-ZO-QzH" id="t5x-4P-RKP"/>
                                             <outlet property="infoText" destination="FTm-P1-pR4" id="qyG-86-gkc"/>
                                             <outlet property="length" destination="vlF-De-av3" id="nbX-5l-MbZ"/>
                                             <outlet property="lureImage" destination="QXT-dN-Llv" id="FLW-03-eOi"/>
                                             <outlet property="lureName" destination="uTL-im-ytM" id="euT-z1-zL5"/>
+                                            <outlet property="lureStat" destination="Qec-f2-ZCg" id="pzw-so-VIe"/>
                                             <outlet property="lureStyle" destination="EXW-j4-aMe" id="YZl-8j-U4b"/>
                                             <outlet property="lureType" destination="Bxg-NP-8cf" id="PxJ-8m-Y2O"/>
                                             <outlet property="onOff" destination="hDQ-hO-Qcf" id="mbi-8E-uBT"/>
