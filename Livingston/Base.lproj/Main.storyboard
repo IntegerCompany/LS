@@ -533,12 +533,9 @@
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue Lagoon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BA9-69-ARI">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Blue Lagoon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BA9-69-ARI">
                                                                 <rect key="frame" x="0.0" y="111" width="100" height="11"/>
                                                                 <animations/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="11" id="M6d-Lm-S1V"/>
-                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -763,6 +760,7 @@
                         <outlet property="homView" destination="G1f-1t-8TT" id="R1a-sO-wrK"/>
                         <outlet property="lastActiveSound" destination="UDC-IB-T6V" id="q1G-Oh-Iex"/>
                         <outlet property="lastBluetreuse" destination="2sb-Cu-ykB" id="JM5-sX-seM"/>
+                        <outlet property="lastLureImage" destination="JjP-9X-NIA" id="yN8-ep-9mb"/>
                         <outlet property="lastLureName" destination="jYw-eQ-WfX" id="fcP-ea-Ed6"/>
                         <outlet property="logDate" destination="PwF-Cq-xor" id="ZLE-Wu-Xu4"/>
                         <outlet property="myLocation" destination="2df-uT-vOE" id="G9d-YY-gkw"/>
@@ -2027,11 +2025,11 @@
                                                     <action selector="nextAction:" destination="afa-jk-npP" eventType="touchUpInside" id="26A-RO-fsf"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastlurefish" translatesAutoresizingMaskIntoConstraints="NO" id="cei-vC-3ax">
-                                                <rect key="frame" x="124" y="-50.5" width="344" height="221"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastlurefish" translatesAutoresizingMaskIntoConstraints="NO" id="cei-vC-3ax">
+                                                <rect key="frame" x="124" y="0.0" width="344" height="120"/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="cei-vC-3ax" secondAttribute="height" multiplier="259:166" id="aP2-Rn-KkJ"/>
+                                                    <constraint firstAttribute="width" secondItem="cei-vC-3ax" secondAttribute="height" multiplier="43:15" id="CHI-2h-kf8"/>
                                                 </constraints>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="64" y="-24.5" width="264" height="170"/>
@@ -3678,7 +3676,7 @@
         <!--Add Lure View Controller-->
         <scene sceneID="txC-7I-UNR">
             <objects>
-                <viewController id="dvf-Th-3t1" customClass="AddLureViewController" customModule="Livingston" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddLureViewController" id="dvf-Th-3t1" customClass="AddLureViewController" customModule="Livingston" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="myn-vs-hrO"/>
                         <viewControllerLayoutGuide type="bottom" id="JVK-xY-7Rv"/>

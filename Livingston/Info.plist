@@ -41,6 +41,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Give us permission to see you</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Get location ?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

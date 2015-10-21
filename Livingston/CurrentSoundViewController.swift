@@ -27,8 +27,8 @@ class CurrentSoundViewController: BaseViewController {
         if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
             sounds = NSArray(contentsOfFile: path)!
         }
-        if let path = NSBundle.mainBundle().pathForResource("SoundsMP3", ofType: "plist") {
-            soundsMP3 = NSArray(contentsOfFile: path)!
+        if let pathmp3 = NSBundle.mainBundle().pathForResource("SoundsMP3", ofType: "plist") {
+            soundsMP3 = NSArray(contentsOfFile: pathmp3)!
         }
         
         let img = UIImage(named: "background")
@@ -68,6 +68,15 @@ class CurrentSoundViewController: BaseViewController {
     }
     
     @IBAction func replay(sender: UIButton) {
+        let path = NSBundle.mainBundle().pathForResource(self.name, ofType: "mp3") //MP3 file path
+        let url = NSURL(fileURLWithPath: path!)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+        } catch let error as NSError {
+            print(error)
+            audioPlayer = nil
+        }
+        audioPlayer.prepareToPlay()
         self.play()
     }
     @IBAction func back(sender: UIButton) {

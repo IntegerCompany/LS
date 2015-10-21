@@ -7,9 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		662B6EE91BCF9CE90046BA42 /* AddLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		662B811F1BD65A7A007D4722 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B811E1BD65A7A007D4722 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		66CEF1AB1BD0F966006448A3 /* SortMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEF1AA1BD0F966006448A3 /* SortMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		9210D6F31BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D51BCE40CE00CEAAD0 /* #1 EBS CRAW.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F41BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D61BCE40CE00CEAAD0 /* #2 EBS CRAW MAX.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F51BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D71BCE40CE00CEAAD0 /* #3 EBS FRESHWATER SHRIMP.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F61BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D81BCE40CE00CEAAD0 /* #4 EBS CRAB.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F71BCE40CE00CEAAD0 /* #5 EBS Original.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6D91BCE40CE00CEAAD0 /* #5 EBS Original.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F81BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DA1BCE40CE00CEAAD0 /* #6 EBS SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6F91BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DB1BCE40CE00CEAAD0 /* #7 EBS GIZZARD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FA1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DC1BCE40CE00CEAAD0 /* #8 EBS HERRING BAIT FISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FB1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DD1BCE40CE00CEAAD0 /* #9 EBS THREADFIN SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FC1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DE1BCE40CE00CEAAD0 /* #10 EBS AMERICAN SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FD1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6DF1BCE40CE00CEAAD0 /* #11 EBS TENNESSEE SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FE1BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E01BCE40CE00CEAAD0 /* #12 EBS HICKORY SHAD.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D6FF1BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E11BCE40CE00CEAAD0 /* #13 EBS BLUE GILL.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7001BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E21BCE40CE00CEAAD0 /* #14 EBS PANFISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7011BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E31BCE40CE00CEAAD0 /* #15 EBS SUNFISH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7021BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E41BCE40CE00CEAAD0 /* #16 EBS MINNOW.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7031BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E51BCE40CE00CEAAD0 /* #17 EBS TILAPIA.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7041BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E61BCE40CE00CEAAD0 /* #18 EBS BREAM.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7051BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E71BCE40CE00CEAAD0 /* #19 EBS SCULPIN.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7061BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E81BCE40CE00CEAAD0 /* #20 EBS GOBY 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7071BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6E91BCE40CE00CEAAD0 /* #21 EBS G PERCH 2.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7081BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EA1BCE40CE00CEAAD0 /* #22 EBS LONG GOBY 3.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7091BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EB1BCE40CE00CEAAD0 /* #23 EBS SMELT.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70A1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EC1BCE40CE00CEAAD0 /* #24 EBS HITCH.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70B1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6ED1BCE40CE00CEAAD0 /* #25 EBS FROG 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70C1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EE1BCE40CE00CEAAD0 /* #26 EBS AQUATIC INSECT 1.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70D1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6EF1BCE40CE00CEAAD0 /* #27 EBS BUG.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70E1BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F01BCE40CE00CEAAD0 /* #28 EBS CICADA.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D70F1BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F11BCE40CE00CEAAD0 /* #29 EBS MOUSE.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7101BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9210D6F21BCE40CE00CEAAD0 /* #30 EBS GILL PLATES MAX.mp3 */; settings = {ASSET_TAGS = (); }; };
+		9210D7121BCE413500CEAAD0 /* SoundsMP3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */; settings = {ASSET_TAGS = (); }; };
 		9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9243B40E1BC7B78500A6CC39 /* Sounds.plist */; settings = {ASSET_TAGS = (); }; };
 		9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */; };
 		9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA501B98CE55006E13F0 /* LoginViewController.swift */; };
@@ -39,6 +67,9 @@
 		9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */; };
 		9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299B5201BA06D46006D13F2 /* BaseViewController.swift */; };
 		929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929EF8411B9DC72A003EB97E /* MenuViewController.swift */; };
+		92ADBDFF1BD7A00A008801B8 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B811E1BD65A7A007D4722 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
+		92ADBE001BD7A010008801B8 /* SortMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CEF1AA1BD0F966006448A3 /* SortMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		92ADBE011BD7A166008801B8 /* AddLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		92C5C7361BAAF6AF0078F252 /* Pods_Livingston.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5383463CB1CDC871CB0318C4 /* Pods_Livingston.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB321BA2266900805219 /* SyncLureViewController.swift */; };
 		92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5CB341BA22C1100805219 /* ContactViewController.swift */; };
@@ -245,7 +276,7 @@
 		9280AA4B1B98CE55006E13F0 /* Livingston */ = {
 			isa = PBXGroup;
 			children = (
-				662B811E1BD65A7A007D4722 /* SwiftyJSON.swift */,
+				92ADBDFE1BD79FB3008801B8 /* HelperClasses */,
 				929EF8401B9DC705003EB97E /* popoverControllers */,
 				9280AA911B994343006E13F0 /* Models */,
 				9280AA8A1B992BF9006E13F0 /* Delegates */,
@@ -346,8 +377,8 @@
 		929EF8401B9DC705003EB97E /* popoverControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 				929EF8411B9DC72A003EB97E /* MenuViewController.swift */,
+				9280AA8D1B993571006E13F0 /* FishDetailViewControler.swift */,
 				66CEF1AA1BD0F966006448A3 /* SortMenuViewController.swift */,
 				9299B51C1BA05BFA006D13F2 /* NavigationViewController.swift */,
 				9299B51E1BA064D3006D13F2 /* TabBarViewController.swift */,
@@ -355,6 +386,14 @@
 				92D5107D1BD44B70009522B5 /* SortContactsPopoverView.swift */,
 			);
 			name = popoverControllers;
+			sourceTree = "<group>";
+		};
+		92ADBDFE1BD79FB3008801B8 /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				662B811E1BD65A7A007D4722 /* SwiftyJSON.swift */,
+			);
+			name = HelperClasses;
 			sourceTree = "<group>";
 		};
 		A408FF9C504C4EC1F919638D /* Frameworks */ = {
@@ -558,26 +597,26 @@
 			files = (
 				92D5107E1BD44B70009522B5 /* SortContactsPopoverView.swift in Sources */,
 				9280AA7C1B98D394006E13F0 /* FishViewController.swift in Sources */,
-				66CEF1AB1BD0F966006448A3 /* SortMenuViewController.swift in Sources */,
-				662B811F1BD65A7A007D4722 /* SwiftyJSON.swift in Sources */,
 				9280AA8C1B992C3D006E13F0 /* GetCameraImageDelegate.swift in Sources */,
 				9280AA891B991CB3006E13F0 /* CameraViewController.swift in Sources */,
 				9280AA7E1B98D3BE006E13F0 /* ProgramUIViewController.swift in Sources */,
 				9280AA8E1B993571006E13F0 /* FishDetailViewControler.swift in Sources */,
 				9299B5211BA06D46006D13F2 /* BaseViewController.swift in Sources */,
 				92D5107C1BD41B07009522B5 /* DetailCatchLogViewController.swift in Sources */,
+				92ADBE011BD7A166008801B8 /* AddLureViewController.swift in Sources */,
 				9280AA821B98D437006E13F0 /* TackleBoxViewController.swift in Sources */,
 				9280AA871B99051D006E13F0 /* RegistrationViewController.swift in Sources */,
 				9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */,
+				92ADBE001BD7A010008801B8 /* SortMenuViewController.swift in Sources */,
 				9280AA951B99524D006E13F0 /* CurrentSoundViewController.swift in Sources */,
 				9280AA901B9935D5006E13F0 /* AcceptFishDetailDelagate.swift in Sources */,
 				9280AA7A1B98D352006E13F0 /* SoundViewController.swift in Sources */,
 				92C5CB331BA2266900805219 /* SyncLureViewController.swift in Sources */,
-				662B6EE91BCF9CE90046BA42 /* AddLureViewController.swift in Sources */,
 				929EF8421B9DC72A003EB97E /* MenuViewController.swift in Sources */,
 				9299B51D1BA05BFA006D13F2 /* NavigationViewController.swift in Sources */,
 				9299B51F1BA064D3006D13F2 /* TabBarViewController.swift in Sources */,
 				9280AA801B98D419006E13F0 /* RecordACatchViewController.swift in Sources */,
+				92ADBDFF1BD7A00A008801B8 /* SwiftyJSON.swift in Sources */,
 				92C5CB351BA22C1100805219 /* ContactViewController.swift in Sources */,
 				92E7E8801BCBCAB900232106 /* MapKitViewController.swift in Sources */,
 				92D5107A1BD41801009522B5 /* CatchLogViewController.swift in Sources */,
