@@ -15,6 +15,7 @@ class SoundViewController: BaseViewController {
     let segueId = "goToCurrentSoundVIew"
     
     var sounds = []
+    var soundsMP3 = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,9 @@ class SoundViewController: BaseViewController {
         
         if let path = NSBundle.mainBundle().pathForResource("Sounds", ofType: "plist") {
             sounds = NSArray(contentsOfFile: path)!
+        }
+        if let path = NSBundle.mainBundle().pathForResource("SoundsMP3", ofType: "plist") {
+            soundsMP3 = NSArray(contentsOfFile: path)!
         }
     }
 
@@ -41,7 +45,7 @@ class SoundViewController: BaseViewController {
         let index = sender as! Int
         
         let vc = segue.destinationViewController as! CurrentSoundViewController
-        vc.name = ("#\(index) \(sounds[index].uppercaseString)")
+        vc.name = (soundsMP3[index] as! String)
         vc.image = sounds[index] as! String
     }
 
@@ -50,8 +54,8 @@ class SoundViewController: BaseViewController {
 extension SoundViewController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Sound lib count : \(self.sounds.count)")
-        return self.sounds.count
+        print("Sound lib count : \(self.soundsMP3.count)")
+        return self.soundsMP3.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -59,7 +63,7 @@ extension SoundViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("soundGridViewCell", forIndexPath: indexPath) as! SoundListCell
         
         cell.image.image = UIImage(named: self.sounds[indexPath.item] as! String)
-        cell.name.text = ("#\(indexPath.item + 1) \(self.sounds[indexPath.item].uppercaseString)")
+        cell.name.text = (soundsMP3[indexPath.item] as! String)
         
         return cell
     }
