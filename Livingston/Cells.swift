@@ -23,6 +23,7 @@ class BLECell : UITableViewCell {
 
 class CatchLogCell : UITableViewCell{
     
+    @IBOutlet weak var infoTotalText: UILabel!
     @IBOutlet weak var logName: UILabel!
     @IBOutlet weak var imageOfLog: UIImageView!
 }

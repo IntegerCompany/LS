@@ -227,20 +227,30 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mei-rB-NM0">
+                                                    <rect key="frame" x="142" y="11" width="42" height="20.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
+                                                <constraint firstItem="mei-rB-NM0" firstAttribute="leading" secondItem="TUH-J2-fCy" secondAttribute="trailing" constant="25" id="3Sr-9y-jbT"/>
                                                 <constraint firstItem="FPM-HF-T7C" firstAttribute="centerY" secondItem="btY-aa-9aG" secondAttribute="centerY" id="CDg-LY-yUq"/>
                                                 <constraint firstItem="TUH-J2-fCy" firstAttribute="centerY" secondItem="FPM-HF-T7C" secondAttribute="centerY" id="GH5-kG-y0g"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wMp-Xn-ZIO" secondAttribute="trailing" constant="17" id="H8f-Vy-Bhx"/>
                                                 <constraint firstItem="TUH-J2-fCy" firstAttribute="leading" secondItem="FPM-HF-T7C" secondAttribute="trailing" constant="24" id="c9g-hg-aPS"/>
                                                 <constraint firstItem="FPM-HF-T7C" firstAttribute="leading" secondItem="btY-aa-9aG" secondAttribute="leadingMargin" constant="8" id="jQC-wP-Pv9"/>
                                                 <constraint firstItem="wMp-Xn-ZIO" firstAttribute="centerY" secondItem="btY-aa-9aG" secondAttribute="centerY" id="nTM-XQ-Ch4"/>
+                                                <constraint firstItem="mei-rB-NM0" firstAttribute="centerY" secondItem="TUH-J2-fCy" secondAttribute="centerY" id="qom-jq-X46"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
                                             <outlet property="imageOfLog" destination="FPM-HF-T7C" id="unN-4x-yeY"/>
+                                            <outlet property="infoTotalText" destination="mei-rB-NM0" id="lQS-SI-ssj"/>
                                             <outlet property="logName" destination="TUH-J2-fCy" id="RDX-oh-jWb"/>
                                         </connections>
                                     </tableViewCell>
