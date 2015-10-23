@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufk-pc-eDr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufk-pc-eDr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -972,28 +972,26 @@
                                     <action selector="goWebSite:" destination="2VO-wr-5hO" eventType="touchUpInside" id="ayO-z4-qTZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScG-c3-Wej">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ScG-c3-Wej">
                                 <rect key="frame" x="4" y="261" width="592" height="50"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RUI-BF-WPi"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="DEALER LOCATION" backgroundImage="loginbtn">
+                                <state key="normal" title="DEALER LOCATION" image="location" backgroundImage="loginbtn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="UPD-zf-y0A" kind="show" id="dZQ-tf-evn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3q-wV-Wdu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3q-wV-Wdu">
                                 <rect key="frame" x="4" y="319" width="592" height="50"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="9NF-n1-Ce1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="DEALER LIST" backgroundImage="loginbtn">
+                                <state key="normal" title="DEALER LIST" image="dealer_list" backgroundImage="loginbtn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -3876,16 +3874,16 @@
                         <viewControllerLayoutGuide type="bottom" id="GjN-ZS-hkp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EfM-WR-9fs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="359"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="223" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="scQ-iP-yFE">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="359"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DealerList" rowHeight="44" id="b9F-Wl-WHS" customClass="DealerList" customModule="Livingston" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b9F-Wl-WHS" id="afX-gi-tnL">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -4089,6 +4087,7 @@
         <image name="blacksound" width="37" height="29"/>
         <image name="bluegill_black" width="69" height="61"/>
         <image name="cn" width="47" height="47"/>
+        <image name="dealer_list" width="40" height="40"/>
         <image name="fish_anchor" width="147" height="212"/>
         <image name="fish_template" width="768" height="1024"/>
         <image name="forgotpassbtn" width="368" height="94"/>
@@ -4100,6 +4099,7 @@
         <image name="lastlurefish.png" width="259" height="116"/>
         <image name="leftArrow" width="10" height="18"/>
         <image name="livingston_web_shop_lures" width="206" height="37"/>
+        <image name="location" width="40" height="40"/>
         <image name="loginbtn" width="368" height="94"/>
         <image name="pin.png" width="28" height="42"/>
         <image name="play" width="48" height="47"/>
@@ -4117,7 +4117,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="dGV-hH-o7y"/>
+        <segue reference="RPT-P6-yTI"/>
         <segue reference="8Dq-Zh-JUe"/>
-        <segue reference="Ntr-IH-PZ3"/>
     </inferredMetricsTieBreakers>
 </document>

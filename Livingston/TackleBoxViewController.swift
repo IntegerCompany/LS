@@ -129,6 +129,7 @@ extension TackleBoxViewController : UICollectionViewDataSource {
         let lureID = tackle.LURE_ITEM_CODE
         print("\n\(lureID)")
         let lureImgUrl = imgUrl + "\(lureID).png"
+        print("LURE IMG :\(lureImgUrl)")
         
         print("\(tackle.LURE_IMAGE_URL)")
         let url = NSURL(string: lureImgUrl)
