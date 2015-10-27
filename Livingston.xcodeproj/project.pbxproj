@@ -10,6 +10,7 @@
 		9210D7121BCE413500CEAAD0 /* SoundsMP3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */; };
 		9243B40F1BC7B78500A6CC39 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9243B40E1BC7B78500A6CC39 /* Sounds.plist */; };
 		927301751BDA8217008FE6D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927301741BDA8217008FE6D0 /* Images.xcassets */; };
+		927A23661BDFB8C1009EF9C6 /* RecomendationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927A23651BDFB8C1009EF9C6 /* RecomendationController.swift */; };
 		9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */; };
 		9280AA511B98CE55006E13F0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9280AA501B98CE55006E13F0 /* LoginViewController.swift */; };
 		9280AA591B98CE55006E13F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9280AA571B98CE55006E13F0 /* LaunchScreen.xib */; };
@@ -118,6 +119,7 @@
 		9210D7111BCE413500CEAAD0 /* SoundsMP3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SoundsMP3.plist; sourceTree = "<group>"; };
 		9243B40E1BC7B78500A6CC39 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		927301741BDA8217008FE6D0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		927A23651BDFB8C1009EF9C6 /* RecomendationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomendationController.swift; sourceTree = "<group>"; };
 		9280AA491B98CE55006E13F0 /* Livingston.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Livingston.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9280AA4D1B98CE55006E13F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9280AA4E1B98CE55006E13F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				662B6EE81BCF9CE90046BA42 /* AddLureViewController.swift */,
 				92D510791BD41801009522B5 /* CatchLogViewController.swift */,
 				92D5107B1BD41B07009522B5 /* DetailCatchLogViewController.swift */,
+				927A23651BDFB8C1009EF9C6 /* RecomendationController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				92E7E8801BCBCAB900232106 /* MapKitViewController.swift in Sources */,
 				92D5107A1BD41801009522B5 /* CatchLogViewController.swift in Sources */,
 				9280AA4F1B98CE55006E13F0 /* AppDelegate.swift in Sources */,
+				927A23661BDFB8C1009EF9C6 /* RecomendationController.swift in Sources */,
 				9280AA971B9958E5006E13F0 /* Cells.swift in Sources */,
 				92D1CA7A1B99DAF900534E07 /* DiscoveringBluetoothController.swift in Sources */,
 				92C5CB371BA2377300805219 /* ShopViewController.swift in Sources */,

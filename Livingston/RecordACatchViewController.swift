@@ -48,7 +48,10 @@ class RecordACatchViewController: BaseViewController {
                 lureData.append(item as LureData)
                 print(item)
             }
-            self.selectLureByPosition(selectedLure)
+            if query.count > 0 { 
+                self.selectLureByPosition(selectedLure)
+            }
+            
         }catch _ {
             print("cant Innitialize Data base")
         }

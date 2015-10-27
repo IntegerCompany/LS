@@ -146,7 +146,7 @@ class FishViewController: BaseViewController {
                 var placeMark: CLPlacemark!
                 placeMark = placeArray?[0]
                 // Address dictionary
-                print(placeMark.addressDictionary)
+                //print(placeMark.addressDictionary)
                 
                 // Location name
                 if let state = placeMark.addressDictionary?["State"] as? NSString
@@ -210,9 +210,7 @@ class FishViewController: BaseViewController {
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         let conditions = jsonResult["current_observation"] as! NSDictionary
-                        print("current_observation \(error)")
                         let temperature = conditions["temperature_string"] as? String
-                        print("no data found: \(error)")
                         self.temperature.text = temperature
                     });
                     

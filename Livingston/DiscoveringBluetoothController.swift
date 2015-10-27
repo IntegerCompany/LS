@@ -237,6 +237,7 @@ class DiscoveringBluetoothController: BaseViewController, CBCentralManagerDelega
                         self.indicator?.stopAnimating()
                     });
                     print("Success: \(success)")
+                    print("LURE INFOR FROM SERVER : \n\n \(json)\n")
                 } else {
                     let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                     print("Error could not parse JSON: \(jsonStr)")
