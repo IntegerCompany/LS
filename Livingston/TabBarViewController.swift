@@ -11,6 +11,7 @@ import UIKit
 protocol MenuCallBackExtantion {
   func bluetoothFromMenu(sender : UIButton)
   func menuFromMenu(sender : UIButton)
+  func showMainScreen(sender : UIButton)
 }
 
 class TabBarViewController: UITabBarController,UITabBarControllerDelegate, UIPopoverPresentationControllerDelegate,ContactWithFishViewDelegate {
@@ -29,9 +30,10 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate, UIPop
     let rightView = UIView(frame:  CGRectMake(0, 0, 80, 30))
     rightView.backgroundColor = UIColor.clearColor()
     
-    let imageView = UIImageView(frame: CGRectMake(0, 0, 40, 40))
+    let imageView = UIButton(frame: CGRectMake(0, 0, 40, 40))
     imageView.contentMode = .ScaleAspectFit
-    imageView.image = UIImage(named: "icon")
+    imageView.setImage(UIImage(named: "icon"), forState: .Normal)
+    imageView.addTarget(self, action: "showMainScreen:", forControlEvents: UIControlEvents.TouchUpInside)
     self.navigationItem.titleView = imageView
     
     let btn1 = UIButton(frame: CGRectMake(0,0,30, 30))
@@ -83,6 +85,7 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate, UIPop
   }
   
   func showMenu() {
+    print("menu")
     popoverContent!.modalPresentationStyle = UIModalPresentationStyle.Popover
     popoverContent!.preferredContentSize = CGSizeMake(240,260)
     let nav = popoverContent!.popoverPresentationController
@@ -104,6 +107,9 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate, UIPop
 extension TabBarViewController  : MenuCallBackExtantion {
   func bluetoothFromMenu(sender : UIButton){
     
+  }
+  func showMainScreen(sender: UIButton) {
+    self.selectedIndex = 0
   }
   func menuFromMenu(sender : UIButton ){
     self.showMenu()
